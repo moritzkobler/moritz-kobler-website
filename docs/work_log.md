@@ -9,6 +9,16 @@
 - Follow-ups: Replace fallbacks with real company/institution logos and app screenshots; implement consent banner + GA gating.
 - Commit: 081df5a
 
+### 2026-01-13 — PRD: Ask-about-Moritz chat feature
+- Summary:
+  - Added a new About-page “Ask about Moritz” AI chat entrypoint requirement.
+  - Documented static-site security constraints (no client-side secrets) and safe default (link-out to custom GPT).
+- Scope: work_plan section 13
+- Files: docs/prd.md, docs/work_plan.md
+- Tests: N/A (docs change)
+- Follow-ups: Decide link-out URL + labels; implement the component per work plan.
+- Commit: 4b219a9
+
 ### 2026-01-13 — Initial site scaffold
 - Summary:
   - Added `/site` static SPA skeleton (routing, styling, shared header/footer, JSON-driven placeholders).
