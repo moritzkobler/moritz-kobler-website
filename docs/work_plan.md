@@ -98,6 +98,13 @@ PRD source: :contentReference[oaicite:0]{index=0}
 ---
 
 ## 4) Page implementation: About Me (`/about-me`)
+- TODO: Add “Ask about Moritz” chat entrypoint at top of About page:
+  - Must be visible above the intro
+  - Must be keyboard accessible
+  - Must clearly disclose AI-generated content
+  - Default implementation for static hosting: link-out to the custom GPT in ChatGPT
+  - Do not embed any secret API keys in client-side code
+  - Optional later: embedded on-site chat UI only if a secure proxy/token-minting approach is approved
 - TODO: Create About page route and HTML skeleton.
 - TODO: Render header/intro from JSON:
   - Name, title, location, LinkedIn link, summary
@@ -166,6 +173,21 @@ PRD source: :contentReference[oaicite:0]{index=0}
   - Load GA script only after consent
   - Respect Do Not Track where applicable (skip loading if DNT is enabled) [Inference: implement `navigator.doNotTrack` check]
 - TODO: Add a small “manage consent” link in footer (optional but recommended).
+
+---
+
+## 13) AI Chat Assistant (“Ask about Moritz”)
+- TODO: Add data configuration to `about.{lang}.json`:
+  - `meta.chat.enabled`, `meta.chat.mode`, `meta.chat.label`, `meta.chat.url`
+  - Ensure EN/DE labels work with the language toggle
+- TODO: Implement UI component (site-native) for the chat entrypoint:
+  - “Open chat” button opens the custom GPT URL in a new tab
+  - Provide short helper copy (what it can answer)
+  - Provide disclaimer and privacy note
+- TODO: (Optional) Track “open chat” event via analytics only after consent.
+- TODO: Document the security constraint in `docs/architecture.md`:
+  - No secrets in static client code
+  - Embedded chat requires a secure proxy/token strategy
 
 ---
 

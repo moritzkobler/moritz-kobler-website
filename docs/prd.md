@@ -92,6 +92,12 @@ Present Moritz Kobler professionally as an online CV / resume.
 
 ### **5.2 Content Sections**
 
+* **Chat: “Ask about Moritz” (AI)**
+  * A chat entrypoint at the very top of the page (above or integrated into the intro)
+  * Lets users ask questions about Moritz and get answers from a custom GPT
+  * Must be clearly labeled as AI-generated content
+  * Must not block access to the rest of the About page
+
 * **Header / Intro**  
   * Name  
   * Professional summary  
@@ -116,6 +122,28 @@ Present Moritz Kobler professionally as an online CV / resume.
 * **Downloadable CV**  
   * PDF download link  
   * English initially; German optional later
+
+### **5.4 AI Chat Assistant (“Ask about Moritz”)**
+
+**Goal:** Provide an easy way for recruiters/hiring managers to ask questions about Moritz and get fast answers.
+
+**Placement:** At the very top of `/about-me`.
+
+**UX requirements:**
+* Must look native to the site (dark/neon styling)
+* Must be keyboard accessible
+* Must respect `prefers-reduced-motion`
+* Must have a clear disclaimer (e.g. “AI-generated. May be inaccurate.”)
+
+**Privacy & security constraints (important):**
+* The site is static-only. Do **not** embed any secret API keys in client-side code.
+* If the assistant is implemented via OpenAI API calls, a secure token-minting proxy (serverless or backend) is required.
+
+**Implementation options (choose one):**
+1. **Default (static-safe):** A chat entrypoint that opens the custom GPT in ChatGPT (link-out).
+2. **Optional (requires serverless/backend):** Embedded on-site chat UI that calls an OpenAI endpoint via a secure proxy.
+
+**Analytics (optional):** Track “open chat” / “start chat” events only after user consent.
 
 ### **5.3 Data & Language Handling**
 
@@ -182,7 +210,13 @@ URL structure must allow future non-app project types.
     "title": "Senior AI Product Manager",  
     "location": "Melbourne, Australia",  
     "linkedin": "https://linkedin.com/in/mkobler",  
-    "cvPdf": "/assets/cv/moritz-kobler-en.pdf"  
+    "cvPdf": "/assets/cv/moritz-kobler-en.pdf",
+    "chat": {
+      "enabled": true,
+      "mode": "link",
+      "label": "Ask about Moritz",
+      "url": "https://chat.openai.com/g/g-<your-custom-gpt-id>"
+    }
   },  
   "summary": "Professional summary",  
   "experience": \[  
