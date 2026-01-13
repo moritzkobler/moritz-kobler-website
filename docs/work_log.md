@@ -7,7 +7,7 @@
 - Files: site/shared/header.html, site/assets/css/styles.css, site/assets/js/views.js, site/data/*.json, docs/assets_needed.md
 - Tests: N/A (static site)
 - Follow-ups: Replace fallbacks with real company/institution logos and app screenshots; implement consent banner + GA gating.
-- Commit: COMMIT: <pending>
+- Commit: 081df5a
 
 ### 2026-01-13 — Initial site scaffold
 - Summary:
