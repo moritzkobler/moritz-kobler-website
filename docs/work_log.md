@@ -6,4 +6,4 @@
 - Files: site/*, scripts/dev_server.py, README.md, docs/architecture.md
 - Tests: N/A (static site)
 - Follow-ups: Implement About/Projects sections fully; add consent banner + GA gating.
-- Commit: COMMIT: <pending>
+- Commit: fbadd5d
