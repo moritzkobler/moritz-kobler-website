@@ -20,19 +20,91 @@ function setTitle(title){
   document.title = title ? `${title} — Moritz Kobler` : 'Moritz Kobler';
 }
 
+function mergePreferPrimary(primary, fallback){
+  if (primary === undefined || primary === null) return fallback;
+  if (Array.isArray(primary)) return primary;
+
+  const isObj = (v) => typeof v === 'object' && v !== null && !Array.isArray(v);
+  if (isObj(primary) && isObj(fallback)){
+    const out = {};
+    const keys = new Set([...Object.keys(fallback), ...Object.keys(primary)]);
+    for (const k of keys){
+      out[k] = mergePreferPrimary(primary[k], fallback[k]);
+    }
+    return out;
+  }
+
+  return primary;
+}
+
+function iconDataUrl(seed, label){
+  const safe = (label || '').slice(0, 24).replace(/[<>"']/g, '');
+  const ch = (safe.trim()[0] || (seed || '?')[0] || '?').toUpperCase();
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#7c3aed" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="84" height="84" rx="18" fill="url(#g)"/>
+  <text x="48" y="57" text-anchor="middle" font-family="ui-sans-serif,system-ui" font-size="34" font-weight="700" fill="#0b0f14">${ch}</text>
+</svg>`;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+function renderLogo(src, alt){
+  const fallback = '/assets/img/logo.png';
+  const img = el('img', { class: 'logo', src: src || fallback, alt: src ? `${alt || ''} logo`.trim() : '' });
+  img.addEventListener('error', () => {
+    if (img.getAttribute('src') !== fallback) img.setAttribute('src', fallback);
+  }, { once: true });
+  return img;
+}
+
+function renderKeyValue(label, value){
+  if (!value) return null;
+  return el('div', { class: 'kv' }, [
+    el('div', { class: 'kv__label', text: label }),
+    el('div', { class: 'kv__value', text: value })
+  ]);
+}
+
 export async function renderAbout({ lang }){
   setTitle(lang === 'de' ? 'Über mich' : 'About Me');
   const locale = lang === 'de' ? 'de-DE' : 'en-US';
 
-  const about = await loadJson(`/data/about.${lang}.json`);
+  const aboutPrimary = await loadJson(`/data/about.${lang}.json`);
+  const aboutFallback = lang === 'en' ? null : await loadJson('/data/about.en.json');
+  const about = mergePreferPrimary(aboutPrimary, aboutFallback);
+
+  const meta = about?.meta ?? {};
+
+  const introSide = el('div', { class: 'card panel' }, [
+    el('div', { class: 'panel__inner' }, [
+      renderKeyValue(lang === 'de' ? 'Rolle' : 'Role', meta.title),
+      renderKeyValue(lang === 'de' ? 'Ort' : 'Location', meta.location),
+      el('div', { class: 'panel__actions' }, [
+        meta.linkedin ? el('a', { class: 'btn', href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: 'LinkedIn' }) : null,
+        meta.cvPdf ? el('a', { class: 'btn btn--ghost', href: meta.cvPdf, download: '', text: lang === 'de' ? 'CV (PDF)' : 'CV (PDF)' }) : null
+      ].filter(Boolean))
+    ])
+  ]);
 
   const hero = el('section', { class: 'card hero' }, [
-    el('h1', { class: 'h1', text: about?.meta?.name ?? 'Moritz Kobler' }),
-    el('p', { class: 'muted', text: `${about?.meta?.title ?? ''}${about?.meta?.location ? ` · ${about.meta.location}` : ''}`.trim() }),
+    el('h1', { class: 'h1', text: meta.name ?? 'Moritz Kobler' }),
+    el('p', { class: 'muted', text: `${meta.title ?? ''}${meta.location ? ` · ${meta.location}` : ''}`.trim() }),
     el('p', { class: 'p', text: about?.summary ?? '' }),
-    el('p', { class: 'muted' }, [
-      el('a', { href: about?.meta?.linkedin ?? '#', target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'LinkedIn öffnen' : 'Open LinkedIn' })
-    ])
+    el('div', { class: 'chips' }, [
+      meta.linkedin ? el('a', { class: 'chip', href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'LinkedIn öffnen' : 'Open LinkedIn' }) : null,
+      meta.cvPdf ? el('a', { class: 'chip', href: meta.cvPdf, download: '', text: lang === 'de' ? 'CV herunterladen' : 'Download CV' }) : null
+    ].filter(Boolean))
+  ]);
+
+  const introGrid = el('div', { class: 'grid' }, [
+    el('div', {}, [hero]),
+    el('div', {}, [introSide])
   ]);
 
   const experience = Array.isArray(about?.experience) ? about.experience : [];
@@ -41,9 +113,14 @@ export async function renderAbout({ lang }){
     el('div', { class: 'gallery' }, experience.map((r) => {
       const dates = formatMonthRange(r.startDate, r.endDate, locale);
       return el('article', { class: 'gallery-card' }, [
-        el('div', { class: 'muted', text: r.company ?? '' }),
-        el('h2', { class: 'h2', text: r.role ?? '' }),
-        el('div', { class: 'muted', text: dates }),
+        el('div', { class: 'card-row' }, [
+          renderLogo(r.logo, r.company),
+          el('div', { class: 'card-row__body' }, [
+            el('div', { class: 'muted', text: r.company ?? '' }),
+            el('h2', { class: 'h2', text: r.role ?? '' }),
+            el('div', { class: 'muted', text: dates })
+          ])
+        ]),
         el('ul', {}, (r.highlights ?? []).map((h) => el('li', { text: h })))
       ]);
     }))
@@ -55,29 +132,85 @@ export async function renderAbout({ lang }){
     el('div', { class: 'gallery' }, education.map((r) => {
       const dates = formatMonthRange(r.startDate, r.endDate, locale);
       return el('article', { class: 'gallery-card' }, [
-        el('div', { class: 'muted', text: r.institution ?? '' }),
-        el('h2', { class: 'h2', text: r.degree ?? '' }),
-        el('div', { class: 'muted', text: dates }),
-        el('div', { class: 'muted', text: r.focus ?? '' }),
+        el('div', { class: 'card-row' }, [
+          renderLogo(r.logo, r.institution),
+          el('div', { class: 'card-row__body' }, [
+            el('div', { class: 'muted', text: r.institution ?? '' }),
+            el('h2', { class: 'h2', text: r.degree ?? '' }),
+            el('div', { class: 'muted', text: dates }),
+            el('div', { class: 'muted', text: r.focus ?? '' })
+          ])
+        ]),
         el('ul', {}, (r.details ?? []).map((d) => el('li', { text: d })))
       ]);
     }))
   ]);
 
-  const cvHref = about?.meta?.cvPdf;
+  const skills = Array.isArray(about?.skills) ? about.skills : [];
+  const skillsSection = el('section', {}, [
+    el('div', { class: 'section-title', text: lang === 'de' ? 'Skills & Tools' : 'Skills & Tools' }),
+    skills.length === 0
+      ? el('p', { class: 'muted', text: lang === 'de' ? 'Noch keine Skills gepflegt.' : 'No skills listed yet.' })
+      : (typeof skills[0] === 'object' && skills[0] && Array.isArray(skills[0].items))
+        ? el('div', { class: 'stack' }, skills.map((g) => {
+            const items = Array.isArray(g.items) ? g.items : [];
+            return el('div', { class: 'card panel' }, [
+              el('div', { class: 'panel__inner' }, [
+                el('div', { class: 'muted', text: g.group ?? '' }),
+                el('div', { class: 'icon-grid' }, items.map((s) => {
+                  const name = typeof s === 'string' ? s : (s?.name ?? '');
+                  const src = typeof s === 'object' ? s?.icon : null;
+                  return el('div', { class: 'icon-item' }, [
+                    renderLogo(src || iconDataUrl(name, name), name),
+                    el('div', { class: 'icon-label', text: name })
+                  ]);
+                }))
+              ])
+            ]);
+          }))
+        : el('div', { class: 'icon-grid' }, skills.map((s) => {
+            const name = typeof s === 'string' ? s : (s?.name ?? '');
+            const src = typeof s === 'object' ? s?.icon : null;
+            return el('div', { class: 'icon-item' }, [
+              renderLogo(src || iconDataUrl(name, name), name),
+              el('div', { class: 'icon-label', text: name })
+            ]);
+          }))
+  ]);
+
+  const hobbies = Array.isArray(about?.hobbies) ? about.hobbies : [];
+  const hobbiesSection = el('section', {}, [
+    el('div', { class: 'section-title', text: lang === 'de' ? 'Hobbys' : 'Hobbies' }),
+    hobbies.length === 0
+      ? el('p', { class: 'muted', text: lang === 'de' ? 'Noch keine Hobbys gepflegt.' : 'No hobbies listed yet.' })
+      : el('ul', { class: 'list' }, hobbies.map((h) => el('li', { text: h })))
+  ]);
+
+  const contactSection = el('section', {}, [
+    el('div', { class: 'section-title', text: lang === 'de' ? 'Kontakt' : 'Contact' }),
+    meta.linkedin
+      ? el('p', { class: 'muted' }, [
+          el('a', { href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: 'LinkedIn' })
+        ])
+      : el('p', { class: 'muted', text: lang === 'de' ? 'Kein Kontaktlink angegeben.' : 'No contact link provided.' })
+  ]);
+
+  const cvHref = meta.cvPdf;
   const cvSection = el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Lebenslauf' : 'CV' }),
-    el('div', { class: 'card', style: null }, [
-      el('div', { class: 'hero' }, [
+    el('div', { class: 'card panel' }, [
+      el('div', { class: 'panel__inner' }, [
         el('p', { class: 'p', text: lang === 'de' ? 'PDF herunterladen:' : 'Download PDF:' }),
         el('p', { class: 'muted' }, [
-          el('a', { href: cvHref ?? '#', target: '_blank', rel: 'noreferrer', text: cvHref ? (lang === 'de' ? 'CV öffnen' : 'Open CV') : (lang === 'de' ? 'Noch nicht verfügbar' : 'Not available yet') })
+          cvHref
+            ? el('a', { href: cvHref, download: '', text: lang === 'de' ? 'CV herunterladen' : 'Download CV' })
+            : document.createTextNode(lang === 'de' ? 'Noch nicht verfügbar.' : 'Not available yet.')
         ])
       ])
     ])
   ]);
 
-  return el('div', { class: 'container' }, [hero, expSection, eduSection, cvSection]);
+  return el('div', { class: 'container' }, [introGrid, expSection, eduSection, skillsSection, hobbiesSection, contactSection, cvSection]);
 }
 
 export async function renderProjects({ lang }){
@@ -90,11 +223,16 @@ export async function renderProjects({ lang }){
     el('p', { class: 'p', text: lang === 'de' ? 'Apps und Experimente – sauber dokumentiert.' : 'Apps and experiments — cleanly documented.' })
   ]);
 
-  const list = el('section', { class: 'grid container' }, projects.map((p) => {
+  const list = el('section', { class: 'grid-cards' }, projects.map((p) => {
     const href = `/projects/apps/${encodeURIComponent(p.slug)}`;
-    return el('a', { class: 'card hero', href, 'data-link': 'true' }, [
-      el('div', { class: 'muted', text: p.status ?? '' }),
-      el('h2', { class: 'h1', text: p.name ?? '' }),
+    return el('a', { class: 'card card-link project-card', href, 'data-link': 'true' }, [
+      el('div', { class: 'project-card__top' }, [
+        el('img', { class: 'project-icon', src: '/assets/img/logo.png', alt: '' }),
+        el('div', {}, [
+          el('div', { class: 'muted', text: p.status ?? '' }),
+          el('h2', { class: 'h2', text: p.name ?? '' })
+        ])
+      ]),
       el('p', { class: 'p', text: p.shortDescription ?? '' })
     ]);
   }));
@@ -121,13 +259,46 @@ export async function renderProjectDetail({ lang, slug }){
   }
 
   const supportEmail = project.supportEmail;
+  const screenshots = Array.isArray(project.screenshots) ? project.screenshots : [];
+  const ios = project?.appStoreLinks?.ios;
+  const android = project?.appStoreLinks?.android;
 
   return el('div', { class: 'container' }, [
     el('section', { class: 'card hero' }, [
       el('div', { class: 'muted', text: project.status ?? '' }),
-      el('h1', { class: 'h1', text: project.name ?? '' }),
-      el('p', { class: 'p', text: project.longDescription ?? '' })
+      el('div', { class: 'project-hero' }, [
+        el('img', { class: 'project-icon project-icon--lg', src: '/assets/img/logo.png', alt: '' }),
+        el('div', {}, [
+          el('h1', { class: 'h1', text: project.name ?? '' }),
+          el('p', { class: 'p', text: project.longDescription ?? '' })
+        ])
+      ]),
+      el('div', { class: 'chips' }, [
+        el('span', { class: 'chip chip--muted', text: project.type ?? 'project' }),
+        ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: 'iOS' }) : null,
+        android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: 'Android' }) : null
+      ].filter(Boolean))
     ]),
+
+    el('section', {}, [
+      el('div', { class: 'section-title', text: lang === 'de' ? 'Screenshots' : 'Screenshots' }),
+      screenshots.length === 0
+        ? el('p', { class: 'muted', text: lang === 'de' ? 'Noch keine Screenshots verfügbar.' : 'No screenshots yet.' })
+        : el('div', { class: 'shot-grid' }, screenshots.map((s, idx) =>
+            el('img', { class: 'shot', src: s, alt: `${project.name ?? 'App'} screenshot ${idx + 1}` })
+          ))
+    ]),
+
+    el('section', {}, [
+      el('div', { class: 'section-title', text: lang === 'de' ? 'App Stores' : 'App Stores' }),
+      (ios || android)
+        ? el('div', { class: 'chips' }, [
+            ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: 'Open on iOS' }) : null,
+            android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: 'Open on Android' }) : null
+          ].filter(Boolean))
+        : el('p', { class: 'muted', text: lang === 'de' ? 'Noch keine Store-Links.' : 'No store links yet.' })
+    ]),
+
     el('section', {}, [
       el('div', { class: 'section-title', text: lang === 'de' ? 'Support' : 'Support' }),
       el('p', { class: 'muted' }, [

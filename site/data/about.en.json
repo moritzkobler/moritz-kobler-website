@@ -14,7 +14,8 @@
       "role": "Senior AI Product Manager",
       "startDate": "2022-10",
       "endDate": "present",
-      "highlights": ["Achievement placeholder"]
+      "highlights": ["Achievement placeholder"],
+      "logo": "/assets/logos/seek.svg"
     }
   ],
   "education": [
@@ -25,9 +26,23 @@
       "focus": "Computer Science",
       "startDate": "2014-09",
       "endDate": "2018-02",
-      "details": ["Thesis description placeholder"]
+      "details": ["Thesis description placeholder"],
+      "logo": "/assets/logos/tu-berlin.svg"
     }
   ],
-  "skills": [],
-  "hobbies": []
+  "skills": [
+    {
+      "group": "Product",
+      "items": ["Product Strategy", "Discovery", "Experimentation"]
+    },
+    {
+      "group": "AI",
+      "items": ["LLMs", "Evaluation", "Prompting"]
+    },
+    {
+      "group": "Engineering",
+      "items": ["Python", "SQL", "APIs"]
+    }
+  ],
+  "hobbies": ["Running", "Photography", "Building small tools"]
 }

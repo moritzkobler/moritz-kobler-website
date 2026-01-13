@@ -195,6 +195,8 @@ PRD source: :contentReference[oaicite:0]{index=0}
 - TODO: Add placeholder app icons/screenshots in `/site/assets/screenshots/` and wire them in `projects.json`.
 - TODO: Add placeholder CV PDF to `/site/assets/cv/` and reference in `about.en.json`.
 
+Implemented note: Asset files are intentionally not generated in-repo; see `/docs/assets_needed.md` for the list of files to add.
+
 ---
 
 ## 12) Deployment readiness (Hostinger + GitHub)
