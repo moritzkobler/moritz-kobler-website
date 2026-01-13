@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — Not Found</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div data-include="shared/header.html"></div>
+
+  <main id="main">
+    <div class="container">
+      <section class="card hero">
+        <h1 class="h1">404 — Page not found</h1>
+        <p class="p">This URL doesn’t exist. Use navigation to get back.</p>
+        <p class="muted"><a href="/about-me" data-link>Go to start</a></p>
+      </section>
+    </div>
+  </main>
+
+  <div data-include="shared/footer.html"></div>
+
+  <script type="module">
+    import { includeFragments } from '/assets/js/includes.js';
+    import { wireLinkInterceptor } from '/assets/js/router.js';
+
+    includeFragments(document).then(() => {
+      const node = document.querySelector('[data-year]');
+      if (node) node.textContent = String(new Date().getFullYear());
+      wireLinkInterceptor();
+    });
+  </script>
+</body>
+</html>

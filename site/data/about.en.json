@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "name": "Moritz Kobler",
+    "title": "Senior AI Product Manager",
+    "location": "Melbourne, Australia",
+    "linkedin": "https://linkedin.com/in/mkobler",
+    "cvPdf": "/assets/cv/moritz-kobler-en.pdf"
+  },
+  "summary": "Professional summary placeholder (EN).",
+  "experience": [
+    {
+      "id": "seek-senior-ai-pm",
+      "company": "SEEK",
+      "role": "Senior AI Product Manager",
+      "startDate": "2022-10",
+      "endDate": "present",
+      "highlights": ["Achievement placeholder"]
+    }
+  ],
+  "education": [
+    {
+      "id": "msc-tu-berlin",
+      "institution": "Technical University Berlin & Lund University",
+      "degree": "M.Sc. Industrial Engineering",
+      "focus": "Computer Science",
+      "startDate": "2014-09",
+      "endDate": "2018-02",
+      "details": ["Thesis description placeholder"]
+    }
+  ],
+  "skills": [],
+  "hobbies": []
+}

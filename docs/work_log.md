@@ -1,0 +1,9 @@
+### 2026-01-13 — Initial site scaffold
+- Summary:
+  - Added `/site` static SPA skeleton (routing, styling, shared header/footer, JSON-driven placeholders).
+  - Added optional Python dev server with SPA fallback.
+- Scope: work_plan sections 0–3 (partial)
+- Files: site/*, scripts/dev_server.py, README.md, docs/architecture.md
+- Tests: N/A (static site)
+- Follow-ups: Implement About/Projects sections fully; add consent banner + GA gating.
+- Commit: COMMIT: <pending>

@@ -1,0 +1,16 @@
+# SPA fallback for clean URLs (Apache)
+
+Options -MultiViews
+
+RewriteEngine On
+
+# Don’t rewrite real files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Let the real 404 page be reachable
+RewriteRule ^404\.html$ - [L]
+
+# Everything else -> SPA entry
+RewriteRule ^ index.html [L]
