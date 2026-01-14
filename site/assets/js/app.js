@@ -60,6 +60,7 @@ async function boot(){
     const url = new URL(window.location.href);
     url.searchParams.set('lang', next);
     history.replaceState({}, '', url);
+    updateLangToggleUI(next);
     render();
   });
 
