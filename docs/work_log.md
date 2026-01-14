@@ -7,7 +7,7 @@
 - Files: scripts/dev_server.py, site/assets/js/views.js, site/assets/js/data.js, site/assets/css/styles.css, site/data/about.en.json, docs/prd.md, docs/work_plan.md
 - Tests: N/A (static site)
 - Follow-ups: Mirror volunteering/references content to `about.de.json` (or document intentional EN-only); implement “Ask about Moritz” entrypoint.
-- Commit: COMMIT: <pending>
+- Commit: bebe178
 
 ### 2026-01-13 — Logo fallback + assets checklist
 - Summary:
