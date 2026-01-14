@@ -1,3 +1,13 @@
+### 2026-01-14 — Lang label + footer alignment
+- Summary:
+  - Fixed the language toggle label so it reliably reflects the current state.
+  - Adjusted footer structure to align its contents cleanly to the main container width.
+- Scope: work_plan section 2 (base HTML/CSS foundation) and section 7 (language toggle UX)
+- Files: site/assets/js/app.js, site/shared/footer.html, site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: f33b255
+
 ### 2026-01-14 — Sticky footer + language toggle fix
 - Summary:
   - Fixed the language toggle so it stays in sync with the current `lang` state and can toggle back and forth.
