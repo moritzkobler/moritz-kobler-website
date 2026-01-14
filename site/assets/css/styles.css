@@ -218,15 +218,15 @@ main{ padding: var(--space-6) 0; }
 }
 
 .gallery--lg{ --card-basis: min(620px, 92vw); }
-
-.gallery-card--lg{
-  flex: 0 0 var(--card-basis);
-}
 .gallery::-webkit-scrollbar{ height: 10px; }
 .gallery::-webkit-scrollbar-thumb{ background: rgba(233,240,255,.12); border-radius: 999px; }
 
 .gallery-card{
-  flex: 0 0 min(360px, 86vw);
+  flex: 0 0 var(--card-basis);
+  scroll-snap-align: start;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   background: rgba(15,22,33,.7);
 }
 
