@@ -29,14 +29,22 @@
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+html{ overflow-x: clip; }
 body{
   margin:0;
-  background: radial-gradient(1200px 800px at 70% -10%, rgba(124,58,237,.25), transparent 55%),
-              radial-gradient(900px 600px at 10% 10%, rgba(34,211,238,.18), transparent 60%),
-              var(--bg);
+  background:
+    radial-gradient(1400px 900px at 70% -15%, rgba(124,58,237,.22), transparent 70%),
+    radial-gradient(1200px 800px at 12% 12%, rgba(34,211,238,.18), transparent 72%),
+    radial-gradient(1600px 1000px at 95% 55%, rgba(34,211,238,.08), transparent 76%),
+    radial-gradient(1800px 1200px at 5% 85%, rgba(124,58,237,.08), transparent 78%),
+    linear-gradient(180deg, rgba(11,15,20,0) 0%, rgba(11,15,20,.20) 40%, rgba(11,15,20,0) 100%),
+    var(--bg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font);
   line-height: 1.45;
+  overflow-x: clip;
 }
 
 a{ color: inherit; }
@@ -198,23 +206,24 @@ main{ padding: var(--space-6) 0; }
 
 .section-title{ font-size: 14px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin: var(--space-6) 0 var(--space-3); }
 
-.carousel{ display:grid; gap: var(--space-3); overflow: visible; }
+.carousel{ display:grid; gap: var(--space-2); overflow: visible; }
 
 .gallery{
   display:flex;
   overflow-x:auto;
-  overflow-y: visible;
-  gap: var(--space-4);
-  /* Extra vertical padding prevents glow/hover effects from being clipped
-     by the scroll container (browsers tend to clip the cross-axis when one
-     axis is scrollable). */
-  --glow-pad: clamp(44px, 6vw, 78px);
-  padding-top: var(--glow-pad);
-  padding-bottom: var(--glow-pad);
+  gap: calc(var(--space-4) + 2px);
+  /* Cross-axis clipping is common when one axis is scrollable.
+    Keep layout spacing tight, but reserve independent internal paint room
+    for glows via padding + negative margin that cancels in flow. */
+  --glow-room: 28px;
+  padding-top: calc(var(--space-2) + var(--glow-room));
+  padding-bottom: calc(var(--space-2) + var(--glow-room));
+  margin-top: calc(-1 * var(--glow-room));
+  margin-bottom: calc(-1 * var(--glow-room));
   scroll-snap-type: x mandatory;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  --card-basis: min(360px, 86vw);
+  width: 100dvw;
+  margin-left: calc(50% - 50dvw);
+  --card-basis: min(360px, calc(100dvw - 2*var(--space-4)));
   /* Keep the first card aligned to the main `.container` left edge.
      On narrow viewports use a small inset; on wide viewports compute the
      container offset and add the standard horizontal padding. */
@@ -228,7 +237,18 @@ main{ padding: var(--space-6) 0; }
   scrollbar-width: none;
 }
 
-.gallery--lg{ --card-basis: min(620px, 92vw); }
+@supports not (width: 100dvw){
+  .gallery{
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    --card-basis: min(360px, calc(100vw - 2*var(--space-4)));
+  }
+}
+
+.gallery--lg{ --card-basis: min(620px, calc(100dvw - 2*var(--space-4))); }
+@supports not (width: 100dvw){
+  .gallery--lg{ --card-basis: min(620px, calc(100vw - 2*var(--space-4))); }
+}
 .gallery::-webkit-scrollbar{ display:none; }
 
 .gallery-card{
@@ -239,7 +259,7 @@ main{ padding: var(--space-6) 0; }
   border-radius: var(--radius);
   background: rgba(15,22,33,.7);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   transform: translateY(0) scale(1);
   transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
@@ -280,6 +300,7 @@ main{ padding: var(--space-6) 0; }
   justify-content: center;
   align-items: center;
   padding: 0 var(--space-4);
+  margin-top: calc(-1 * var(--glow-room));
 }
 
 .carousel-dot{

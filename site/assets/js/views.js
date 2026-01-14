@@ -354,7 +354,7 @@ export async function renderAbout({ lang }){
       el('p', { class: 'muted', text: r.text ?? '' }),
       r.profileUrl ? el('p', { class: 'muted' }, [el('a', { href: r.profileUrl, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Profil öffnen' : 'Open profile' })]) : null
     ].filter(Boolean));
-    applyGlowSeed(card, r.id || r.name || r.profileUrl || String(Math.random()));
+    applyGlowSeed(card, r.id || r.profileUrl || r.name || 'reference');
     return card;
   }));
   const referencesSection = references.length ? el('section', {}, [
