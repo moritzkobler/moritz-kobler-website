@@ -1,3 +1,13 @@
+### 2026-01-14 — Language toggle + scrolling background
+- Summary:
+  - Replaced the two-button language picker with a single text toggle showing the current language.
+  - Made the site background scroll with the page while keeping intermittent neon color blotches.
+- Scope: work_plan section 2 (base HTML/CSS foundation) and section 7 (language toggle UX)
+- Files: site/shared/header.html, site/assets/js/lang.js, site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: d399692
+
 ### 2026-01-14 — Header + button polish
 - Summary:
   - Simplified the header (no background/border), removed the brand block, and centered navigation.
