@@ -110,11 +110,11 @@ export async function renderAbout({ lang }){
   const experience = Array.isArray(about?.experience) ? about.experience : [];
   const expSection = el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Berufserfahrung' : 'Work Experience' }),
-    el('div', { class: 'gallery' }, experience.map((r) => {
+    el('div', { class: 'gallery gallery--lg' }, experience.map((r) => {
       const dates = formatMonthRange(r.startDate, r.endDate, locale);
       const latestRole = Array.isArray(r.roles) && r.roles.length ? r.roles[r.roles.length - 1] : (r.role ?? '');
       const previousRoles = Array.isArray(r.roles) && r.roles.length > 1 ? r.roles.slice(0, -1) : [];
-      return el('article', { class: 'gallery-card gallery-card--lg', tabindex: '-1', onclick: (e) => {
+      return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
         e.preventDefault();
         const card = e.currentTarget;
         const gallery = card.parentElement;
@@ -197,7 +197,7 @@ export async function renderAbout({ lang }){
   const references = Array.isArray(about?.references) ? about.references : [];
   const referencesSection = references.length ? el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Empfehlungen' : 'References' }),
-    el('div', { class: 'gallery' }, references.map((r) => {
+    el('div', { class: 'gallery gallery--lg' }, references.map((r) => {
       const dateLabel = (() => {
         if (!r.date) return '';
         try{
@@ -209,7 +209,7 @@ export async function renderAbout({ lang }){
         }
       })();
 
-      return el('article', { class: 'gallery-card gallery-card--lg', tabindex: '-1', onclick: (e) => {
+      return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
         e.preventDefault();
         const card = e.currentTarget;
         const gallery = card.parentElement;

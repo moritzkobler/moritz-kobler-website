@@ -206,27 +206,27 @@ main{ padding: var(--space-6) 0; }
   scroll-snap-type: x mandatory;
   width: 100vw;
   margin-left: calc(50% - 50vw);
+  --card-basis: min(360px, 86vw);
   /* Keep the first card aligned to the main `.container` left edge.
      On narrow viewports use a small inset; on wide viewports compute the
      container offset and add the standard horizontal padding. */
   --gallery-inset: clamp(var(--space-4), calc((100vw - var(--max)) / 2), 50vw);
   padding-left: var(--gallery-inset);
-  padding-right: var(--gallery-inset);
+  /* Extra trailing space allows the LAST card to scroll all the way left. */
+  padding-right: calc(var(--gallery-inset) + max(0px, 100vw - var(--gallery-inset) - var(--card-basis)));
   scroll-padding-inline-start: var(--gallery-inset);
 }
 
+.gallery--lg{ --card-basis: min(620px, 92vw); }
+
 .gallery-card--lg{
-  flex: 0 0 min(560px, 86vw);
+  flex: 0 0 var(--card-basis);
 }
 .gallery::-webkit-scrollbar{ height: 10px; }
 .gallery::-webkit-scrollbar-thumb{ background: rgba(233,240,255,.12); border-radius: 999px; }
 
 .gallery-card{
   flex: 0 0 min(360px, 86vw);
-  scroll-snap-align: start;
-  padding: var(--space-4);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
   background: rgba(15,22,33,.7);
 }
 
