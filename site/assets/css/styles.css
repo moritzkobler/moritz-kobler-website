@@ -73,10 +73,14 @@ a{ color: inherit; }
   backdrop-filter: blur(12px);
   background: rgba(11,15,20,.75);
   border-bottom: 1px solid var(--border);
+  padding: var(--space-3) 0;
+}
+
+.site-header > .container{
   display:flex;
   align-items:center;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
+  padding: 0 var(--space-4);
 }
 
 .brand{

@@ -106,12 +106,13 @@ PRD source: :contentReference[oaicite:0]{index=0}
   - Do not embed any secret API keys in client-side code
   - Optional later: embedded on-site chat UI only if a secure proxy/token-minting approach is approved
 - TODO: Create About page route and HTML skeleton.
-- TODO: Render header/intro from JSON:
+  - TODO: Render header/intro from JSON:
   - Name, title, location, LinkedIn link, summary
-- TODO: Implement Work Experience horizontal gallery:
-  - Card per role
+  - TODO: Implement Work Experience horizontal gallery:
+  - Card per role entry
   - Company logo (official logo path from JSON; placeholder acceptable)
-  - Role title, company, dates, highlights
+  - `roles[]` (array of role titles) — display the latest role prominently and list prior roles
+  - Company, dates, highlights
   - Horizontal scroll with scroll-snap; swipeable on mobile
 - TODO: Implement Education horizontal gallery:
   - Same interaction pattern

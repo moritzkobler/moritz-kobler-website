@@ -2,47 +2,133 @@
   "meta": {
     "name": "Moritz Kobler",
     "title": "Senior AI Product Manager",
-    "location": "Melbourne, Australia",
+    "location": "Fitzroy, Melbourne, Australia",
     "linkedin": "https://linkedin.com/in/mkobler",
     "cvPdf": "/assets/cv/moritz-kobler-en.pdf"
   },
-  "summary": "Professional summary placeholder (EN).",
+  "summary": "As a product manager, my ultimate goal is to ensure that the product is a success by enabling cross-functional teams to succeed. With ~8 years of experience in creating complex B2B SaaS solutions as well as AI-powered B2C features, I focus on understanding and addressing immediate user needs as well as working towards the product vision to realize strategic goals.",
   "experience": [
     {
-      "id": "seek-senior-ai-pm",
+      "id": "seek-ai-product-manager",
       "company": "SEEK",
-      "role": "Senior AI Product Manager",
+      "roles": [
+        "AI Product Manager",
+        "Senior AI Product Manager"
+      ],
       "startDate": "2022-10",
       "endDate": "present",
-      "highlights": ["Achievement placeholder"],
+      "highlights": [
+        "Exploring the use of LLMs, embeddings, cross-encoders and sequence modeling technology in recommendations and working with front-end teams to extract user intent using GenAI to improve matching.",
+        "Leading a major organization-wide initiative to unify technology and online platforms across 8 markets and 3 brands in APAC.",
+        "Driving cross-brand experiments across six recommendation products, resulting in significant year-over-year uplift in job–candidate matches."
+      ],
       "logo": "/assets/logos/seek.svg"
+    },
+    {
+      "id": "itonics-product-management",
+      "company": "ITONICS GMBH",
+      "roles": [
+        "Junior Product Manager",
+        "Product Manager",
+        "Senior Product Manager"
+      ],
+      "startDate": "2018-03",
+      "endDate": "2022-06",
+      "highlights": [
+        "Led the development of a new product line with agile teams in Germany and Nepal, spanning discovery, prototyping, launch, iteration, and support.",
+        "Owned the product roadmap and backlogs; contributed to product vision, strategy, and pricing in close collaboration with cross-functional stakeholders.",
+        "Successfully launched the company’s new product line and initiated its big data product offering.",
+        "Established initiatives for data-driven decision-making in product management.",
+        "Drove the shift from a project-based to a product-centric organization, shaping product processes and the growing product team."
+      ],
+      "logo": "/assets/logos/itonics.svg"
+    },
+    {
+      "id": "bookingkit-working-student-intern",
+      "company": "BOOKINGKIT GMBH",
+      "roles": [
+        "Product Management, BI & Marketing Working Student",
+        "Product Management, BI & Marketing Intern"
+      ],
+      "startDate": "2014-08",
+      "endDate": "2017-03",
+      "highlights": [
+        "One of the first employees, supporting the business across the company website, blog articles and newsletters, graphic design, and customer support.",
+        "Gradually transitioned into product and business intelligence responsibilities.",
+        "Designed a concept for functionality to optimize pricing based on historical booking data."
+      ],
+      "logo": "/assets/logos/bookingkit.svg",
+      "notes": "[Unverified] Start and end months inferred from CV wording: “between Aug ’14 and Mar ’17.”"
     }
   ],
   "education": [
     {
-      "id": "msc-tu-berlin",
+      "id": "msc-industrial-engineering-tu-berlin-lund",
       "institution": "Technical University Berlin & Lund University",
-      "degree": "M.Sc. Industrial Engineering",
+      "degree": "M.Sc. in Industrial Engineering",
       "focus": "Computer Science",
       "startDate": "2014-09",
       "endDate": "2018-02",
-      "details": ["Thesis description placeholder"],
-      "logo": "/assets/logos/tu-berlin.svg"
+      "details": [
+        "Thesis on data-driven environmental scanning and foresight.",
+        "Final grade: 1.2 (scale: 1.0 best to 4.0 worst)."
+      ],
+      "logo": "/assets/logos/tu-berlin-lund.svg"
     }
   ],
   "skills": [
     {
-      "group": "Product",
-      "items": ["Product Strategy", "Discovery", "Experimentation"]
+      "category": "Analytics, Business Intelligence, Reporting",
+      "items": [
+        { "name": "Tableau", "icon": "/assets/icons/tableau.svg" },
+        { "name": "Amplitude", "icon": "/assets/icons/amplitude.svg" }
+      ]
     },
     {
-      "group": "AI",
-      "items": ["LLMs", "Evaluation", "Prompting"]
+      "category": "Day-to-day tools",
+      "items": [
+        { "name": "Atlassian Suite", "icon": "/assets/icons/atlassian.svg", "notes": "Task Management, Documentation" },
+        { "name": "Microsoft Office Suite", "icon": "/assets/icons/microsoft-office.svg", "notes": "Happy to use Google Workspace, too!" },
+        { "name": "Miro", "icon": "/assets/icons/miro.svg", "notes": "Ideation, Brainstorming, Collaboration" },
+        { "name": "Databricks", "icon": "/assets/icons/databricks.svg", "notes": "Ad-hoc Data Analysis" },
+        { "name": "ChatGPT", "icon": "/assets/icons/chatgpt.svg", "notes": "Efficiency, Writing, Idea Refinement" }
+      ]
     },
     {
-      "group": "Engineering",
-      "items": ["Python", "SQL", "APIs"]
+      "category": "Tech I'm familiar with",
+      "items": [
+        { "name": "Angular", "icon": "/assets/icons/angular.svg" },
+        { "name": "Node.js", "icon": "/assets/icons/nodejs.svg" },
+        { "name": "GraphQL", "icon": "/assets/icons/graphql.svg" },
+        { "name": "Python", "icon": "/assets/icons/python.svg" },
+        { "name": "Scala", "icon": "/assets/icons/scala.svg" },
+        { "name": "Replit", "icon": "/assets/icons/replit.svg" },
+        { "name": "Cursor", "icon": "/assets/icons/cursor.svg", "notes": "AI tooling" }
+      ],
+      "details": [
+        "Hands-on with web technologies (Angular, Node.js, GraphQL) and Python or Scala for scripting, data work & analysis.",
+        "Comfortable with AI tooling such as Replit, Cursor & local model setups for image generation.",
+        "Basic knowledge of cloud infrastructure & microservices."
+      ]
     }
   ],
-  "hobbies": ["Running", "Photography", "Building small tools"]
+  "hobbies": [
+    "Fantasy nerd (movies, TV, books)",
+    "Pianist",
+    "Spacing fanatic"
+  ],
+  "priorities": [
+    "Enabling the team to do their best",
+    "Employing open & clear communication",
+    "Revisiting past decisions & avoiding repeating mistakes",
+    "Prioritizing the truly important & getting it done",
+    "Striving for thoroughness & consistency",
+    "Encouraging simplicity",
+    "Learning & improving continuously"
+  ],
+  "contact": {
+    "phone": "+61 409 216 393",
+    "email": "moritz.kobler@gmail.com",
+    "linkedinText": "linkedin.com/in/mkobler"
+  }
 }

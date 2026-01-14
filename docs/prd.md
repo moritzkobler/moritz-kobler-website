@@ -223,7 +223,7 @@ URL structure must allow future non-app project types.
     {  
       "id": "seek-senior-ai-pm",  
       "company": "SEEK",  
-      "role": "Senior AI Product Manager",  
+      "roles": ["Senior AI Product Manager"],
       "startDate": "2022-10",  
       "endDate": "present",  
       "highlights": \["Achievement"\],  
@@ -234,7 +234,7 @@ URL structure must allow future non-app project types.
     {  
       "id": "msc-tu-berlin",  
       "institution": "Technical University Berlin & Lund University",  
-      "degree": "M.Sc. Industrial Engineering",  
+      "degree": "M.Sc. Industrial Engineering",
       "focus": "Computer Science",  
       "startDate": "2014-09",  
       "endDate": "2018-02",  

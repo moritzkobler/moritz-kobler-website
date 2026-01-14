@@ -112,12 +112,15 @@ export async function renderAbout({ lang }){
     el('div', { class: 'section-title', text: lang === 'de' ? 'Berufserfahrung' : 'Work Experience' }),
     el('div', { class: 'gallery' }, experience.map((r) => {
       const dates = formatMonthRange(r.startDate, r.endDate, locale);
+      const latestRole = Array.isArray(r.roles) && r.roles.length ? r.roles[r.roles.length - 1] : (r.role ?? '');
+      const previousRoles = Array.isArray(r.roles) && r.roles.length > 1 ? r.roles.slice(0, -1) : [];
       return el('article', { class: 'gallery-card' }, [
         el('div', { class: 'card-row' }, [
           renderLogo(r.logo, r.company),
           el('div', { class: 'card-row__body' }, [
             el('div', { class: 'muted', text: r.company ?? '' }),
-            el('h2', { class: 'h2', text: r.role ?? '' }),
+            el('h2', { class: 'h2', text: latestRole }),
+            previousRoles.length ? el('div', { class: 'muted', text: previousRoles.join(' · ') }) : null,
             el('div', { class: 'muted', text: dates })
           ])
         ]),
@@ -186,13 +189,15 @@ export async function renderAbout({ lang }){
       : el('ul', { class: 'list' }, hobbies.map((h) => el('li', { text: h })))
   ]);
 
+  const contact = about?.contact ?? {};
   const contactSection = el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Kontakt' : 'Contact' }),
-    meta.linkedin
-      ? el('p', { class: 'muted' }, [
-          el('a', { href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: 'LinkedIn' })
-        ])
-      : el('p', { class: 'muted', text: lang === 'de' ? 'Kein Kontaktlink angegeben.' : 'No contact link provided.' })
+    el('div', {}, [
+      meta.linkedin ? el('p', { class: 'muted' }, [el('a', { href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: 'LinkedIn' })]) : null,
+      contact.email ? el('p', { class: 'muted' }, [el('a', { href: `mailto:${contact.email}`, text: contact.email })]) : null,
+      contact.phone ? el('p', { class: 'muted' }, [el('a', { href: `tel:${contact.phone.replace(/\s+/g, '')}`, text: contact.phone })]) : null,
+      contact.linkedinText && !meta.linkedin ? el('p', { class: 'muted', text: contact.linkedinText }) : null
+    ])
   ]);
 
   const cvHref = meta.cvPdf;
