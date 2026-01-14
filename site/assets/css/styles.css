@@ -230,6 +230,15 @@ main{ padding: var(--space-6) 0; }
   padding: 8px;
   flex: 0 0 auto;
 }
+.ref-photo{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  object-fit: cover;
+  flex: 0 0 auto;
+}
 .logo--placeholder{
   background: radial-gradient(18px 18px at 30% 30%, rgba(34,211,238,.35), transparent 65%),
               radial-gradient(22px 18px at 70% 60%, rgba(124,58,237,.35), transparent 65%),

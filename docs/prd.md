@@ -113,6 +113,14 @@ Present Moritz Kobler professionally as an online CV / resume.
   * Same gallery pattern as Work Experience  
   * Institution represented by official logo  
   * Degree, institution, dates, and focus per card  
+* **Volunteering (Horizontal Gallery)**
+  * Same gallery pattern as Work Experience
+  * Organization logo (local asset)
+  * Role, org name, dates, and key highlights per card
+* **References (Horizontal Gallery)**
+  * Same gallery pattern as Work Experience
+  * One card per recommendation
+  * Photo (local asset), name, title, relationship context, date, and recommendation text
 * **Skills & Tools**  
   * Brand icons only (placeholders acceptable initially)  
   * Optional grouping (e.g. Analytics, Product, Engineering, AI)  
@@ -242,6 +250,31 @@ URL structure must allow future non-app project types.
       "logo": "/assets/logos/tu-berlin.svg"  
     }  
   \],  
+  "volunteering": [
+    {
+      "id": "volunteer-example",
+      "organization": "Sydskånska Nationen",
+      "role": "Eventmanagement",
+      "startDate": "2016-01",
+      "endDate": "2016-06",
+      "cause": "Science and Technology",
+      "highlights": ["Organised events"],
+      "image": "/assets/img/volunteering/sydskanska.jpg",
+      "url": "https://www.linkedin.com/company/9385592/"
+    }
+  ],
+  "references": [
+    {
+      "id": "reference-example",
+      "name": "Jane Doe",
+      "profileUrl": "https://www.linkedin.com/in/jane-doe",
+      "image": "/assets/img/references/jane.jpg",
+      "title": "Engineering Manager",
+      "date": "2022-10-05",
+      "relation": "worked with Moritz on the same team",
+      "text": "Recommendation text..."
+    }
+  ],
   "skills": \[\],  
   "hobbies": \[\]  
 }

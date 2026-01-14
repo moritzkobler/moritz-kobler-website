@@ -1,3 +1,14 @@
+### 2026-01-14 — About: volunteering + references
+- Summary:
+  - Added About page rendering for `volunteering[]` and `references[]` as horizontal galleries.
+  - Extended About data (EN) with LinkedIn-derived education/volunteering/references and local image paths.
+  - Improved date formatting to accept year-only ranges and added `--port` to the dev server.
+- Scope: work_plan section 4 (About page) and section 3 (date formatting)
+- Files: scripts/dev_server.py, site/assets/js/views.js, site/assets/js/data.js, site/assets/css/styles.css, site/data/about.en.json, docs/prd.md, docs/work_plan.md
+- Tests: N/A (static site)
+- Follow-ups: Mirror volunteering/references content to `about.de.json` (or document intentional EN-only); implement “Ask about Moritz” entrypoint.
+- Commit: COMMIT: <pending>
+
 ### 2026-01-13 — Logo fallback + assets checklist
 - Summary:
   - Switched UI to use `site/assets/img/logo.png` as the default logo/icon everywhere.

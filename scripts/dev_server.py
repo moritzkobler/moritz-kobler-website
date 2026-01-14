@@ -3,11 +3,12 @@ from __future__ import annotations
 import http.server
 import os
 import socketserver
+import argparse
 from urllib.parse import urlparse
 
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "site")
-PORT = 8000
+DEFAULT_PORT = 8000
 
 
 class SpaHandler(http.server.SimpleHTTPRequestHandler):
@@ -37,12 +38,15 @@ class SpaHandler(http.server.SimpleHTTPRequestHandler):
         return super().do_GET()
 
 
-def main() -> None:
+def main(port: int) -> None:
     os.chdir(ROOT)
-    with socketserver.TCPServer(("", PORT), SpaHandler) as httpd:
-        print(f"Serving {ROOT} at http://localhost:{PORT}")
+    with socketserver.TCPServer(("", port), SpaHandler) as httpd:
+        print(f"Serving {ROOT} at http://localhost:{port}")
         httpd.serve_forever()
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Dev server for the static SPA (clean URL fallback to /index.html).")
+    parser.add_argument("--port", type=int, default=DEFAULT_PORT, help=f"Port to listen on (default: {DEFAULT_PORT}).")
+    args = parser.parse_args()
+    main(args.port)

@@ -149,6 +149,57 @@ export async function renderAbout({ lang }){
     }))
   ]);
 
+  const volunteering = Array.isArray(about?.volunteering) ? about.volunteering : [];
+  const volunteeringSection = volunteering.length ? el('section', {}, [
+    el('div', { class: 'section-title', text: lang === 'de' ? 'Engagement' : 'Volunteering' }),
+    el('div', { class: 'gallery' }, volunteering.map((v) => {
+      const dates = formatMonthRange(v.startDate, v.endDate, locale);
+      return el('article', { class: 'gallery-card' }, [
+        el('div', { class: 'card-row' }, [
+          renderLogo(v.image, v.organization),
+          el('div', { class: 'card-row__body' }, [
+            el('div', { class: 'muted', text: v.organization ?? '' }),
+            el('h2', { class: 'h2', text: v.role ?? '' }),
+            el('div', { class: 'muted', text: dates }),
+            el('div', { class: 'muted', text: v.cause ?? '' })
+          ])
+        ]),
+        el('ul', {}, (v.highlights ?? []).map((h) => el('li', { text: h }))),
+        v.url ? el('p', { class: 'muted' }, [el('a', { href: v.url, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Organisation öffnen' : 'Open organization' })]) : null
+      ].filter(Boolean));
+    }))
+  ]) : null;
+
+  const references = Array.isArray(about?.references) ? about.references : [];
+  const referencesSection = references.length ? el('section', {}, [
+    el('div', { class: 'section-title', text: lang === 'de' ? 'Empfehlungen' : 'References' }),
+    el('div', { class: 'gallery' }, references.map((r) => {
+      const dateLabel = (() => {
+        if (!r.date) return '';
+        try{
+          const d = new Date(r.date);
+          if (Number.isNaN(d.getTime())) return r.date;
+          return new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(d);
+        }catch(e){
+          return r.date;
+        }
+      })();
+
+      return el('article', { class: 'gallery-card' }, [
+        el('div', { class: 'card-row' }, [
+          r.image ? el('img', { class: 'ref-photo', src: r.image, alt: r.name ?? '' }) : renderLogo(null, r.name),
+          el('div', { class: 'card-row__body' }, [
+            el('div', { class: 'muted', text: r.title ?? '' }),
+            el('h2', { class: 'h2', text: r.name ?? '' }),
+            el('div', { class: 'muted', text: `${dateLabel}${r.relation ? ` · ${r.relation}` : ''}`.trim() })
+          ])
+        ]),
+        el('p', { class: 'muted', text: r.text ?? '' }),
+        r.profileUrl ? el('p', { class: 'muted' }, [el('a', { href: r.profileUrl, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Profil öffnen' : 'Open profile' })]) : null
+      ].filter(Boolean));
+    }))
+  ]) : null;
+
   const skills = Array.isArray(about?.skills) ? about.skills : [];
   const skillsSection = el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Skills & Tools' : 'Skills & Tools' }),
@@ -215,7 +266,7 @@ export async function renderAbout({ lang }){
     ])
   ]);
 
-  return el('div', { class: 'container' }, [introGrid, expSection, eduSection, skillsSection, hobbiesSection, contactSection, cvSection]);
+  return el('div', { class: 'container' }, [introGrid, expSection, eduSection, volunteeringSection, referencesSection, skillsSection, hobbiesSection, contactSection, cvSection].filter(Boolean));
 }
 
 export async function renderProjects({ lang }){

@@ -83,7 +83,7 @@ PRD source: :contentReference[oaicite:0]{index=0}
 
 ## 3) Data layer (JSON-driven content)
 - DONE: Create `/site/data/about.en.json` and `/site/data/about.de.json` with PRD schema:
-  - `meta`, `summary`, `experience[]`, `education[]`, `skills[]`, `hobbies[]`
+  - `meta`, `summary`, `experience[]`, `education[]`, `volunteering[]`, `references[]`, `skills[]`, `hobbies[]`
 - DONE: Create `/site/data/projects.json` with PRD schema:
   - `projects[]` with fields: `slug`, `type`, `name`, `status`, `shortDescription`, `longDescription`, `appStoreLinks`, `supportEmail`, `privacy`, `screenshots`
 - DONE: Implement a small JS loader:
@@ -105,25 +105,32 @@ PRD source: :contentReference[oaicite:0]{index=0}
   - Default implementation for static hosting: link-out to the custom GPT in ChatGPT
   - Do not embed any secret API keys in client-side code
   - Optional later: embedded on-site chat UI only if a secure proxy/token-minting approach is approved
-- TODO: Create About page route and HTML skeleton.
-  - TODO: Render header/intro from JSON:
+- DONE: Create About page route and HTML skeleton.
+  - DONE: Render header/intro from JSON:
   - Name, title, location, LinkedIn link, summary
-  - TODO: Implement Work Experience horizontal gallery:
+  - DONE: Implement Work Experience horizontal gallery:
   - Card per role entry
   - Company logo (official logo path from JSON; placeholder acceptable)
   - `roles[]` (array of role titles) — display the latest role prominently and list prior roles
   - Company, dates, highlights
   - Horizontal scroll with scroll-snap; swipeable on mobile
-- TODO: Implement Education horizontal gallery:
+- DONE: Implement Education horizontal gallery:
   - Same interaction pattern
   - Institution logo, degree, dates, focus, details
-- TODO: Implement Skills & Tools section:
+- DONE: Implement Volunteering horizontal gallery:
+  - Same interaction pattern
+  - Organization logo/image, role, dates, cause, highlights
+- DONE: Implement References horizontal gallery:
+  - Same interaction pattern
+  - Photo, name, title, relation, date, and recommendation text
+- Implemented: Added About page Volunteering + References sections (horizontal galleries) driven by `about.{lang}.json`.
+- DONE: Implement Skills & Tools section:
   - Brand icons only (use placeholders initially)
   - Optional grouping support in JSON (if not present, render as flat list)
-- TODO: Implement Hobbies / personal notes list rendering.
-- TODO: Implement Contact section:
+- DONE: Implement Hobbies / personal notes list rendering.
+- DONE: Implement Contact section:
   - LinkedIn only (email optional/hidden)
-- TODO: Implement Downloadable CV link:
+- DONE: Implement Downloadable CV link:
   - `meta.cvPdf` points to `/assets/cv/...`
   - Ensure link downloads/opens reliably
 

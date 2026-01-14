@@ -63,29 +63,134 @@
   ],
   "education": [
     {
-      "id": "msc-industrial-engineering-tu-berlin-lund",
-      "institution": "Technical University Berlin & Lund University",
-      "degree": "M.Sc. in Industrial Engineering",
-      "focus": "Computer Science",
-      "startDate": "2014-09",
-      "endDate": "2018-02",
+      "id": "tu-berlin-msc-industrial-engineering-software-technology",
+      "institution": "Technische Universität Berlin",
+      "degree": "Master of Science (M.Sc.), Industrial Engineering — Software Technology",
+      "focus": "Software Technology",
+      "startDate": "2014",
+      "endDate": "2018",
       "details": [
+        "Grade: 1.2 (scale: 1.0 best to 4.0 worst).",
         "Thesis on data-driven environmental scanning and foresight.",
-        "Final grade: 1.2 (scale: 1.0 best to 4.0 worst)."
+        "Skills: Java · Frontend Development · Python"
       ],
-      "logo": "/assets/logos/tu-berlin-lund.svg"
+      "logo": "/assets/img/education/tu-berlin.jpg"
+    },
+    {
+      "id": "lund-university-master-computer-science",
+      "institution": "The Faculty of Engineering at Lund University",
+      "degree": "Master, Computer Science",
+      "focus": "Computer Science",
+      "startDate": "2015",
+      "endDate": "2016",
+      "details": [
+        "Activities and societies: Sydskånska Nationen.",
+        "Skills: Java · Frontend Development"
+      ],
+      "logo": "/assets/img/education/lund-university.jpg"
+    },
+    {
+      "id": "tu-berlin-bsc-industrial-engineering-transport",
+      "institution": "Technische Universität Berlin",
+      "degree": "Bachelor of Science (B.Sc.), Industrial Engineering — Transport",
+      "focus": "Transport",
+      "startDate": "2011",
+      "endDate": "2014",
+      "details": [
+        "Grade: 1.9 (scale: 1.0 best to 4.0 worst).",
+        "Skills: Computer-Aided Design (CAD) · Frontend Development · Python"
+      ],
+      "logo": "/assets/img/education/tu-berlin.jpg"
+    }
+  ],
+  "volunteering": [
+    {
+      "id": "sydskanska-nationen-eventmanagement",
+      "organization": "Sydskånska Nationen",
+      "role": "Eventmanagement",
+      "startDate": "2016-01",
+      "endDate": "2016-06",
+      "cause": "Science and Technology",
+      "highlights": [
+        "Organisation, marketing and implementation of events",
+        "Team leadership"
+      ],
+      "image": "/assets/img/volunteering/sydskanska.jpg",
+      "url": "https://www.linkedin.com/company/9385592/"
+    }
+  ],
+  "references": [
+    {
+      "id": "milen-zaykov",
+      "name": "Milen Zaykov",
+      "profileUrl": "https://www.linkedin.com/in/milen-zaykov-95698912a",
+      "image": "/assets/img/references/milen.jpg",
+      "title": "Product Manager at Softgarden",
+      "date": "2022-10-05",
+      "relation": "reported directly to Moritz",
+      "text": "I was lucky to have Moritz both as a mentor and direct manager. He is an incredibly knowledgeable and supportive person in areas such as people management and data-driven decision-making, capable of not only steering the product vision flawlessly in the right direction by making sure that the right initiatives we prioritized, but he also constantly empowered all the product team members he was supervising. It was an amazing experience to learn and work with him."
+    },
+    {
+      "id": "tikendra-chand",
+      "name": "Tikendra Chand",
+      "profileUrl": "https://www.linkedin.com/in/tikendrachand",
+      "image": "/assets/img/references/tikendra.jpg",
+      "title": "Senior Software Engineer at AT&T",
+      "date": "2022-09-03",
+      "relation": "worked with Moritz on the same team",
+      "text": "Moritz is the best product manager I have ever worked with. I have had a wonderful working experience with him on a big data related product for Itonics. We developed a large data collection called 'signals' and used that to develop different apps like 'insights', 'trends' etc. for Itonics's innovation management suite. He was excellent on that product. He started from scratch and successfully led the product to market. He always had answers for every type of questions around that product, always ready with product specifications and was always up to date with latest tools and technologies involved in the product like big data, AI and machine learning. Besides that, he was also handling other core products with other teams as well and was excellent on all of those. Moritz is very hard working, self-motivated, results oriented product manager with solid ideas about products he is developing. Highly Recommended!!"
+    },
+    {
+      "id": "dennis-brandt",
+      "name": "Dennis Brandt",
+      "profileUrl": "https://www.linkedin.com/in/dennis-brandt-4778bb1a",
+      "image": "/assets/img/references/dennis.jpg",
+      "title": "Lead Software Engineer at ITONICS | Shaping Innovation",
+      "date": "2022-09-01",
+      "relation": "worked with Moritz on the same team",
+      "text": "It was an absolute delight working with Moritz for the last years! Not only has he been blessed with a fantastic character, but is also an incredibly knowledgable human! He immersed himself 100% in our suite of cloud apps and helped the scrum teams find their way through plannings and product specifications. The dynamic between product and engineering was always positive and helped keep backlog items prioritised correctly! Moritz gets many bonus points for being very knowledgable on the tech side of things! His understanding of all things code was very helpful when communicating product requirements. On a side note: His weird obsession with flexbox was a bright light in the dark world of responsive CSS! I wish Moritz all the best in his future endeavours and already envy his future colleagues - you won't find a better fit!"
+    },
+    {
+      "id": "michael-durst",
+      "name": "Michael Durst",
+      "profileUrl": "https://www.linkedin.com/in/michaeldurst",
+      "image": "/assets/img/references/michael.jpg",
+      "title": "Founder @ ITONICS, The #1 Innovation OS",
+      "date": "2022-08-31",
+      "relation": "managed Moritz directly",
+      "text": "Moritz is all about getting stuff done: Deep understanding of the overall company strategy, and all the details underneath. Structured product planning, task delegation, agile program and project management, team collaboration, management communication, and finally very talented in UX/ UI. Mo has the perfect balance between being very Germanic in precision, time management, and hitting deadlines and the motivation, team spirit, laughs and fun every team needs to enjoy the day-to-day operations and take everything to the next level. Mo has excellent time management and communication skills. Even during intense crunch periods, he had the drive for keeping everyone motivated, focussed, and productive. We miss his energy and smiles! Every company would be lucky to have Mo, and I couldn’t recommend him more to any team looking for a brilliant product manager, growth hacker, digitization genius and more."
+    },
+    {
+      "id": "kiran-shakya",
+      "name": "Kiran Shakya",
+      "profileUrl": "https://www.linkedin.com/in/kiranshakya",
+      "image": "/assets/img/references/kiran.jpg",
+      "title": "Lead Software Engineer",
+      "date": "2022-08-30",
+      "relation": "worked with Moritz on the same team",
+      "text": "I had no worries about the product specification, when Moritz was overlooking it. He is always precise to the point and has a tendency to document remarkably well. With him as a Product Owner of the cloud version of our software, I had a great opportunity working with him for more than 2 years very closely. His ability to present his ideas in a constructive way and also collaborate with the team has been always admirable. No matter how difficult it was to present at the meetings, he would always ace it at the end. We are very grateful that he had been there with us and I feel like he would be a precious gem to any company he would step into."
+    },
+    {
+      "id": "salome-leshkasheli",
+      "name": "Salome Leshkasheli",
+      "profileUrl": "https://www.linkedin.com/in/salome-leshkasheli",
+      "image": "/assets/img/references/salome.jpg",
+      "title": "Team Lead Frontend Engineer",
+      "date": "2022-08-29",
+      "relation": "was senior to Salome but didn't manage Salome directly",
+      "text": "I had a pleasure of working with Moritz for 2 years in the product team, and I was always in awe of his ability to juggle multiple topics in a very efficient way. He is a brilliant and talented Product Manager who really understands how to get the best out of the product. I highly recommend Moritz if you need to get the job done!"
     }
   ],
   "skills": [
     {
-      "category": "Analytics, Business Intelligence, Reporting",
+      "group": "Analytics, Business Intelligence, Reporting",
       "items": [
         { "name": "Tableau", "icon": "/assets/icons/tableau.svg" },
         { "name": "Amplitude", "icon": "/assets/icons/amplitude.svg" }
       ]
     },
     {
-      "category": "Day-to-day tools",
+      "group": "Day-to-day tools",
       "items": [
         { "name": "Atlassian Suite", "icon": "/assets/icons/atlassian.svg", "notes": "Task Management, Documentation" },
         { "name": "Microsoft Office Suite", "icon": "/assets/icons/microsoft-office.svg", "notes": "Happy to use Google Workspace, too!" },
@@ -95,7 +200,7 @@
       ]
     },
     {
-      "category": "Tech I'm familiar with",
+      "group": "Tech I'm familiar with",
       "items": [
         { "name": "Angular", "icon": "/assets/icons/angular.svg" },
         { "name": "Node.js", "icon": "/assets/icons/nodejs.svg" },

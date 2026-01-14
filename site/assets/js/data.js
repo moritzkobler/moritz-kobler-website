@@ -22,6 +22,8 @@ export function formatMonthRange(start, end, locale){
   const toLabel = (value) => {
     if (!value) return '';
     if (value === 'present') return locale === 'de' ? 'Heute' : 'Present';
+    // Allow year-only values: YYYY
+    if (/^\d{4}$/.test(value)) return value;
     // value expected: YYYY-MM
     const [y, m] = value.split('-').map((v) => Number(v));
     if (!y || !m) return value;
