@@ -1,3 +1,14 @@
+### 2026-01-14 — Sticky footer + language toggle fix
+- Summary:
+  - Fixed the language toggle so it stays in sync with the current `lang` state and can toggle back and forth.
+  - Implemented a sticky footer layout (footer stays at the bottom on short pages) and aligned footer content to the main container width.
+  - Removed the background “hard cutoff” by allowing the page background to paint beyond the first viewport.
+- Scope: work_plan section 2 (base HTML/CSS foundation) and section 7 (language toggle UX)
+- Files: site/assets/js/app.js, site/assets/js/lang.js, site/assets/css/styles.css, site/shared/footer.html
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: b0521ae
+
 ### 2026-01-14 — Language toggle + scrolling background
 - Summary:
   - Replaced the two-button language picker with a single text toggle showing the current language.
