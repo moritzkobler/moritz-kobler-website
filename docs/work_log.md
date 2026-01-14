@@ -1,3 +1,14 @@
+### 2026-01-14 — Header + button polish
+- Summary:
+  - Simplified the header (no background/border), removed the brand block, and centered navigation.
+  - Switched nav active styling to a thick bottom border with hover underline.
+  - Unified button styling (and chip links) to a consistent translucent white look; made carousel cards show a pointer cursor.
+- Scope: work_plan section 2 (base HTML/CSS foundation)
+- Files: site/shared/header.html, site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: 6a30dbd
+
 ### 2026-01-14 — About: volunteering + references
 - Summary:
   - Added About page rendering for `volunteering[]` and `references[]` as horizontal galleries.
