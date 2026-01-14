@@ -204,6 +204,19 @@ main{ padding: var(--space-6) 0; }
   gap: var(--space-3);
   padding-bottom: var(--space-2);
   scroll-snap-type: x mandatory;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  /* Keep the first card aligned to the main `.container` left edge.
+     On narrow viewports use a small inset; on wide viewports compute the
+     container offset and add the standard horizontal padding. */
+  --gallery-inset: clamp(var(--space-4), calc((100vw - var(--max)) / 2), 50vw);
+  padding-left: var(--gallery-inset);
+  padding-right: var(--gallery-inset);
+  scroll-padding-inline-start: var(--gallery-inset);
+}
+
+.gallery-card--lg{
+  flex: 0 0 min(560px, 86vw);
 }
 .gallery::-webkit-scrollbar{ height: 10px; }
 .gallery::-webkit-scrollbar-thumb{ background: rgba(233,240,255,.12); border-radius: 999px; }

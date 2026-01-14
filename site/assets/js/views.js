@@ -114,7 +114,15 @@ export async function renderAbout({ lang }){
       const dates = formatMonthRange(r.startDate, r.endDate, locale);
       const latestRole = Array.isArray(r.roles) && r.roles.length ? r.roles[r.roles.length - 1] : (r.role ?? '');
       const previousRoles = Array.isArray(r.roles) && r.roles.length > 1 ? r.roles.slice(0, -1) : [];
-      return el('article', { class: 'gallery-card' }, [
+      return el('article', { class: 'gallery-card gallery-card--lg', tabindex: '-1', onclick: (e) => {
+        e.preventDefault();
+        const card = e.currentTarget;
+        const gallery = card.parentElement;
+        const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+        const left = card.offsetLeft - pad;
+        gallery.scrollTo({ left, behavior: 'smooth' });
+        try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+      } }, [
         el('div', { class: 'card-row' }, [
           renderLogo(r.logo, r.company),
           el('div', { class: 'card-row__body' }, [
@@ -134,7 +142,15 @@ export async function renderAbout({ lang }){
     el('div', { class: 'section-title', text: lang === 'de' ? 'Ausbildung' : 'Education' }),
     el('div', { class: 'gallery' }, education.map((r) => {
       const dates = formatMonthRange(r.startDate, r.endDate, locale);
-      return el('article', { class: 'gallery-card' }, [
+      return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+        e.preventDefault();
+        const card = e.currentTarget;
+        const gallery = card.parentElement;
+        const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+        const left = card.offsetLeft - pad;
+        gallery.scrollTo({ left, behavior: 'smooth' });
+        try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+      } }, [
         el('div', { class: 'card-row' }, [
           renderLogo(r.logo, r.institution),
           el('div', { class: 'card-row__body' }, [
@@ -154,7 +170,15 @@ export async function renderAbout({ lang }){
     el('div', { class: 'section-title', text: lang === 'de' ? 'Engagement' : 'Volunteering' }),
     el('div', { class: 'gallery' }, volunteering.map((v) => {
       const dates = formatMonthRange(v.startDate, v.endDate, locale);
-      return el('article', { class: 'gallery-card' }, [
+      return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+        e.preventDefault();
+        const card = e.currentTarget;
+        const gallery = card.parentElement;
+        const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+        const left = card.offsetLeft - pad;
+        gallery.scrollTo({ left, behavior: 'smooth' });
+        try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+      } }, [
         el('div', { class: 'card-row' }, [
           renderLogo(v.image, v.organization),
           el('div', { class: 'card-row__body' }, [
@@ -185,7 +209,15 @@ export async function renderAbout({ lang }){
         }
       })();
 
-      return el('article', { class: 'gallery-card' }, [
+      return el('article', { class: 'gallery-card gallery-card--lg', tabindex: '-1', onclick: (e) => {
+        e.preventDefault();
+        const card = e.currentTarget;
+        const gallery = card.parentElement;
+        const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+        const left = card.offsetLeft - pad;
+        gallery.scrollTo({ left, behavior: 'smooth' });
+        try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+      } }, [
         el('div', { class: 'card-row' }, [
           r.image ? el('img', { class: 'ref-photo', src: r.image, alt: r.name ?? '' }) : renderLogo(null, r.name),
           el('div', { class: 'card-row__body' }, [
