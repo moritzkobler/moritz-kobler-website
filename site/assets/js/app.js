@@ -1,5 +1,5 @@
 import { includeFragments } from './includes.js';
-import { resolveLang, applyLangToDocument, setStoredLang, wireLangToggle } from './lang.js';
+import { resolveLang, applyLangToDocument, setStoredLang, updateLangToggleUI, wireLangToggle } from './lang.js';
 import { pathToRoute, wireLinkInterceptor, navigate, withPreservedLang } from './router.js';
 import { renderAbout, renderProjects, renderProjectDetail, renderNotFound, renderPrivacy } from './views.js';
 
@@ -21,6 +21,7 @@ function setYear(){
 async function render(){
   const lang = resolveLang();
   applyLangToDocument(lang);
+  updateLangToggleUI(lang);
 
   const outlet = document.getElementById('app');
   if (!outlet) return;

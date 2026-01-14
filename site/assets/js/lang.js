@@ -27,16 +27,33 @@ export function applyLangToDocument(lang){
   document.documentElement.lang = lang;
 }
 
-export function wireLangToggle(lang, onChange){
+export function updateLangToggleUI(lang){
   const toggle = document.querySelector('[data-lang-toggle]');
   if (toggle){
     const label = String(lang).toUpperCase();
     const next = lang === 'de' ? 'en' : 'de';
-
     toggle.textContent = label;
     toggle.setAttribute('aria-label', `Language: ${label}. Activate to switch to ${String(next).toUpperCase()}.`);
+    return;
+  }
 
-    toggle.addEventListener('click', () => onChange(next));
+  // Backward-compatible: multi-button picker
+  const buttons = document.querySelectorAll('[data-lang]');
+  buttons.forEach((btn) => {
+    const v = btn.getAttribute('data-lang');
+    btn.setAttribute('aria-pressed', v === lang ? 'true' : 'false');
+  });
+}
+
+export function wireLangToggle(lang, onChange){
+  const toggle = document.querySelector('[data-lang-toggle]');
+  if (toggle){
+    updateLangToggleUI(lang);
+    toggle.addEventListener('click', () => {
+      const current = resolveLang();
+      const next = current === 'de' ? 'en' : 'de';
+      onChange(next);
+    });
     return;
   }
 
