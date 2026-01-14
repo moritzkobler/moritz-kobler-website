@@ -20,6 +20,17 @@
 - Follow-ups: Replace fallbacks with real company/institution logos and app screenshots; implement consent banner + GA gating.
 - Commit: 081df5a
 
+### 2026-01-14 — Carousel dots + active glow
+- Summary:
+  - Replaced visible carousel scrollbars with dot pagination under each About carousel.
+  - Added active-card state with glow + slight 3D lift, and a weaker hover state.
+  - Made dots clickable to scroll to a specific card; active dot tracks scroll position.
+- Scope: work_plan section 4 (About page UX)
+- Files: site/assets/css/styles.css, site/assets/js/views.js
+- Tests: N/A (static site)
+- Follow-ups: Optional keyboard navigation (arrow keys) for carousels.
+- Commit: COMMIT: <pending>
+
 ### 2026-01-13 — PRD: Ask-about-Moritz chat feature
 - Summary:
   - Added a new About-page “Ask about Moritz” AI chat entrypoint requirement.

@@ -71,6 +71,66 @@ function renderKeyValue(label, value){
   ]);
 }
 
+function attachCarousel(carouselRoot){
+  const gallery = carouselRoot.querySelector('.gallery');
+  if (!gallery) return;
+  const cards = Array.from(gallery.children).filter((n) => n?.classList?.contains('gallery-card'));
+  if (cards.length === 0) return;
+
+  const dots = el('div', { class: 'carousel-dots', role: 'tablist', 'aria-label': 'Carousel navigation' },
+    cards.map((_, idx) =>
+      el('button', {
+        class: 'carousel-dot',
+        type: 'button',
+        role: 'tab',
+        'aria-label': `Go to item ${idx + 1} of ${cards.length}`,
+        onclick: () => scrollToIndex(idx)
+      })
+    )
+  );
+  carouselRoot.appendChild(dots);
+
+  const dotButtons = Array.from(dots.querySelectorAll('button'));
+
+  const getPad = () => parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+  const scrollToIndex = (idx) => {
+    const card = cards[idx];
+    if (!card) return;
+    const left = card.offsetLeft - getPad();
+    gallery.scrollTo({ left, behavior: 'smooth' });
+  };
+
+  const computeActiveIndex = () => {
+    const target = gallery.scrollLeft + getPad();
+    let bestIdx = 0;
+    let bestDist = Infinity;
+    for (let i = 0; i < cards.length; i++){
+      const dist = Math.abs(cards[i].offsetLeft - target);
+      if (dist < bestDist){ bestDist = dist; bestIdx = i; }
+    }
+    return bestIdx;
+  };
+
+  const update = () => {
+    const activeIdx = computeActiveIndex();
+    for (let i = 0; i < cards.length; i++){
+      cards[i].classList.toggle('is-active', i === activeIdx);
+      dotButtons[i]?.setAttribute('aria-current', i === activeIdx ? 'true' : 'false');
+      dotButtons[i]?.setAttribute('tabindex', i === activeIdx ? '0' : '-1');
+    }
+  };
+
+  let raf = 0;
+  const scheduleUpdate = () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => { raf = 0; update(); });
+  };
+
+  gallery.addEventListener('scroll', scheduleUpdate, { passive: true });
+  window.addEventListener('resize', scheduleUpdate);
+  requestAnimationFrame(update);
+}
+
 export async function renderAbout({ lang }){
   setTitle(lang === 'de' ? 'Über mich' : 'About Me');
   const locale = lang === 'de' ? 'de-DE' : 'en-US';
@@ -108,129 +168,137 @@ export async function renderAbout({ lang }){
   ]);
 
   const experience = Array.isArray(about?.experience) ? about.experience : [];
+  const expGallery = el('div', { class: 'gallery gallery--lg' }, experience.map((r) => {
+    const dates = formatMonthRange(r.startDate, r.endDate, locale);
+    const latestRole = Array.isArray(r.roles) && r.roles.length ? r.roles[r.roles.length - 1] : (r.role ?? '');
+    const previousRoles = Array.isArray(r.roles) && r.roles.length > 1 ? r.roles.slice(0, -1) : [];
+    return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+      e.preventDefault();
+      const card = e.currentTarget;
+      const gallery = card.parentElement;
+      const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+      const left = card.offsetLeft - pad;
+      gallery.scrollTo({ left, behavior: 'smooth' });
+      try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+    } }, [
+      el('div', { class: 'card-row' }, [
+        renderLogo(r.logo, r.company),
+        el('div', { class: 'card-row__body' }, [
+          el('div', { class: 'muted', text: r.company ?? '' }),
+          el('h2', { class: 'h2', text: latestRole }),
+          previousRoles.length ? el('div', { class: 'muted', text: previousRoles.join(' · ') }) : null,
+          el('div', { class: 'muted', text: dates })
+        ])
+      ]),
+      el('ul', {}, (r.highlights ?? []).map((h) => el('li', { text: h })))
+    ]);
+  }));
   const expSection = el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Berufserfahrung' : 'Work Experience' }),
-    el('div', { class: 'gallery gallery--lg' }, experience.map((r) => {
-      const dates = formatMonthRange(r.startDate, r.endDate, locale);
-      const latestRole = Array.isArray(r.roles) && r.roles.length ? r.roles[r.roles.length - 1] : (r.role ?? '');
-      const previousRoles = Array.isArray(r.roles) && r.roles.length > 1 ? r.roles.slice(0, -1) : [];
-      return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
-        e.preventDefault();
-        const card = e.currentTarget;
-        const gallery = card.parentElement;
-        const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
-        const left = card.offsetLeft - pad;
-        gallery.scrollTo({ left, behavior: 'smooth' });
-        try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
-      } }, [
-        el('div', { class: 'card-row' }, [
-          renderLogo(r.logo, r.company),
-          el('div', { class: 'card-row__body' }, [
-            el('div', { class: 'muted', text: r.company ?? '' }),
-            el('h2', { class: 'h2', text: latestRole }),
-            previousRoles.length ? el('div', { class: 'muted', text: previousRoles.join(' · ') }) : null,
-            el('div', { class: 'muted', text: dates })
-          ])
-        ]),
-        el('ul', {}, (r.highlights ?? []).map((h) => el('li', { text: h })))
-      ]);
-    }))
+    el('div', { class: 'carousel' }, [expGallery])
   ]);
+  attachCarousel(expSection.querySelector('.carousel'));
 
   const education = Array.isArray(about?.education) ? about.education : [];
+  const eduGallery = el('div', { class: 'gallery' }, education.map((r) => {
+    const dates = formatMonthRange(r.startDate, r.endDate, locale);
+    return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+      e.preventDefault();
+      const card = e.currentTarget;
+      const gallery = card.parentElement;
+      const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+      const left = card.offsetLeft - pad;
+      gallery.scrollTo({ left, behavior: 'smooth' });
+      try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+    } }, [
+      el('div', { class: 'card-row' }, [
+        renderLogo(r.logo, r.institution),
+        el('div', { class: 'card-row__body' }, [
+          el('div', { class: 'muted', text: r.institution ?? '' }),
+          el('h2', { class: 'h2', text: r.degree ?? '' }),
+          el('div', { class: 'muted', text: dates }),
+          el('div', { class: 'muted', text: r.focus ?? '' })
+        ])
+      ]),
+      el('ul', {}, (r.details ?? []).map((d) => el('li', { text: d })))
+    ]);
+  }));
   const eduSection = el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Ausbildung' : 'Education' }),
-    el('div', { class: 'gallery' }, education.map((r) => {
-      const dates = formatMonthRange(r.startDate, r.endDate, locale);
-      return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
-        e.preventDefault();
-        const card = e.currentTarget;
-        const gallery = card.parentElement;
-        const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
-        const left = card.offsetLeft - pad;
-        gallery.scrollTo({ left, behavior: 'smooth' });
-        try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
-      } }, [
-        el('div', { class: 'card-row' }, [
-          renderLogo(r.logo, r.institution),
-          el('div', { class: 'card-row__body' }, [
-            el('div', { class: 'muted', text: r.institution ?? '' }),
-            el('h2', { class: 'h2', text: r.degree ?? '' }),
-            el('div', { class: 'muted', text: dates }),
-            el('div', { class: 'muted', text: r.focus ?? '' })
-          ])
-        ]),
-        el('ul', {}, (r.details ?? []).map((d) => el('li', { text: d })))
-      ]);
-    }))
+    el('div', { class: 'carousel' }, [eduGallery])
   ]);
+  attachCarousel(eduSection.querySelector('.carousel'));
 
   const volunteering = Array.isArray(about?.volunteering) ? about.volunteering : [];
+  const volunteeringGallery = el('div', { class: 'gallery' }, volunteering.map((v) => {
+    const dates = formatMonthRange(v.startDate, v.endDate, locale);
+    return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+      e.preventDefault();
+      const card = e.currentTarget;
+      const gallery = card.parentElement;
+      const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+      const left = card.offsetLeft - pad;
+      gallery.scrollTo({ left, behavior: 'smooth' });
+      try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+    } }, [
+      el('div', { class: 'card-row' }, [
+        renderLogo(v.image, v.organization),
+        el('div', { class: 'card-row__body' }, [
+          el('div', { class: 'muted', text: v.organization ?? '' }),
+          el('h2', { class: 'h2', text: v.role ?? '' }),
+          el('div', { class: 'muted', text: dates }),
+          el('div', { class: 'muted', text: v.cause ?? '' })
+        ])
+      ]),
+      el('ul', {}, (v.highlights ?? []).map((h) => el('li', { text: h }))),
+      v.url ? el('p', { class: 'muted' }, [el('a', { href: v.url, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Organisation öffnen' : 'Open organization' })]) : null
+    ].filter(Boolean));
+  }));
   const volunteeringSection = volunteering.length ? el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Engagement' : 'Volunteering' }),
-    el('div', { class: 'gallery' }, volunteering.map((v) => {
-      const dates = formatMonthRange(v.startDate, v.endDate, locale);
-      return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
-        e.preventDefault();
-        const card = e.currentTarget;
-        const gallery = card.parentElement;
-        const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
-        const left = card.offsetLeft - pad;
-        gallery.scrollTo({ left, behavior: 'smooth' });
-        try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
-      } }, [
-        el('div', { class: 'card-row' }, [
-          renderLogo(v.image, v.organization),
-          el('div', { class: 'card-row__body' }, [
-            el('div', { class: 'muted', text: v.organization ?? '' }),
-            el('h2', { class: 'h2', text: v.role ?? '' }),
-            el('div', { class: 'muted', text: dates }),
-            el('div', { class: 'muted', text: v.cause ?? '' })
-          ])
-        ]),
-        el('ul', {}, (v.highlights ?? []).map((h) => el('li', { text: h }))),
-        v.url ? el('p', { class: 'muted' }, [el('a', { href: v.url, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Organisation öffnen' : 'Open organization' })]) : null
-      ].filter(Boolean));
-    }))
+    el('div', { class: 'carousel' }, [volunteeringGallery])
   ]) : null;
+  if (volunteeringSection) attachCarousel(volunteeringSection.querySelector('.carousel'));
 
   const references = Array.isArray(about?.references) ? about.references : [];
+  const referencesGallery = el('div', { class: 'gallery gallery--lg' }, references.map((r) => {
+    const dateLabel = (() => {
+      if (!r.date) return '';
+      try{
+        const d = new Date(r.date);
+        if (Number.isNaN(d.getTime())) return r.date;
+        return new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(d);
+      }catch(e){
+        return r.date;
+      }
+    })();
+
+    return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+      e.preventDefault();
+      const card = e.currentTarget;
+      const gallery = card.parentElement;
+      const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+      const left = card.offsetLeft - pad;
+      gallery.scrollTo({ left, behavior: 'smooth' });
+      try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+    } }, [
+      el('div', { class: 'card-row' }, [
+        r.image ? el('img', { class: 'ref-photo', src: r.image, alt: r.name ?? '' }) : renderLogo(null, r.name),
+        el('div', { class: 'card-row__body' }, [
+          el('div', { class: 'muted', text: r.title ?? '' }),
+          el('h2', { class: 'h2', text: r.name ?? '' }),
+          el('div', { class: 'muted', text: `${dateLabel}${r.relation ? ` · ${r.relation}` : ''}`.trim() })
+        ])
+      ]),
+      el('p', { class: 'muted', text: r.text ?? '' }),
+      r.profileUrl ? el('p', { class: 'muted' }, [el('a', { href: r.profileUrl, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Profil öffnen' : 'Open profile' })]) : null
+    ].filter(Boolean));
+  }));
   const referencesSection = references.length ? el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Empfehlungen' : 'References' }),
-    el('div', { class: 'gallery gallery--lg' }, references.map((r) => {
-      const dateLabel = (() => {
-        if (!r.date) return '';
-        try{
-          const d = new Date(r.date);
-          if (Number.isNaN(d.getTime())) return r.date;
-          return new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(d);
-        }catch(e){
-          return r.date;
-        }
-      })();
-
-      return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
-        e.preventDefault();
-        const card = e.currentTarget;
-        const gallery = card.parentElement;
-        const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
-        const left = card.offsetLeft - pad;
-        gallery.scrollTo({ left, behavior: 'smooth' });
-        try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
-      } }, [
-        el('div', { class: 'card-row' }, [
-          r.image ? el('img', { class: 'ref-photo', src: r.image, alt: r.name ?? '' }) : renderLogo(null, r.name),
-          el('div', { class: 'card-row__body' }, [
-            el('div', { class: 'muted', text: r.title ?? '' }),
-            el('h2', { class: 'h2', text: r.name ?? '' }),
-            el('div', { class: 'muted', text: `${dateLabel}${r.relation ? ` · ${r.relation}` : ''}`.trim() })
-          ])
-        ]),
-        el('p', { class: 'muted', text: r.text ?? '' }),
-        r.profileUrl ? el('p', { class: 'muted' }, [el('a', { href: r.profileUrl, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Profil öffnen' : 'Open profile' })]) : null
-      ].filter(Boolean));
-    }))
+    el('div', { class: 'carousel' }, [referencesGallery])
   ]) : null;
+  if (referencesSection) attachCarousel(referencesSection.querySelector('.carousel'));
 
   const skills = Array.isArray(about?.skills) ? about.skills : [];
   const skillsSection = el('section', {}, [
