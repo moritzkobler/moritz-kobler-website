@@ -28,6 +28,19 @@ export function applyLangToDocument(lang){
 }
 
 export function wireLangToggle(lang, onChange){
+  const toggle = document.querySelector('[data-lang-toggle]');
+  if (toggle){
+    const label = String(lang).toUpperCase();
+    const next = lang === 'de' ? 'en' : 'de';
+
+    toggle.textContent = label;
+    toggle.setAttribute('aria-label', `Language: ${label}. Activate to switch to ${String(next).toUpperCase()}.`);
+
+    toggle.addEventListener('click', () => onChange(next));
+    return;
+  }
+
+  // Backward-compatible: multi-button picker
   const buttons = document.querySelectorAll('[data-lang]');
   buttons.forEach((btn) => {
     const v = btn.getAttribute('data-lang');
