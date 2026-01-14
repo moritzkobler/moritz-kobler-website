@@ -216,7 +216,7 @@ main{ padding: var(--space-6) 0; }
     Keep layout spacing tight, but reserve independent internal paint room
     for glows via padding + negative margin that cancels in flow. */
   --glow-room: 28px;
-  padding-top: calc(var(--space-2) + var(--glow-room));
+  padding-top: calc(var(--space-2) + 2 * var(--glow-room));
   padding-bottom: calc(var(--space-2) + var(--glow-room));
   margin-top: calc(-1 * var(--glow-room));
   margin-bottom: calc(-1 * var(--glow-room));
@@ -262,6 +262,7 @@ main{ padding: var(--space-6) 0; }
   overflow: visible;
   transform: translateY(0) scale(1);
   transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  overflow: hidden;
 }
 
 .gallery-card::before{
