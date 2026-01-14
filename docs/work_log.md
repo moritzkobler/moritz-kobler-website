@@ -29,7 +29,7 @@
 - Files: site/assets/css/styles.css, site/assets/js/views.js
 - Tests: N/A (static site)
 - Follow-ups: Optional keyboard navigation (arrow keys) for carousels.
-- Commit: COMMIT: <pending>
+- Commit: e231cf0
 
 ### 2026-01-13 — PRD: Ask-about-Moritz chat feature
 - Summary:
