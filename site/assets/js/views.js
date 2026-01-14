@@ -54,6 +54,56 @@ function iconDataUrl(seed, label){
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
+function fnv1a(str){
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function mulberry32(seed){
+  let t = seed >>> 0;
+  return () => {
+    t += 0x6D2B79F5;
+    let x = t;
+    x = Math.imul(x ^ (x >>> 15), x | 1);
+    x ^= x + Math.imul(x ^ (x >>> 7), x | 61);
+    return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function applyGlowSeed(card, seedText){
+  const rand = mulberry32(fnv1a(String(seedText || '')));
+  const palettes = [
+    ['rgba(124,58,237,.18)', 'rgba(34,211,238,.12)', 'rgba(251,113,133,.10)'],
+    ['rgba(34,211,238,.18)', 'rgba(124,58,237,.12)', 'rgba(34,211,238,.10)'],
+    ['rgba(251,113,133,.16)', 'rgba(124,58,237,.12)', 'rgba(34,211,238,.10)'],
+    ['rgba(124,58,237,.16)', 'rgba(251,113,133,.12)', 'rgba(34,211,238,.10)']
+  ];
+  const pal = palettes[Math.floor(rand() * palettes.length)];
+  const blobCount = 2 + Math.floor(rand() * 3); // 2..4
+
+  const make = (i) => {
+    const x = Math.round(8 + rand() * 84);
+    const y = Math.round(8 + rand() * 84);
+    const sx = Math.round(260 + rand() * 260);
+    const sy = Math.round(130 + rand() * 170);
+    const color = pal[i % pal.length];
+    card.style.setProperty(`--g${i + 1}-x`, `${x}%`);
+    card.style.setProperty(`--g${i + 1}-y`, `${y}%`);
+    card.style.setProperty(`--g${i + 1}-sx`, `${sx}px`);
+    card.style.setProperty(`--g${i + 1}-sy`, `${sy}px`);
+    card.style.setProperty(`--g${i + 1}-c`, color);
+  };
+
+  for (let i = 0; i < 4; i++){
+    if (i < blobCount) make(i);
+    else card.style.setProperty(`--g${i + 1}-c`, 'rgba(0,0,0,0)');
+  }
+}
+
 function renderLogo(src, alt){
   const fallback = '/assets/img/logo.png';
   const img = el('img', { class: 'logo', src: src || fallback, alt: src ? `${alt || ''} logo`.trim() : '' });
@@ -76,6 +126,11 @@ function attachCarousel(carouselRoot){
   if (!gallery) return;
   const cards = Array.from(gallery.children).filter((n) => n?.classList?.contains('gallery-card'));
   if (cards.length === 0) return;
+
+  if (cards.length === 1){
+    cards[0].classList.add('is-active');
+    return;
+  }
 
   const dots = el('div', { class: 'carousel-dots', role: 'tablist', 'aria-label': 'Carousel navigation' },
     cards.map((_, idx) =>
@@ -172,7 +227,7 @@ export async function renderAbout({ lang }){
     const dates = formatMonthRange(r.startDate, r.endDate, locale);
     const latestRole = Array.isArray(r.roles) && r.roles.length ? r.roles[r.roles.length - 1] : (r.role ?? '');
     const previousRoles = Array.isArray(r.roles) && r.roles.length > 1 ? r.roles.slice(0, -1) : [];
-    return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
       e.preventDefault();
       const card = e.currentTarget;
       const gallery = card.parentElement;
@@ -192,6 +247,8 @@ export async function renderAbout({ lang }){
       ]),
       el('ul', {}, (r.highlights ?? []).map((h) => el('li', { text: h })))
     ]);
+    applyGlowSeed(card, r.id || `${r.company || ''}-${latestRole}`);
+    return card;
   }));
   const expSection = el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Berufserfahrung' : 'Work Experience' }),
@@ -202,7 +259,7 @@ export async function renderAbout({ lang }){
   const education = Array.isArray(about?.education) ? about.education : [];
   const eduGallery = el('div', { class: 'gallery' }, education.map((r) => {
     const dates = formatMonthRange(r.startDate, r.endDate, locale);
-    return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
       e.preventDefault();
       const card = e.currentTarget;
       const gallery = card.parentElement;
@@ -222,6 +279,8 @@ export async function renderAbout({ lang }){
       ]),
       el('ul', {}, (r.details ?? []).map((d) => el('li', { text: d })))
     ]);
+    applyGlowSeed(card, r.id || `${r.institution || ''}-${r.degree || ''}`);
+    return card;
   }));
   const eduSection = el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Ausbildung' : 'Education' }),
@@ -232,7 +291,7 @@ export async function renderAbout({ lang }){
   const volunteering = Array.isArray(about?.volunteering) ? about.volunteering : [];
   const volunteeringGallery = el('div', { class: 'gallery' }, volunteering.map((v) => {
     const dates = formatMonthRange(v.startDate, v.endDate, locale);
-    return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
       e.preventDefault();
       const card = e.currentTarget;
       const gallery = card.parentElement;
@@ -253,6 +312,8 @@ export async function renderAbout({ lang }){
       el('ul', {}, (v.highlights ?? []).map((h) => el('li', { text: h }))),
       v.url ? el('p', { class: 'muted' }, [el('a', { href: v.url, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Organisation öffnen' : 'Open organization' })]) : null
     ].filter(Boolean));
+    applyGlowSeed(card, v.id || `${v.organization || ''}-${v.role || ''}`);
+    return card;
   }));
   const volunteeringSection = volunteering.length ? el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Engagement' : 'Volunteering' }),
@@ -273,7 +334,7 @@ export async function renderAbout({ lang }){
       }
     })();
 
-    return el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
+    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
       e.preventDefault();
       const card = e.currentTarget;
       const gallery = card.parentElement;
@@ -293,6 +354,8 @@ export async function renderAbout({ lang }){
       el('p', { class: 'muted', text: r.text ?? '' }),
       r.profileUrl ? el('p', { class: 'muted' }, [el('a', { href: r.profileUrl, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Profil öffnen' : 'Open profile' })]) : null
     ].filter(Boolean));
+    applyGlowSeed(card, r.id || r.name || r.profileUrl || String(Math.random()));
+    return card;
   }));
   const referencesSection = references.length ? el('section', {}, [
     el('div', { class: 'section-title', text: lang === 'de' ? 'Empfehlungen' : 'References' }),
