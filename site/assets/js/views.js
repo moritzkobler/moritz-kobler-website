@@ -121,6 +121,39 @@ function renderKeyValue(label, value){
   ]);
 }
 
+function isExternalHref(href){
+  return typeof href === 'string' && /^https?:\/\//i.test(href);
+}
+
+function renderLinkOut(text, href, extraClass = ''){
+  if (!href) return document.createTextNode(String(text ?? ''));
+  return el('a', {
+    class: `link-out ${extraClass}`.trim(),
+    href,
+    ...(isExternalHref(href) ? { target: '_blank', rel: 'noreferrer' } : {})
+  }, [String(text ?? '')]);
+}
+
+function scrollCardIntoView(card){
+  const gallery = card.parentElement;
+  if (!gallery) return;
+  const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+  const left = card.offsetLeft - pad;
+  gallery.scrollTo({ left, behavior: 'smooth' });
+  try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+}
+
+function onGalleryCardClick(e){
+  const target = e.target;
+  if (target instanceof Element){
+    const a = target.closest('a');
+    if (a) return; // allow link clicks to navigate
+  }
+  const card = e.currentTarget;
+  if (!(card instanceof HTMLElement)) return;
+  scrollCardIntoView(card);
+}
+
 function attachCarousel(carouselRoot){
   const gallery = carouselRoot.querySelector('.gallery');
   if (!gallery) return;
@@ -227,19 +260,11 @@ export async function renderAbout({ lang }){
     const dates = formatMonthRange(r.startDate, r.endDate, locale);
     const latestRole = Array.isArray(r.roles) && r.roles.length ? r.roles[r.roles.length - 1] : (r.role ?? '');
     const previousRoles = Array.isArray(r.roles) && r.roles.length > 1 ? r.roles.slice(0, -1) : [];
-    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
-      e.preventDefault();
-      const card = e.currentTarget;
-      const gallery = card.parentElement;
-      const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
-      const left = card.offsetLeft - pad;
-      gallery.scrollTo({ left, behavior: 'smooth' });
-      try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
-    } }, [
+    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
       el('div', { class: 'card-row' }, [
         renderLogo(r.logo, r.company),
         el('div', { class: 'card-row__body' }, [
-          el('div', { class: 'muted', text: r.company ?? '' }),
+          el('div', { class: 'muted' }, [renderLinkOut(r.company ?? '', r.link, 'muted')]),
           el('h2', { class: 'h2', text: latestRole }),
           previousRoles.length ? el('div', { class: 'muted', text: previousRoles.join(' · ') }) : null,
           el('div', { class: 'muted', text: dates })
@@ -257,69 +282,58 @@ export async function renderAbout({ lang }){
   attachCarousel(expSection.querySelector('.carousel'));
 
   const education = Array.isArray(about?.education) ? about.education : [];
-  const eduGallery = el('div', { class: 'gallery' }, education.map((r) => {
-    const dates = formatMonthRange(r.startDate, r.endDate, locale);
-    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
-      e.preventDefault();
-      const card = e.currentTarget;
-      const gallery = card.parentElement;
-      const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
-      const left = card.offsetLeft - pad;
-      gallery.scrollTo({ left, behavior: 'smooth' });
-      try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
-    } }, [
-      el('div', { class: 'card-row' }, [
-        renderLogo(r.logo, r.institution),
-        el('div', { class: 'card-row__body' }, [
-          el('div', { class: 'muted', text: r.institution ?? '' }),
-          el('h2', { class: 'h2', text: r.degree ?? '' }),
-          el('div', { class: 'muted', text: dates }),
-          el('div', { class: 'muted', text: r.focus ?? '' })
-        ])
-      ]),
-      el('ul', {}, (r.details ?? []).map((d) => el('li', { text: d })))
-    ]);
-    applyGlowSeed(card, r.id || `${r.institution || ''}-${r.degree || ''}`);
-    return card;
-  }));
-  const eduSection = el('section', {}, [
-    el('div', { class: 'section-title', text: lang === 'de' ? 'Ausbildung' : 'Education' }),
-    el('div', { class: 'carousel' }, [eduGallery])
-  ]);
-  attachCarousel(eduSection.querySelector('.carousel'));
-
   const volunteering = Array.isArray(about?.volunteering) ? about.volunteering : [];
-  const volunteeringGallery = el('div', { class: 'gallery' }, volunteering.map((v) => {
+  const eduVolItems = [
+    ...education.map((r) => ({ kind: 'education', data: r })),
+    ...volunteering.map((v) => ({ kind: 'volunteering', data: v }))
+  ];
+
+  const eduVolGallery = el('div', { class: 'gallery' }, eduVolItems.map((item) => {
+    if (item.kind === 'education'){
+      const r = item.data;
+      const dates = formatMonthRange(r.startDate, r.endDate, locale);
+      const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
+        el('div', { class: 'card-row' }, [
+          renderLogo(r.logo, r.institution),
+          el('div', { class: 'card-row__body' }, [
+            el('div', { class: 'muted card-kicker', text: lang === 'de' ? 'Ausbildung' : 'Education' }),
+            el('div', { class: 'muted' }, [renderLinkOut(r.institution ?? '', r.link, 'muted')]),
+            el('h2', { class: 'h2', text: r.degree ?? '' }),
+            el('div', { class: 'muted', text: dates }),
+            el('div', { class: 'muted', text: r.focus ?? '' })
+          ])
+        ]),
+        el('ul', {}, (r.details ?? []).map((d) => el('li', { text: d })))
+      ]);
+      applyGlowSeed(card, r.id || `${r.institution || ''}-${r.degree || ''}`);
+      return card;
+    }
+
+    const v = item.data;
     const dates = formatMonthRange(v.startDate, v.endDate, locale);
-    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
-      e.preventDefault();
-      const card = e.currentTarget;
-      const gallery = card.parentElement;
-      const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
-      const left = card.offsetLeft - pad;
-      gallery.scrollTo({ left, behavior: 'smooth' });
-      try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
-    } }, [
+    const link = v.link ?? v.url;
+    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
       el('div', { class: 'card-row' }, [
         renderLogo(v.image, v.organization),
         el('div', { class: 'card-row__body' }, [
-          el('div', { class: 'muted', text: v.organization ?? '' }),
+          el('div', { class: 'muted card-kicker', text: lang === 'de' ? 'Engagement' : 'Volunteering' }),
+          el('div', { class: 'muted' }, [renderLinkOut(v.organization ?? '', link, 'muted')]),
           el('h2', { class: 'h2', text: v.role ?? '' }),
           el('div', { class: 'muted', text: dates }),
           el('div', { class: 'muted', text: v.cause ?? '' })
         ])
       ]),
-      el('ul', {}, (v.highlights ?? []).map((h) => el('li', { text: h }))),
-      v.url ? el('p', { class: 'muted' }, [el('a', { href: v.url, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Organisation öffnen' : 'Open organization' })]) : null
-    ].filter(Boolean));
+      el('ul', {}, (v.highlights ?? []).map((h) => el('li', { text: h })))
+    ]);
     applyGlowSeed(card, v.id || `${v.organization || ''}-${v.role || ''}`);
     return card;
   }));
-  const volunteeringSection = volunteering.length ? el('section', {}, [
-    el('div', { class: 'section-title', text: lang === 'de' ? 'Engagement' : 'Volunteering' }),
-    el('div', { class: 'carousel' }, [volunteeringGallery])
+
+  const eduVolSection = eduVolItems.length ? el('section', {}, [
+    el('div', { class: 'section-title', text: lang === 'de' ? 'Ausbildung & Engagement' : 'Education & Volunteering' }),
+    el('div', { class: 'carousel' }, [eduVolGallery])
   ]) : null;
-  if (volunteeringSection) attachCarousel(volunteeringSection.querySelector('.carousel'));
+  if (eduVolSection) attachCarousel(eduVolSection.querySelector('.carousel'));
 
   const references = Array.isArray(about?.references) ? about.references : [];
   const referencesGallery = el('div', { class: 'gallery gallery--lg' }, references.map((r) => {
@@ -334,25 +348,17 @@ export async function renderAbout({ lang }){
       }
     })();
 
-    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: (e) => {
-      e.preventDefault();
-      const card = e.currentTarget;
-      const gallery = card.parentElement;
-      const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
-      const left = card.offsetLeft - pad;
-      gallery.scrollTo({ left, behavior: 'smooth' });
-      try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
-    } }, [
+    const link = r.link ?? r.profileUrl;
+    const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
       el('div', { class: 'card-row' }, [
         r.image ? el('img', { class: 'ref-photo', src: r.image, alt: r.name ?? '' }) : renderLogo(null, r.name),
         el('div', { class: 'card-row__body' }, [
           el('div', { class: 'muted', text: r.title ?? '' }),
-          el('h2', { class: 'h2', text: r.name ?? '' }),
+          el('h2', { class: 'h2' }, [renderLinkOut(r.name ?? '', link, '')]),
           el('div', { class: 'muted', text: `${dateLabel}${r.relation ? ` · ${r.relation}` : ''}`.trim() })
         ])
       ]),
       el('p', { class: 'muted', text: r.text ?? '' }),
-      r.profileUrl ? el('p', { class: 'muted' }, [el('a', { href: r.profileUrl, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'Profil öffnen' : 'Open profile' })]) : null
     ].filter(Boolean));
     applyGlowSeed(card, r.id || r.profileUrl || r.name || 'reference');
     return card;
@@ -429,7 +435,7 @@ export async function renderAbout({ lang }){
     ])
   ]);
 
-  return el('div', { class: 'container' }, [introGrid, expSection, eduSection, volunteeringSection, referencesSection, skillsSection, hobbiesSection, contactSection, cvSection].filter(Boolean));
+  return el('div', { class: 'container' }, [introGrid, expSection, eduVolSection, referencesSection, skillsSection, hobbiesSection, contactSection, cvSection].filter(Boolean));
 }
 
 export async function renderProjects({ lang }){

@@ -11,17 +11,19 @@
     {
       "id": "seek-senior-ai-pm",
       "company": "SEEK",
+      "link": "https://www.seek.com.au/",
       "role": "Senior AI Product Manager",
       "startDate": "2022-10",
       "endDate": "present",
       "highlights": ["Platzhalter-Erfolg"],
-      "logo": "/assets/logos/seek.svg"
+      "logo": "/assets/img/companies/seek.jpg"
     }
   ],
   "education": [
     {
       "id": "msc-tu-berlin",
       "institution": "Technische Universität Berlin & Lund University",
+      "link": "https://www.linkedin.com/company/1188458/",
       "degree": "M.Sc. Wirtschaftsingenieurwesen",
       "focus": "Informatik",
       "startDate": "2014-09",

@@ -11,6 +11,7 @@
     {
       "id": "seek-ai-product-manager",
       "company": "SEEK",
+      "link": "https://www.seek.com.au/",
       "roles": [
         "AI Product Manager",
         "Senior AI Product Manager"
@@ -22,11 +23,12 @@
         "Leading a major organization-wide initiative to unify technology and online platforms across 8 markets and 3 brands in APAC.",
         "Driving cross-brand experiments across six recommendation products, resulting in significant year-over-year uplift in job–candidate matches."
       ],
-      "logo": "/assets/logos/seek.svg"
+      "logo": "/assets/img/companies/seek.jpg"
     },
     {
       "id": "itonics-product-management",
       "company": "ITONICS GMBH",
+      "link": "https://www.itonics-innovation.com/",
       "roles": [
         "Junior Product Manager",
         "Product Manager",
@@ -41,11 +43,12 @@
         "Established initiatives for data-driven decision-making in product management.",
         "Drove the shift from a project-based to a product-centric organization, shaping product processes and the growing product team."
       ],
-      "logo": "/assets/logos/itonics.svg"
+      "logo": "/assets/img/companies/itonics.jpg"
     },
     {
       "id": "bookingkit-working-student-intern",
       "company": "BOOKINGKIT GMBH",
+      "link": "https://www.bookingkit.de/",
       "roles": [
         "Product Management, BI & Marketing Working Student",
         "Product Management, BI & Marketing Intern"
@@ -57,7 +60,7 @@
         "Gradually transitioned into product and business intelligence responsibilities.",
         "Designed a concept for functionality to optimize pricing based on historical booking data."
       ],
-      "logo": "/assets/logos/bookingkit.svg",
+      "logo": "/assets/img/companies/bookingkit.jpg",
       "notes": "[Unverified] Start and end months inferred from CV wording: “between Aug ’14 and Mar ’17.”"
     }
   ],
@@ -65,6 +68,7 @@
     {
       "id": "tu-berlin-msc-industrial-engineering-software-technology",
       "institution": "Technische Universität Berlin",
+      "link": "https://www.linkedin.com/company/1188458/",
       "degree": "Master of Science (M.Sc.), Industrial Engineering — Software Technology",
       "focus": "Software Technology",
       "startDate": "2014",
@@ -79,6 +83,7 @@
     {
       "id": "lund-university-master-computer-science",
       "institution": "The Faculty of Engineering at Lund University",
+      "link": "https://www.linkedin.com/company/15105405/",
       "degree": "Master, Computer Science",
       "focus": "Computer Science",
       "startDate": "2015",
@@ -92,6 +97,7 @@
     {
       "id": "tu-berlin-bsc-industrial-engineering-transport",
       "institution": "Technische Universität Berlin",
+      "link": "https://www.linkedin.com/company/1188458/",
       "degree": "Bachelor of Science (B.Sc.), Industrial Engineering — Transport",
       "focus": "Transport",
       "startDate": "2011",
@@ -107,6 +113,7 @@
     {
       "id": "sydskanska-nationen-eventmanagement",
       "organization": "Sydskånska Nationen",
+      "link": "https://www.linkedin.com/company/9385592/",
       "role": "Eventmanagement",
       "startDate": "2016-01",
       "endDate": "2016-06",
@@ -123,6 +130,7 @@
     {
       "id": "milen-zaykov",
       "name": "Milen Zaykov",
+      "link": "https://www.linkedin.com/in/milen-zaykov-95698912a",
       "profileUrl": "https://www.linkedin.com/in/milen-zaykov-95698912a",
       "image": "/assets/img/references/milen.jpg",
       "title": "Product Manager at Softgarden",
@@ -133,6 +141,7 @@
     {
       "id": "tikendra-chand",
       "name": "Tikendra Chand",
+      "link": "https://www.linkedin.com/in/tikendrachand",
       "profileUrl": "https://www.linkedin.com/in/tikendrachand",
       "image": "/assets/img/references/tikendra.jpg",
       "title": "Senior Software Engineer at AT&T",
@@ -143,6 +152,7 @@
     {
       "id": "dennis-brandt",
       "name": "Dennis Brandt",
+      "link": "https://www.linkedin.com/in/dennis-brandt-4778bb1a",
       "profileUrl": "https://www.linkedin.com/in/dennis-brandt-4778bb1a",
       "image": "/assets/img/references/dennis.jpg",
       "title": "Lead Software Engineer at ITONICS | Shaping Innovation",
@@ -153,6 +163,7 @@
     {
       "id": "michael-durst",
       "name": "Michael Durst",
+      "link": "https://www.linkedin.com/in/michaeldurst",
       "profileUrl": "https://www.linkedin.com/in/michaeldurst",
       "image": "/assets/img/references/michael.jpg",
       "title": "Founder @ ITONICS, The #1 Innovation OS",
@@ -163,6 +174,7 @@
     {
       "id": "kiran-shakya",
       "name": "Kiran Shakya",
+      "link": "https://www.linkedin.com/in/kiranshakya",
       "profileUrl": "https://www.linkedin.com/in/kiranshakya",
       "image": "/assets/img/references/kiran.jpg",
       "title": "Lead Software Engineer",
@@ -173,6 +185,7 @@
     {
       "id": "salome-leshkasheli",
       "name": "Salome Leshkasheli",
+      "link": "https://www.linkedin.com/in/salome-leshkasheli",
       "profileUrl": "https://www.linkedin.com/in/salome-leshkasheli",
       "image": "/assets/img/references/salome.jpg",
       "title": "Team Lead Frontend Engineer",
