@@ -29,6 +29,22 @@ function svgEl(tag, attrs = {}, children = []){
   return node;
 }
 
+function renderChevronIcon(direction){
+  const d = direction === 'left'
+    ? 'M15 18l-6-6 6-6'
+    : 'M9 6l6 6-6 6';
+  return svgEl('svg', { class: `card-nav__icon card-nav__icon--${direction}`, viewBox: '0 0 24 24', 'aria-hidden': 'true', focusable: 'false' }, [
+    svgEl('path', {
+      d,
+      fill: 'none',
+      stroke: 'currentColor',
+      'stroke-width': '2.2',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    })
+  ]);
+}
+
 function setTitle(title){
   document.title = title ? `${title} — Moritz Kobler` : 'Moritz Kobler';
 }
@@ -213,6 +229,42 @@ function attachCarousel(carouselRoot){
     const left = card.offsetLeft - getPad();
     gallery.scrollTo({ left, behavior: 'smooth' });
   };
+
+  // Per-card footer navigation (chevrons)
+  for (let i = 0; i < cards.length; i++){
+    const card = cards[i];
+    if (card.querySelector('.card-nav')) continue;
+
+    const footer = el('div', { class: 'card-nav' }, [
+      i > 0
+        ? el('button', {
+            class: 'card-nav__btn',
+            type: 'button',
+            'aria-label': `Previous card (${i} of ${cards.length})`,
+            onclick: (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              scrollToIndex(i - 1);
+            }
+          }, [renderChevronIcon('left'), el('span', { class: 'sr-only', text: 'Previous' })])
+        : el('span', { class: 'card-nav__spacer', 'aria-hidden': 'true' }),
+
+      i < cards.length - 1
+        ? el('button', {
+            class: 'card-nav__btn',
+            type: 'button',
+            'aria-label': `Next card (${i + 2} of ${cards.length})`,
+            onclick: (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              scrollToIndex(i + 1);
+            }
+          }, [el('span', { class: 'sr-only', text: 'Next' }), renderChevronIcon('right')])
+        : el('span', { class: 'card-nav__spacer', 'aria-hidden': 'true' })
+    ]);
+
+    card.appendChild(footer);
+  }
 
   const computeActiveIndex = () => {
     const target = gallery.scrollLeft + getPad();
