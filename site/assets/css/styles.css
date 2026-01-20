@@ -349,9 +349,7 @@ main{ padding: var(--space-6) 0; flex: 1 0 auto; }
   transition: opacity .15s ease, transform .15s ease;
 }
 
-.gallery-card:hover .card-nav,
-.gallery-card.is-active .card-nav,
-.gallery-card:focus-within .card-nav{
+.gallery-card.is-active:hover .card-nav{
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
