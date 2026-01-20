@@ -30,6 +30,15 @@
 - Follow-ups: Consider keyboard left/right shortcuts for focused carousel.
 - Commit: b5a9967
 
+### 2026-01-20 — Chevron visibility polish
+- Summary:
+  - Made carousel chevrons appear only on the active card and on hover/focus.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: 76bec43
+
 ### 2026-01-14 — Lang label + footer alignment
 - Summary:
   - Fixed the language toggle label so it reliably reflects the current state.
