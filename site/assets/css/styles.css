@@ -343,6 +343,18 @@ main{ padding: var(--space-6) 0; flex: 1 0 auto; }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+}
+
+.gallery-card:hover .card-nav,
+.gallery-card.is-active .card-nav,
+.gallery-card:focus-within .card-nav{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .card-nav__spacer{ width: 34px; height: 34px; }
