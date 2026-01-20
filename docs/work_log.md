@@ -20,6 +20,16 @@
 - Follow-ups: None.
 - Commit: 541546a
 
+### 2026-01-20 — Carousel chevron controls
+- Summary:
+  - Added per-card footer chevrons (prev/next) to navigate carousels without relying on swipe/scroll.
+  - Wired chevrons to scroll by one card while keeping existing dot pagination.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: Consider keyboard left/right shortcuts for focused carousel.
+- Commit: b5a9967
+
 ### 2026-01-14 — Lang label + footer alignment
 - Summary:
   - Fixed the language toggle label so it reliably reflects the current state.
