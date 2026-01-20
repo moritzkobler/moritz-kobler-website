@@ -39,6 +39,15 @@
 - Follow-ups: None.
 - Commit: 76bec43
 
+### 2026-01-20 — Chevron visibility (active hover only)
+- Summary:
+  - Refined carousel chevrons to show only when the active (current) card is hovered.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: 92b309c
+
 ### 2026-01-14 — Lang label + footer alignment
 - Summary:
   - Fixed the language toggle label so it reliably reflects the current state.
