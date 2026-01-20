@@ -1,3 +1,14 @@
+### 2026-01-20 — About links + merged edu/vol carousel
+- Summary:
+  - Merged Education and Volunteering into a single combined carousel (schema remains separate).
+  - Added `link` properties for card-backed About items and rendered names as link-outs with a diagonal arrow.
+  - Switched Work Experience logos to local assets under `/assets/img/companies/`.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/assets/css/styles.css, site/data/about.en.json, site/data/about.de.json
+- Tests: N/A (static site)
+- Follow-ups: Confirm/adjust the external URLs (company/institution) for accuracy.
+- Commit: 8276ab0
+
 ### 2026-01-14 — Lang label + footer alignment
 - Summary:
   - Fixed the language toggle label so it reliably reflects the current state.
