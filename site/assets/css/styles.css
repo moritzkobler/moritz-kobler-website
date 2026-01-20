@@ -63,17 +63,19 @@ a{ color: inherit; }
   cursor: pointer;
   transition: transform .15s ease, text-shadow .15s ease, color .15s ease, opacity .15s ease;
 }
-.link-out::after{
-  content: "↗";
+.link-out__icon{
+  width: 12px;
+  height: 12px;
   opacity: .65;
-  transform: translateY(-0.06em);
+  flex: 0 0 auto;
+  transform: translateY(-0.05em);
 }
 .link-out:hover{
   color: var(--text);
   text-shadow: 0 0 14px rgba(34,211,238,.18);
   transform: translateY(-1px);
 }
-.link-out:hover::after{ opacity: .95; }
+.link-out:hover .link-out__icon{ opacity: .95; }
 
 .card-kicker{
   font-size: 11px;
@@ -397,7 +399,7 @@ main{ padding: var(--space-6) 0; flex: 1 0 auto; }
 .ref-photo{
   width: 46px;
   height: 46px;
-  border-radius: 999px;
+  border-radius: 14px;
   border: 1px solid var(--border);
   background: rgba(255,255,255,.03);
   object-fit: cover;

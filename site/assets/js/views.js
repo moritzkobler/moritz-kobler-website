@@ -16,6 +16,19 @@ function el(tag, attrs = {}, children = []){
   return node;
 }
 
+function svgEl(tag, attrs = {}, children = []){
+  const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k, v] of Object.entries(attrs)){
+    if (v == null) continue;
+    node.setAttribute(k, String(v));
+  }
+  for (const c of children){
+    if (c == null) continue;
+    node.appendChild(c);
+  }
+  return node;
+}
+
 function setTitle(title){
   document.title = title ? `${title} — Moritz Kobler` : 'Moritz Kobler';
 }
@@ -125,13 +138,26 @@ function isExternalHref(href){
   return typeof href === 'string' && /^https?:\/\//i.test(href);
 }
 
+function renderExternalIcon(){
+  return svgEl('svg', { class: 'link-out__icon', viewBox: '0 0 24 24', 'aria-hidden': 'true', focusable: 'false' }, [
+    svgEl('path', {
+      d: 'M7 17L17 7M10 7h7v7',
+      fill: 'none',
+      stroke: 'currentColor',
+      'stroke-width': '2',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    })
+  ]);
+}
+
 function renderLinkOut(text, href, extraClass = ''){
   if (!href) return document.createTextNode(String(text ?? ''));
   return el('a', {
     class: `link-out ${extraClass}`.trim(),
     href,
     ...(isExternalHref(href) ? { target: '_blank', rel: 'noreferrer' } : {})
-  }, [String(text ?? '')]);
+  }, [String(text ?? ''), renderExternalIcon()]);
 }
 
 function scrollCardIntoView(card){
@@ -288,7 +314,7 @@ export async function renderAbout({ lang }){
     ...volunteering.map((v) => ({ kind: 'volunteering', data: v }))
   ];
 
-  const eduVolGallery = el('div', { class: 'gallery' }, eduVolItems.map((item) => {
+  const eduVolGallery = el('div', { class: 'gallery gallery--lg' }, eduVolItems.map((item) => {
     if (item.kind === 'education'){
       const r = item.data;
       const dates = formatMonthRange(r.startDate, r.endDate, locale);
