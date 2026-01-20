@@ -9,6 +9,17 @@
 - Follow-ups: Confirm/adjust the external URLs (company/institution) for accuracy.
 - Commit: 8276ab0
 
+### 2026-01-20 — Link icon consistency polish
+- Summary:
+  - Switched the diagonal link indicator to an inline SVG so it’s consistent everywhere (incl. References) and aligns well with text wrapping.
+  - Made reference photos use the same rounded-rectangle shape as other card images.
+  - Increased the merged Education/Volunteering carousel card size to match other large carousels.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: 541546a
+
 ### 2026-01-14 — Lang label + footer alignment
 - Summary:
   - Fixed the language toggle label so it reliably reflects the current state.
