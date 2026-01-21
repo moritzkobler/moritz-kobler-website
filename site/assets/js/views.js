@@ -383,7 +383,6 @@ export async function renderAbout({ lang }){
         el('div', { class: 'card-row' }, [
           renderLogo(r.logo, r.institution),
           el('div', { class: 'card-row__body' }, [
-            el('div', { class: 'muted card-kicker', text: lang === 'de' ? 'Ausbildung' : 'Education' }),
             el('div', { class: 'muted' }, [renderLinkOut(r.institution ?? '', r.link, 'muted')]),
             el('h2', { class: 'h2', text: r.degree ?? '' }),
             el('div', { class: 'muted', text: dates }),
@@ -403,7 +402,6 @@ export async function renderAbout({ lang }){
       el('div', { class: 'card-row' }, [
         renderLogo(v.image, v.organization),
         el('div', { class: 'card-row__body' }, [
-          el('div', { class: 'muted card-kicker', text: lang === 'de' ? 'Engagement' : 'Volunteering' }),
           el('div', { class: 'muted' }, [renderLinkOut(v.organization ?? '', link, 'muted')]),
           el('h2', { class: 'h2', text: v.role ?? '' }),
           el('div', { class: 'muted', text: dates }),
