@@ -9,6 +9,17 @@
 - Follow-ups: Adjust type scale/spacing after visual review.
 - Commit: 228b027
 
+### 2026-01-21 — Typography weights + consistent card media
+- Summary:
+  - Added weight variables/utilities (300–700) and lowered default body/muted weights.
+  - Made gallery header media (logos/photos) fill header height with a square aspect ratio.
+  - Removed the Education/Volunteering label from the combined carousel for cleaner cards.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/css/styles.css, site/assets/js/views.js, site/index.html
+- Tests: N/A (static site)
+- Follow-ups: Fine-tune `--card-head-h` and `--w-body` after visual pass.
+- Commit: 25e337b
+
 ### 2026-01-20 — About links + merged edu/vol carousel
 - Summary:
   - Merged Education and Volunteering into a single combined carousel (schema remains separate).
