@@ -66,6 +66,45 @@ function mergePreferPrimary(primary, fallback){
   return primary;
 }
 
+function parseYearMonth(value){
+  if (typeof value !== 'string') return null;
+  const v = value.trim();
+  if (!v) return null;
+  if (v.toLowerCase() === 'present') return null;
+
+  const m = /^([0-9]{4})(?:-([0-9]{2}))?$/.exec(v);
+  if (!m) return null;
+  const year = Number(m[1]);
+  const month = m[2] ? Number(m[2]) : 1;
+  if (!Number.isFinite(year) || !Number.isFinite(month) || month < 1 || month > 12) return null;
+  return { year, month };
+}
+
+function formatDurationCompact(startDate, endDate){
+  const start = parseYearMonth(startDate);
+  if (!start) return null;
+
+  const endParsed = parseYearMonth(endDate);
+  const end = endParsed
+    ? endParsed
+    : (() => {
+        const now = new Date();
+        return { year: now.getFullYear(), month: now.getMonth() + 1 };
+      })();
+
+  const totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
+  if (!Number.isFinite(totalMonths) || totalMonths < 0) return null;
+
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  if (years <= 0 && months <= 0) return '0m';
+
+  const parts = [];
+  if (years > 0) parts.push(`${years}y`);
+  if (months > 0) parts.push(`${months}m`);
+  return parts.join('');
+}
+
 function iconDataUrl(seed, label){
   const safe = (label || '').slice(0, 24).replace(/[<>"']/g, '');
   const ch = (safe.trim()[0] || (seed || '?')[0] || '?').toUpperCase();
@@ -336,6 +375,7 @@ export async function renderAbout({ lang }){
   const experience = Array.isArray(about?.experience) ? about.experience : [];
   const expGallery = el('div', { class: 'gallery gallery--lg' }, experience.map((r) => {
     const dates = formatMonthRange(r.startDate, r.endDate, locale);
+    const duration = formatDurationCompact(r.startDate, r.endDate);
     const latestRole = Array.isArray(r.roles) && r.roles.length ? r.roles[r.roles.length - 1] : (r.role ?? '');
     const previousRoles = Array.isArray(r.roles) && r.roles.length > 1 ? r.roles.slice(0, -1) : [];
 
@@ -346,6 +386,14 @@ export async function renderAbout({ lang }){
     const highlightType = r.highlightType === 'ordered' ? 'ordered' : 'unordered';
     const listTag = highlightType === 'ordered' ? 'ol' : 'ul';
 
+    const dateMeta = duration
+      ? el('div', { class: 'muted card-head__meta' }, [
+          el('span', { class: 'card-head__duration', text: duration }),
+          ' · ',
+          el('span', { class: 'card-head__range', text: dates })
+        ])
+      : el('div', { class: 'muted card-head__meta', text: dates });
+
     const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
       el('div', { class: 'card-row card-head' }, [
         renderLogo(r.logo, r.company, 'logo--exp'),
@@ -354,7 +402,7 @@ export async function renderAbout({ lang }){
           el('h2', { class: 'h2 card-head__title', text: latestRole }),
           previousRoles.length ? el('div', { class: 'muted card-head__sub', text: previousRoles.join(' · ') }) : null,
         ]),
-        el('div', { class: 'muted card-head__meta', text: dates })
+        dateMeta
       ]),
       ...paragraphs.map((t) => el('p', { class: 'exp-text', text: t })),
       el(listTag, { class: 'exp-highlights' }, (r.highlights ?? []).map((h) => el('li', { text: h })))
