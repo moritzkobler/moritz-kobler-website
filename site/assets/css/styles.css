@@ -21,7 +21,10 @@
   --space-5: 28px;
   --space-6: 40px;
 
-  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-sans: "Google Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-serif: "DM Serif Text", ui-serif, Georgia, "Times New Roman", Times, serif;
+  --font-body: var(--font-serif);
+  --font-header: var(--font-sans);
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --max: 1080px;
@@ -47,10 +50,28 @@ body{
   background-repeat: no-repeat;
   background-attachment: scroll;
   color: var(--text);
-  font-family: var(--font);
+  font-family: var(--font-body);
   line-height: 1.45;
   overflow-x: clip;
 }
+.h1,
+.h2,
+.section-title,
+.card-kicker,
+.kv__label,
+.nav-link,
+.btn,
+.chip,
+.lang-switch{
+  font-family: var(--font-header);
+}
+
+.card-kicker,
+.section-title,
+.kv__label{
+  letter-spacing: .14em;
+}
+
 
 a{ color: inherit; }
 
@@ -449,6 +470,48 @@ main{ padding: var(--space-6) 0; flex: 1 0 auto; }
 
 .card-row{ display:flex; gap: var(--space-3); align-items:flex-start; margin-bottom: var(--space-3); }
 .card-row__body{ min-width: 0; }
+
+.card-row--exp{ align-items: flex-start; }
+.exp-head{ padding-right: var(--space-2); }
+.exp-company{
+  font-family: var(--font-header);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 2px;
+}
+.exp-role{ margin: 0; }
+.exp-previous-roles{
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.25;
+}
+.exp-dates{
+  margin-left: auto;
+  text-align: right;
+  white-space: nowrap;
+  font-family: var(--font-header);
+  letter-spacing: .10em;
+  font-size: 12px;
+}
+
+.logo--exp{
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+}
+
+.exp-text{
+  margin: 0 0 var(--space-3);
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: none;
+}
+
+.exp-highlights{
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
 
 .logo{
   width: 46px;
