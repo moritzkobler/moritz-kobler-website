@@ -347,14 +347,14 @@ export async function renderAbout({ lang }){
     const listTag = highlightType === 'ordered' ? 'ol' : 'ul';
 
     const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
-      el('div', { class: 'card-row card-row--exp' }, [
+      el('div', { class: 'card-row card-head' }, [
         renderLogo(r.logo, r.company, 'logo--exp'),
-        el('div', { class: 'card-row__body exp-head' }, [
-          el('div', { class: 'muted exp-company' }, [renderLinkOut(r.company ?? '', r.link, 'muted')]),
-          el('h2', { class: 'h2 exp-role', text: latestRole }),
-          previousRoles.length ? el('div', { class: 'muted exp-previous-roles', text: previousRoles.join(' · ') }) : null,
+        el('div', { class: 'card-row__body card-head__body' }, [
+          el('div', { class: 'muted card-head__label' }, [renderLinkOut(r.company ?? '', r.link, 'muted')]),
+          el('h2', { class: 'h2 card-head__title', text: latestRole }),
+          previousRoles.length ? el('div', { class: 'muted card-head__sub', text: previousRoles.join(' · ') }) : null,
         ]),
-        el('div', { class: 'muted exp-dates', text: dates })
+        el('div', { class: 'muted card-head__meta', text: dates })
       ]),
       ...paragraphs.map((t) => el('p', { class: 'exp-text', text: t })),
       el(listTag, { class: 'exp-highlights' }, (r.highlights ?? []).map((h) => el('li', { text: h })))
@@ -380,14 +380,14 @@ export async function renderAbout({ lang }){
       const r = item.data;
       const dates = formatMonthRange(r.startDate, r.endDate, locale);
       const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
-        el('div', { class: 'card-row' }, [
+        el('div', { class: 'card-row card-head' }, [
           renderLogo(r.logo, r.institution),
-          el('div', { class: 'card-row__body' }, [
-            el('div', { class: 'muted' }, [renderLinkOut(r.institution ?? '', r.link, 'muted')]),
-            el('h2', { class: 'h2', text: r.degree ?? '' }),
-            el('div', { class: 'muted', text: dates }),
-            el('div', { class: 'muted', text: r.focus ?? '' })
-          ])
+          el('div', { class: 'card-row__body card-head__body' }, [
+            el('div', { class: 'muted card-head__label' }, [renderLinkOut(r.institution ?? '', r.link, 'muted')]),
+            el('h2', { class: 'h2 card-head__title', text: r.degree ?? '' }),
+            r.focus ? el('div', { class: 'muted card-head__sub', text: r.focus }) : null
+          ].filter(Boolean)),
+          el('div', { class: 'muted card-head__meta', text: dates })
         ]),
         el('ul', {}, (r.details ?? []).map((d) => el('li', { text: d })))
       ]);
@@ -399,14 +399,14 @@ export async function renderAbout({ lang }){
     const dates = formatMonthRange(v.startDate, v.endDate, locale);
     const link = v.link ?? v.url;
     const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
-      el('div', { class: 'card-row' }, [
+      el('div', { class: 'card-row card-head' }, [
         renderLogo(v.image, v.organization),
-        el('div', { class: 'card-row__body' }, [
-          el('div', { class: 'muted' }, [renderLinkOut(v.organization ?? '', link, 'muted')]),
-          el('h2', { class: 'h2', text: v.role ?? '' }),
-          el('div', { class: 'muted', text: dates }),
-          el('div', { class: 'muted', text: v.cause ?? '' })
-        ])
+        el('div', { class: 'card-row__body card-head__body' }, [
+          el('div', { class: 'muted card-head__label' }, [renderLinkOut(v.organization ?? '', link, 'muted')]),
+          el('h2', { class: 'h2 card-head__title', text: v.role ?? '' }),
+          v.cause ? el('div', { class: 'muted card-head__sub', text: v.cause }) : null
+        ].filter(Boolean)),
+        el('div', { class: 'muted card-head__meta', text: dates })
       ]),
       el('ul', {}, (v.highlights ?? []).map((h) => el('li', { text: h })))
     ]);
@@ -435,13 +435,14 @@ export async function renderAbout({ lang }){
 
     const link = r.link ?? r.profileUrl;
     const card = el('article', { class: 'gallery-card', tabindex: '-1', onclick: onGalleryCardClick }, [
-      el('div', { class: 'card-row' }, [
+      el('div', { class: 'card-row card-head' }, [
         r.image ? el('img', { class: 'ref-photo', src: r.image, alt: r.name ?? '' }) : renderLogo(null, r.name),
-        el('div', { class: 'card-row__body' }, [
-          el('div', { class: 'muted', text: r.title ?? '' }),
-          el('h2', { class: 'h2' }, [renderLinkOut(r.name ?? '', link, '')]),
-          el('div', { class: 'muted', text: `${dateLabel}${r.relation ? ` · ${r.relation}` : ''}`.trim() })
-        ])
+        el('div', { class: 'card-row__body card-head__body' }, [
+          el('div', { class: 'muted card-head__label', text: r.title ?? '' }),
+          el('h2', { class: 'h2 card-head__title' }, [renderLinkOut(r.name ?? '', link, '')]),
+          r.relation ? el('div', { class: 'muted card-head__sub', text: r.relation }) : null
+        ].filter(Boolean)),
+        el('div', { class: 'muted card-head__meta', text: dateLabel })
       ]),
       el('p', { class: 'muted', text: r.text ?? '' }),
     ].filter(Boolean));

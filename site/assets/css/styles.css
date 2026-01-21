@@ -500,22 +500,25 @@ main{ padding: var(--space-6) 0; flex: 1 0 auto; }
 .card-row{ display:flex; gap: var(--space-3); align-items: stretch; margin-bottom: var(--space-3); min-height: var(--card-head-h); }
 .card-row__body{ min-width: 0; }
 
-.card-row--exp{ align-items: flex-start; }
-.exp-head{ padding-right: var(--space-2); }
-.exp-company{
+.card-head{ align-items: flex-start; }
+.card-head__body{ padding-right: var(--space-2); }
+.card-head__label{
   font-family: var(--font-header);
   text-transform: uppercase;
   letter-spacing: .12em;
   margin-bottom: 2px;
   font-weight: var(--w-kicker);
 }
-.exp-role{ margin: 0; }
-.exp-previous-roles{
+
+.card-head__title{ margin: 0; }
+
+.card-head__sub{
   margin-top: 2px;
   font-size: 12px;
   line-height: 1.25;
 }
-.exp-dates{
+
+.card-head__meta{
   margin-left: auto;
   text-align: right;
   white-space: nowrap;
