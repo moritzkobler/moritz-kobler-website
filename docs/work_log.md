@@ -9,6 +9,17 @@
 - Follow-ups: Adjust type scale/spacing after visual review.
 - Commit: 228b027
 
+### 2026-01-21 — Card header layout consistency
+- Summary:
+  - Unified Experience/Education/Volunteering/References card headers to use the same layout and spacing.
+  - Moved Education/Volunteering and References dates into a right-aligned meta column (sans serif).
+  - Standardized the label line (above the title) to be uppercase and sans serif across all card types.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: Visual review for any long label wrapping edge cases.
+- Commit: c919ac4
+
 ### 2026-01-21 — Typography weights + consistent card media
 - Summary:
   - Added weight variables/utilities (300–700) and lowered default body/muted weights.
