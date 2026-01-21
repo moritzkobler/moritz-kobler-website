@@ -1,3 +1,14 @@
+### 2026-01-21 — Experience cards: paragraphs, ordered highlights, typography
+- Summary:
+  - Extended Experience entries to support `text[]` paragraphs rendered above highlights.
+  - Added `highlightType` support (ordered/unordered) with sensible default.
+  - Tightened the Experience card header layout (right-aligned dates, tighter role stack) and introduced serif/sans typography via Google Fonts.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/assets/css/styles.css, site/index.html, site/data/about.en.json, site/data/about.de.json
+- Tests: N/A (static site)
+- Follow-ups: Adjust type scale/spacing after visual review.
+- Commit: 228b027
+
 ### 2026-01-20 — About links + merged edu/vol carousel
 - Summary:
   - Merged Education and Volunteering into a single combined carousel (schema remains separate).
