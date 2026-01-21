@@ -1,3 +1,13 @@
+### 2026-01-21 — Work experience duration in date meta
+- Summary:
+  - Added a compact duration (e.g. `2y1m`) before the Work Experience date range.
+  - Styled duration as bold and the date range as normal weight.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: Confirm desired rounding (month-precision) for duration.
+- Commit: da01675
+
 ### 2026-01-21 — Experience cards: paragraphs, ordered highlights, typography
 - Summary:
   - Extended Experience entries to support `text[]` paragraphs rendered above highlights.
