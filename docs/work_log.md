@@ -10,6 +10,16 @@
 - Follow-ups: Replace placeholder support/privacy copy per app when ready.
 - Commit: 6c45617
 
+### 2026-01-24 — Projects: screenshots carousel
+- Summary:
+  - Switched project detail screenshots from a grid to the same carousel/gallery mechanism used on About.
+  - Added a max height for screenshots (mobile/desktop) while keeping aspect ratio via `object-fit: contain`.
+- Scope: work_plan section 6 (Project detail)
+- Files: site/assets/js/views.js, site/assets/css/styles.css
+- Tests: Manual (static server)
+- Follow-ups: Tune `--shot-max-h` after visual review on real devices.
+- Commit: 93391be
+
 ### 2026-01-24 — i18n: per-bundle keys + localized projects
 - Summary:
   - Removed dotted namespaces from `copy` keys; bundles now use flat keys (file name provides the namespace).
