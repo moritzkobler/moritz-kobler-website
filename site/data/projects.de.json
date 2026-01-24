@@ -1,22 +1,39 @@
 {
   "copy": {
-    "projects.pageTitle": "Projekte",
-    "projects.heroTitle": "Projekte",
-    "projects.heroSubtitle": "Apps und Experimente – sauber dokumentiert.",
-    "projects.notFoundTitle": "Nicht gefunden",
-    "projects.notFoundBody": "Dieses Projekt existiert (noch) nicht.",
-    "projects.notFoundBackLink": "Zurück zu Projekten",
-    "projects.detailTypeFallback": "Projekt",
-    "projects.sectionScreenshots": "Screenshots",
-    "projects.emptyScreenshots": "Noch keine Screenshots verfügbar.",
-    "projects.screenshotAlt": "{name} Screenshot {index}",
-    "projects.appFallbackName": "App",
-    "projects.sectionAppStores": "App Stores",
-    "projects.openOnIos": "Auf iOS öffnen",
-    "projects.openOnAndroid": "Auf Android öffnen",
-    "projects.emptyStoreLinks": "Noch keine Store-Links.",
-    "projects.sectionSupport": "Support",
-    "projects.emptySupportEmail": "Keine Support-E-Mail angegeben.",
-    "projects.sectionPrivacy": "Datenschutz"
-  }
+    "pageTitle": "Projekte",
+    "heroTitle": "Projekte",
+    "heroSubtitle": "Apps und Experimente – sauber dokumentiert.",
+    "notFoundTitle": "Nicht gefunden",
+    "notFoundBody": "Dieses Projekt existiert (noch) nicht.",
+    "notFoundBackLink": "Zurück zu Projekten",
+    "detailTypeFallback": "Projekt",
+    "sectionScreenshots": "Screenshots",
+    "emptyScreenshots": "Noch keine Screenshots verfügbar.",
+    "screenshotAlt": "{name} Screenshot {index}",
+    "appFallbackName": "App",
+    "sectionAppStores": "App Stores",
+    "openOnIos": "Auf iOS öffnen",
+    "openOnAndroid": "Auf Android öffnen",
+    "emptyStoreLinks": "Noch keine Store-Links.",
+    "sectionSupport": "Support",
+    "emptySupportEmail": "Keine Support-E-Mail angegeben.",
+    "sectionPrivacy": "Datenschutz"
+  },
+  "projects": [
+    {
+      "slug": "chronomo",
+      "type": "app",
+      "name": "Chronomo",
+      "status": "Kommt 2026",
+      "shortDescription": "Kurzer Pitch (Platzhalter).",
+      "longDescription": "Ausführliche Beschreibung (Platzhalter).",
+      "appStoreLinks": {
+        "ios": null,
+        "android": null
+      },
+      "supportEmail": "support@domain.com",
+      "privacy": "Datenschutzerklärung (Platzhalter).",
+      "screenshots": []
+    }
+  ]
 }

@@ -2,6 +2,7 @@ import { includeFragments } from './includes.js';
 import { resolveLang, applyLangToDocument, setStoredLang, updateLangToggleUI, wireLangToggle } from './lang.js';
 import { pathToRoute, wireLinkInterceptor, navigate, withPreservedLang } from './router.js';
 import { renderAbout, renderProjects, renderProjectDetail, renderNotFound, renderPrivacy } from './views.js';
+import { loadBundle } from './i18n.js';
 
 function setCurrentNav(pathname){
   const path = pathname.replace(/\/$/, '') || '/';
@@ -41,10 +42,19 @@ async function render(){
 
     outlet.appendChild(view);
   }catch(err){
+    let title = 'Error';
+    try{
+      const lang = resolveLang();
+      const { t } = await loadBundle(lang, 'site');
+      title = t('errorTitle');
+    }catch(e){
+      // Fall back to English title if copy fails to load.
+    }
+
     outlet.appendChild(
       Object.assign(document.createElement('div'), {
         className: 'container',
-        innerHTML: `<section class="card hero"><h1 class="h1">Error</h1><p class="p">${String(err?.message ?? err)}</p></section>`
+        innerHTML: `<section class="card hero"><h1 class="h1">${title}</h1><p class="p">${String(err?.message ?? err)}</p></section>`
       })
     );
   }

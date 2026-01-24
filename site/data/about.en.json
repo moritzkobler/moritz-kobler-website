@@ -7,21 +7,17 @@
     "cvPdf": "/assets/cv/moritz-kobler-en.pdf"
   },
   "copy": {
-    "about.pageTitle": "About Me",
-    "about.prioritiesLabel": "MY PRIORITIES",
-    "about.aboutMeLabel": "ABOUT ME",
-    "about.chipLinkedIn": "LinkedIn",
-    "about.chipDownloadCv": "Download CV",
-    "about.sectionWorkExperience": "Work Experience",
-    "about.sectionEducationVolunteering": "Education & Volunteering",
-    "about.sectionReferences": "References",
-    "about.sectionSkillsTools": "Skills & Tools",
-    "about.emptySkills": "No skills listed yet.",
-    "about.sectionContact": "Contact",
-
-    "notFound.heroTitle": "404 — Page not found",
-    "notFound.body": "No content for: {path}",
-    "notFound.backHome": "Go to start"
+    "pageTitle": "About Me",
+    "prioritiesLabel": "MY PRIORITIES",
+    "aboutMeLabel": "ABOUT ME",
+    "chipLinkedIn": "LinkedIn",
+    "chipDownloadCv": "Download CV",
+    "sectionWorkExperience": "Work Experience",
+    "sectionEducationVolunteering": "Education & Volunteering",
+    "sectionReferences": "References",
+    "sectionSkillsTools": "Skills & Tools",
+    "emptySkills": "No skills listed yet.",
+    "sectionContact": "Contact"
   },
   "summary": "As a product manager, my ultimate goal is to ensure that the product is a success by enabling cross-functional teams to succeed. With ~8 years of experience in creating complex B2B SaaS solutions as well as AI-powered B2C features, I focus on understanding and addressing immediate user needs as well as working towards the product vision to realize strategic goals.",
   "experience": [

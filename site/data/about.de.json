@@ -7,21 +7,17 @@
     "cvPdf": "/assets/cv/moritz-kobler-de.pdf"
   },
   "copy": {
-    "about.pageTitle": "Über mich",
-    "about.prioritiesLabel": "MEINE PRIORITÄTEN",
-    "about.aboutMeLabel": "ÜBER MICH",
-    "about.chipLinkedIn": "LinkedIn",
-    "about.chipDownloadCv": "CV herunterladen",
-    "about.sectionWorkExperience": "Berufserfahrung",
-    "about.sectionEducationVolunteering": "Ausbildung & Engagement",
-    "about.sectionReferences": "Empfehlungen",
-    "about.sectionSkillsTools": "Skills & Tools",
-    "about.emptySkills": "Noch keine Skills gepflegt.",
-    "about.sectionContact": "Kontakt",
-
-    "notFound.heroTitle": "404 — Seite nicht gefunden",
-    "notFound.body": "Kein Inhalt für: {path}",
-    "notFound.backHome": "Zur Startseite"
+    "pageTitle": "Über mich",
+    "prioritiesLabel": "MEINE PRIORITÄTEN",
+    "aboutMeLabel": "ÜBER MICH",
+    "chipLinkedIn": "LinkedIn",
+    "chipDownloadCv": "CV herunterladen",
+    "sectionWorkExperience": "Berufserfahrung",
+    "sectionEducationVolunteering": "Ausbildung & Engagement",
+    "sectionReferences": "Empfehlungen",
+    "sectionSkillsTools": "Skills & Tools",
+    "emptySkills": "Noch keine Skills gepflegt.",
+    "sectionContact": "Kontakt"
   },
   "summary": "Als Product Manager ist es mein übergeordnetes Ziel, den Produkterfolg sicherzustellen, indem ich funktionsübergreifende Teams dabei unterstütze, erfolgreich zu sein. Mit rund 8 Jahren Erfahrung in der Entwicklung komplexer B2B-SaaS-Lösungen sowie KI-gestützter B2C-Features fokussiere ich mich darauf, unmittelbare Nutzerbedürfnisse zu verstehen und zu adressieren, während ich gleichzeitig konsequent an der Produktvision arbeite, um strategische Ziele zu realisieren.",
   "experience": [

@@ -25,7 +25,7 @@ Note: direct navigation to routes like `/about-me` will 404 in this mode.
 ## Data-driven content
 
 - CV/About: `site/data/about.en.json`, `site/data/about.de.json`
-- Projects: `site/data/projects.json`
+- Projects: `site/data/projects.en.json`, `site/data/projects.de.json`
 
 ## Routing (clean URLs)
 

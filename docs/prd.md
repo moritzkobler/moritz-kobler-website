@@ -279,26 +279,27 @@ URL structure must allow future non-app project types.
   "hobbies": \[\]  
 }
 
-### **7.2 Projects (`projects.json`)**
+### **7.2 Projects (`projects.{lang}.json`)**
 
-{  
-  "projects": \[  
-    {  
-      "slug": "chronomo",  
-      "type": "app",  
-      "name": "Chronomo",  
-      "status": "Coming 2026",  
-      "shortDescription": "Short pitch",  
-      "longDescription": "Full description",  
-      "appStoreLinks": {  
-        "ios": null,  
-        "android": null  
-      },  
-      "supportEmail": "support@domain.com",  
-      "privacy": "Privacy statement",  
-      "screenshots": \[\]  
-    }  
-  \]  
+{
+  "copy": { "...": "..." },
+  "projects": [
+    {
+      "slug": "chronomo",
+      "type": "app",
+      "name": "Chronomo",
+      "status": "Coming 2026",
+      "shortDescription": "Short pitch",
+      "longDescription": "Full description",
+      "appStoreLinks": {
+        "ios": null,
+        "android": null
+      },
+      "supportEmail": "support@domain.com",
+      "privacy": "Privacy statement",
+      "screenshots": []
+    }
+  ]
 }
 
 ---

@@ -26,7 +26,12 @@ PRD source: :contentReference[oaicite:0]{index=0}
     - `/site/data/`
       - `/site/data/about.en.json`
       - `/site/data/about.de.json`
-      - `/site/data/projects.json`
+      - `/site/data/projects.en.json`
+      - `/site/data/projects.de.json`
+      - `/site/data/privacy.en.json`
+      - `/site/data/privacy.de.json`
+      - `/site/data/site.en.json`
+      - `/site/data/site.de.json`
     - `/site/shared/` (header/footer components, utilities)
     - `/site/404.html`
     - `/site/index.html` (optional redirect or landing; see routing decision)
@@ -84,9 +89,8 @@ PRD source: :contentReference[oaicite:0]{index=0}
 ## 3) Data layer (JSON-driven content)
 - DONE: Create `/site/data/about.en.json` and `/site/data/about.de.json` with PRD schema:
   - `meta`, `summary`, `experience[]`, `education[]`, `volunteering[]`, `references[]`, `skills[]`, `hobbies[]`
-- Implemented: Translatable UI copy lives in flat `copy` maps per page: `about.{lang}.json`, `projects.{lang}.json`, `privacy.{lang}.json`.
-- DONE: Create `/site/data/projects.json` with PRD schema:
-  - `projects[]` with fields: `slug`, `type`, `name`, `status`, `shortDescription`, `longDescription`, `appStoreLinks`, `supportEmail`, `privacy`, `screenshots`
+- Implemented: Translatable UI copy lives in flat `copy` maps per bundle: `about.{lang}.json`, `projects.{lang}.json`, `privacy.{lang}.json`, `site.{lang}.json`.
+- Implemented: Projects data lives in `projects.{lang}.json` (includes `projects[]` plus `copy`).
 - DONE: Implement a small JS loader:
   - Fetch JSON
   - Cache in-memory
@@ -140,7 +144,7 @@ PRD source: :contentReference[oaicite:0]{index=0}
 
 ## 5) Page implementation: Projects (`/projects`)
 - TODO: Create Projects listing route and HTML skeleton.
-- TODO: Render grid/list of project cards from `projects.json`:
+- TODO: Render grid/list of project cards from `projects.{lang}.json`:
   - Name, short description, status
   - Icon/screenshot placeholder
   - Link to detail page
@@ -224,7 +228,7 @@ PRD source: :contentReference[oaicite:0]{index=0}
 
 ## 11) Content placeholders + assets
 - TODO: Add placeholder logos in `/site/assets/logos/` for companies/institutions referenced in JSON.
-- TODO: Add placeholder app icons/screenshots in `/site/assets/screenshots/` and wire them in `projects.json`.
+- TODO: Add placeholder app icons/screenshots in `/site/assets/screenshots/` and wire them in `projects.{lang}.json`.
 - TODO: Add placeholder CV PDF to `/site/assets/cv/` and reference in `about.en.json`.
 
 Implemented note: Asset files are intentionally not generated in-repo; see `/docs/assets_needed.md` for the list of files to add.

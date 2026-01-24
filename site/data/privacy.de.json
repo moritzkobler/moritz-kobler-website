@@ -1,7 +1,7 @@
 {
   "copy": {
-    "privacy.pageTitle": "Datenschutz",
-    "privacy.heroTitle": "Datenschutz",
-    "privacy.heroBody": "Datenschutzhinweise werden projektbezogen auf den jeweiligen Projektseiten gepflegt."
+    "pageTitle": "Datenschutz",
+    "heroTitle": "Datenschutz",
+    "heroBody": "Datenschutzhinweise werden projektbezogen auf den jeweiligen Projektseiten gepflegt."
   }
 }

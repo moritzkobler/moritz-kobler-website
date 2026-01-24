@@ -10,7 +10,7 @@ The site currently uses `site/assets/img/logo.png` as a universal fallback for a
 | Company logos (SVG preferred) | `site/assets/logos/` | `seek.svg` | About → Work Experience cards | Add one SVG per company; update JSON paths if names differ. |
 | Education logos (SVG preferred) | `site/assets/logos/` | `tu-berlin.svg` | About → Education cards | Add one SVG per institution; update JSON paths if names differ. |
 | App icon (per project) | `site/assets/img/` (or new folder `site/assets/apps/<slug>/`) | e.g. `chronomo.png` | Projects list + Project detail hero | Currently using `logo.png` everywhere; we can switch to per-project icons when provided. |
-| App screenshots (per project) | `site/assets/screenshots/` | e.g. `chronomo-1.png`, `chronomo-2.png` | Project detail screenshots grid | Add files and list them in `site/data/projects.json` under `screenshots`. Prefer PNG/WebP. |
+| App screenshots (per project) | `site/assets/screenshots/` | e.g. `chronomo-1.png`, `chronomo-2.png` | Project detail screenshots grid | Add files and list them in `site/data/projects.{lang}.json` under `screenshots`. Prefer PNG/WebP. |
 | Social preview image (optional) | `site/assets/img/` | `og-image.png` | `<meta property="og:image">` (future) | Not wired yet; recommended for sharing. |
 | Favicons (optional) | `site/` | `favicon.ico`, `apple-touch-icon.png` | Browser tab + mobile | Not wired yet; recommended. |
 

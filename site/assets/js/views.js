@@ -1,4 +1,5 @@
-import { loadJson, formatMonthRange } from './data.js';
+import { formatMonthRange } from './data.js';
+import { loadBundle } from './i18n.js';
 
 function el(tag, attrs = {}, children = []){
   const node = document.createElement(tag);
@@ -49,46 +50,7 @@ function setTitle(title){
   document.title = title ? `${title} — Moritz Kobler` : 'Moritz Kobler';
 }
 
-function mergePreferPrimary(primary, fallback){
-  if (primary === undefined || primary === null) return fallback;
-  if (Array.isArray(primary)) return primary;
 
-  const isObj = (v) => typeof v === 'object' && v !== null && !Array.isArray(v);
-  if (isObj(primary) && isObj(fallback)){
-    const out = {};
-    const keys = new Set([...Object.keys(fallback), ...Object.keys(primary)]);
-    for (const k of keys){
-      out[k] = mergePreferPrimary(primary[k], fallback[k]);
-    }
-    return out;
-  }
-
-  return primary;
-}
-
-function pickCopy(copy, key){
-  if (!copy || typeof copy !== 'object') return key;
-  const v = copy[key];
-  return typeof v === 'string' ? v : key;
-}
-
-function formatCopy(template, vars){
-  if (typeof template !== 'string') return String(template ?? '');
-  return template.replace(/\{([a-zA-Z0-9_]+)\}/g, (_, name) => {
-    const value = vars?.[name];
-    return value == null ? `{${name}}` : String(value);
-  });
-}
-
-async function loadCopyBundle(lang, baseName){
-  const primary = await loadJson(`/data/${baseName}.${lang}.json`);
-  const fallback = lang === 'en' ? null : await loadJson(`/data/${baseName}.en.json`);
-  const merged = mergePreferPrimary(primary, fallback);
-  const copy = (merged && typeof merged.copy === 'object' && merged.copy) ? merged.copy : {};
-  const t = (key) => pickCopy(copy, key);
-  const tf = (key, vars) => formatCopy(t(key), vars);
-  return { copy, t, tf };
-}
 
 function parseYearMonth(value){
   if (typeof value !== 'string') return null;
@@ -363,13 +325,8 @@ function attachCarousel(carouselRoot){
 export async function renderAbout({ lang }){
   const locale = lang === 'de' ? 'de-DE' : 'en-US';
 
-  const aboutPrimary = await loadJson(`/data/about.${lang}.json`);
-  const aboutFallback = lang === 'en' ? null : await loadJson('/data/about.en.json');
-  const about = mergePreferPrimary(aboutPrimary, aboutFallback);
-
-  const copy = (about && typeof about.copy === 'object' && about.copy) ? about.copy : {};
-  const t = (key) => pickCopy(copy, key);
-  setTitle(t('about.pageTitle'));
+  const { data: about, t } = await loadBundle(lang, 'about');
+  setTitle(t('pageTitle'));
 
   const meta = about?.meta ?? {};
 
@@ -380,7 +337,7 @@ export async function renderAbout({ lang }){
     el('div', { class: 'panel__inner' }, [
       priorities.length
         ? el('div', { class: 'kv' }, [
-            el('div', { class: 'kv__label', text: t('about.prioritiesLabel') }),
+            el('div', { class: 'kv__label', text: t('prioritiesLabel') }),
             el('div', { class: 'kv__value' }, [
               el('ul', { class: 'list' }, priorities.map((item) => el('li', { text: String(item) })))
             ])
@@ -395,13 +352,13 @@ export async function renderAbout({ lang }){
     el('p', { class: 'p', text: about?.summary ?? '' }),
     aboutMe
       ? el('div', { class: 'hero-about' }, [
-          el('div', { class: 'kv__label', text: t('about.aboutMeLabel') }),
+          el('div', { class: 'kv__label', text: t('aboutMeLabel') }),
           el('p', { class: 'p', text: aboutMe })
         ])
       : null,
     el('div', { class: 'chips' }, [
-      meta.linkedin ? el('a', { class: 'chip', href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: t('about.chipLinkedIn') }) : null,
-      meta.cvPdf ? el('a', { class: 'chip', href: meta.cvPdf, download: '', text: t('about.chipDownloadCv') }) : null
+      meta.linkedin ? el('a', { class: 'chip', href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: t('chipLinkedIn') }) : null,
+      meta.cvPdf ? el('a', { class: 'chip', href: meta.cvPdf, download: '', text: t('chipDownloadCv') }) : null
     ].filter(Boolean))
   ].filter(Boolean));
 
@@ -453,7 +410,7 @@ export async function renderAbout({ lang }){
     return card;
   }));
   const expSection = el('section', {}, [
-    el('div', { class: 'section-title', text: t('about.sectionWorkExperience') }),
+    el('div', { class: 'section-title', text: t('sectionWorkExperience') }),
     el('div', { class: 'carousel' }, [expGallery])
   ]);
   attachCarousel(expSection.querySelector('.carousel'));
@@ -513,7 +470,7 @@ export async function renderAbout({ lang }){
   }));
 
   const eduVolSection = eduVolItems.length ? el('section', {}, [
-    el('div', { class: 'section-title', text: t('about.sectionEducationVolunteering') }),
+    el('div', { class: 'section-title', text: t('sectionEducationVolunteering') }),
     el('div', { class: 'carousel' }, [eduVolGallery])
   ]) : null;
   if (eduVolSection) attachCarousel(eduVolSection.querySelector('.carousel'));
@@ -552,16 +509,16 @@ export async function renderAbout({ lang }){
     return card;
   }));
   const referencesSection = references.length ? el('section', {}, [
-    el('div', { class: 'section-title', text: t('about.sectionReferences') }),
+    el('div', { class: 'section-title', text: t('sectionReferences') }),
     el('div', { class: 'carousel' }, [referencesGallery])
   ]) : null;
   if (referencesSection) attachCarousel(referencesSection.querySelector('.carousel'));
 
   const skills = Array.isArray(about?.skills) ? about.skills : [];
   const skillsSection = el('section', {}, [
-    el('div', { class: 'section-title', text: t('about.sectionSkillsTools') }),
+    el('div', { class: 'section-title', text: t('sectionSkillsTools') }),
     skills.length === 0
-      ? el('p', { class: 'muted', text: t('about.emptySkills') })
+      ? el('p', { class: 'muted', text: t('emptySkills') })
       : (typeof skills[0] === 'object' && skills[0] && Array.isArray(skills[0].items))
         ? el('div', { class: 'stack' }, skills.map((g) => {
             const items = Array.isArray(g.items) ? g.items : [];
@@ -602,9 +559,9 @@ export async function renderAbout({ lang }){
 
   const contact = about?.contact ?? {};
   const contactSection = el('section', {}, [
-    el('div', { class: 'section-title', text: t('about.sectionContact') }),
+    el('div', { class: 'section-title', text: t('sectionContact') }),
     el('div', {}, [
-      meta.linkedin ? el('p', { class: 'muted' }, [el('a', { href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: t('about.chipLinkedIn') })]) : null,
+      meta.linkedin ? el('p', { class: 'muted' }, [el('a', { href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: t('chipLinkedIn') })]) : null,
       contact.email ? el('p', { class: 'muted' }, [el('a', { href: `mailto:${contact.email}`, text: contact.email })]) : null,
       contact.phone ? el('p', { class: 'muted' }, [el('a', { href: `tel:${contact.phone.replace(/\s+/g, '')}`, text: contact.phone })]) : null,
       contact.linkedinText && !meta.linkedin ? el('p', { class: 'muted', text: contact.linkedinText }) : null
@@ -615,14 +572,13 @@ export async function renderAbout({ lang }){
 }
 
 export async function renderProjects({ lang }){
-  const { t } = await loadCopyBundle(lang, 'projects');
-  setTitle(t('projects.pageTitle'));
-  const data = await loadJson('/data/projects.json');
+  const { data, t } = await loadBundle(lang, 'projects');
+  setTitle(t('pageTitle'));
   const projects = Array.isArray(data?.projects) ? data.projects : [];
 
   const hero = el('section', { class: 'card hero' }, [
-    el('h1', { class: 'h1', text: t('projects.heroTitle') }),
-    el('p', { class: 'p', text: t('projects.heroSubtitle') })
+    el('h1', { class: 'h1', text: t('heroTitle') }),
+    el('p', { class: 'p', text: t('heroSubtitle') })
   ]);
 
   const list = el('section', { class: 'grid-cards' }, projects.map((p) => {
@@ -644,18 +600,17 @@ export async function renderProjects({ lang }){
 
 export async function renderProjectDetail({ lang, slug }){
   setTitle(slug);
-  const { t, tf } = await loadCopyBundle(lang, 'projects');
-  const data = await loadJson('/data/projects.json');
+  const { data, t, tf } = await loadBundle(lang, 'projects');
   const projects = Array.isArray(data?.projects) ? data.projects : [];
   const project = projects.find((p) => p.slug === slug);
 
   if (!project){
     return el('div', { class: 'container' }, [
       el('section', { class: 'card hero' }, [
-        el('h1', { class: 'h1', text: t('projects.notFoundTitle') }),
-        el('p', { class: 'p', text: t('projects.notFoundBody') }),
+        el('h1', { class: 'h1', text: t('notFoundTitle') }),
+        el('p', { class: 'p', text: t('notFoundBody') }),
         el('p', { class: 'muted' }, [
-          el('a', { href: '/projects', 'data-link': 'true', text: t('projects.notFoundBackLink') })
+          el('a', { href: '/projects', 'data-link': 'true', text: t('notFoundBackLink') })
         ])
       ])
     ]);
@@ -677,22 +632,22 @@ export async function renderProjectDetail({ lang, slug }){
         ])
       ]),
       el('div', { class: 'chips' }, [
-        el('span', { class: 'chip chip--muted', text: project.type ?? t('projects.detailTypeFallback') }),
+        el('span', { class: 'chip chip--muted', text: project.type ?? t('detailTypeFallback') }),
         ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: 'iOS' }) : null,
         android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: 'Android' }) : null
       ].filter(Boolean))
     ]),
 
     el('section', {}, [
-      el('div', { class: 'section-title', text: t('projects.sectionScreenshots') }),
+      el('div', { class: 'section-title', text: t('sectionScreenshots') }),
       screenshots.length === 0
-        ? el('p', { class: 'muted', text: t('projects.emptyScreenshots') })
+        ? el('p', { class: 'muted', text: t('emptyScreenshots') })
         : el('div', { class: 'shot-grid' }, screenshots.map((s, idx) =>
             el('img', {
               class: 'shot',
               src: s,
-              alt: tf('projects.screenshotAlt', {
-                name: project.name ?? t('projects.appFallbackName'),
+              alt: tf('screenshotAlt', {
+                name: project.name ?? t('appFallbackName'),
                 index: idx + 1
               })
             })
@@ -700,48 +655,48 @@ export async function renderProjectDetail({ lang, slug }){
     ]),
 
     el('section', {}, [
-      el('div', { class: 'section-title', text: t('projects.sectionAppStores') }),
+      el('div', { class: 'section-title', text: t('sectionAppStores') }),
       (ios || android)
         ? el('div', { class: 'chips' }, [
-            ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: t('projects.openOnIos') }) : null,
-            android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: t('projects.openOnAndroid') }) : null
+            ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: t('openOnIos') }) : null,
+            android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: t('openOnAndroid') }) : null
           ].filter(Boolean))
-        : el('p', { class: 'muted', text: t('projects.emptyStoreLinks') })
+        : el('p', { class: 'muted', text: t('emptyStoreLinks') })
     ]),
 
     el('section', {}, [
-      el('div', { class: 'section-title', text: t('projects.sectionSupport') }),
+      el('div', { class: 'section-title', text: t('sectionSupport') }),
       el('p', { class: 'muted' }, [
-        supportEmail ? el('a', { href: `mailto:${supportEmail}`, text: supportEmail }) : document.createTextNode(t('projects.emptySupportEmail'))
+        supportEmail ? el('a', { href: `mailto:${supportEmail}`, text: supportEmail }) : document.createTextNode(t('emptySupportEmail'))
       ])
     ]),
     el('section', {}, [
-      el('div', { class: 'section-title', text: t('projects.sectionPrivacy') }),
+      el('div', { class: 'section-title', text: t('sectionPrivacy') }),
       el('p', { class: 'p', text: project.privacy ?? '' })
     ])
   ]);
 }
 
 export async function renderPrivacy({ lang }){
-  const { t } = await loadCopyBundle(lang, 'privacy');
-  setTitle(t('privacy.pageTitle'));
+  const { t } = await loadBundle(lang, 'privacy');
+  setTitle(t('pageTitle'));
   return el('div', { class: 'container' }, [
     el('section', { class: 'card hero' }, [
-      el('h1', { class: 'h1', text: t('privacy.heroTitle') }),
-      el('p', { class: 'p', text: t('privacy.heroBody') })
+      el('h1', { class: 'h1', text: t('heroTitle') }),
+      el('p', { class: 'p', text: t('heroBody') })
     ])
   ]);
 }
 
 export async function renderNotFound({ lang, path }){
-  const { t, tf } = await loadCopyBundle(lang, 'about');
+  const { t, tf } = await loadBundle(lang, 'site');
   setTitle('404');
   return el('div', { class: 'container' }, [
     el('section', { class: 'card hero' }, [
-      el('h1', { class: 'h1', text: t('notFound.heroTitle') }),
-      el('p', { class: 'p', text: tf('notFound.body', { path }) }),
+      el('h1', { class: 'h1', text: t('notFoundHeroTitle') }),
+      el('p', { class: 'p', text: tf('notFoundBody', { path }) }),
       el('p', { class: 'muted' }, [
-        el('a', { href: '/about-me', 'data-link': 'true', text: t('notFound.backHome') })
+        el('a', { href: '/about-me', 'data-link': 'true', text: t('notFoundBackHome') })
       ])
     ])
   ]);

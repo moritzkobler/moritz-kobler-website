@@ -1,22 +1,39 @@
 {
   "copy": {
-    "projects.pageTitle": "Projects",
-    "projects.heroTitle": "Projects",
-    "projects.heroSubtitle": "Apps and experiments — cleanly documented.",
-    "projects.notFoundTitle": "Not found",
-    "projects.notFoundBody": "This project does not exist (yet).",
-    "projects.notFoundBackLink": "Back to Projects",
-    "projects.detailTypeFallback": "project",
-    "projects.sectionScreenshots": "Screenshots",
-    "projects.emptyScreenshots": "No screenshots yet.",
-    "projects.screenshotAlt": "{name} screenshot {index}",
-    "projects.appFallbackName": "App",
-    "projects.sectionAppStores": "App Stores",
-    "projects.openOnIos": "Open on iOS",
-    "projects.openOnAndroid": "Open on Android",
-    "projects.emptyStoreLinks": "No store links yet.",
-    "projects.sectionSupport": "Support",
-    "projects.emptySupportEmail": "No support email provided.",
-    "projects.sectionPrivacy": "Privacy"
-  }
+    "pageTitle": "Projects",
+    "heroTitle": "Projects",
+    "heroSubtitle": "Apps and experiments — cleanly documented.",
+    "notFoundTitle": "Not found",
+    "notFoundBody": "This project does not exist (yet).",
+    "notFoundBackLink": "Back to Projects",
+    "detailTypeFallback": "project",
+    "sectionScreenshots": "Screenshots",
+    "emptyScreenshots": "No screenshots yet.",
+    "screenshotAlt": "{name} screenshot {index}",
+    "appFallbackName": "App",
+    "sectionAppStores": "App Stores",
+    "openOnIos": "Open on iOS",
+    "openOnAndroid": "Open on Android",
+    "emptyStoreLinks": "No store links yet.",
+    "sectionSupport": "Support",
+    "emptySupportEmail": "No support email provided.",
+    "sectionPrivacy": "Privacy"
+  },
+  "projects": [
+    {
+      "slug": "chronomo",
+      "type": "app",
+      "name": "Chronomo",
+      "status": "Coming 2026",
+      "shortDescription": "Short pitch placeholder.",
+      "longDescription": "Full description placeholder.",
+      "appStoreLinks": {
+        "ios": null,
+        "android": null
+      },
+      "supportEmail": "support@domain.com",
+      "privacy": "Privacy statement placeholder.",
+      "screenshots": []
+    }
+  ]
 }
