@@ -36,8 +36,8 @@ async function render(){
     if (route.name === 'about') view = await renderAbout({ lang });
     else if (route.name === 'projects') view = await renderProjects({ lang });
     else if (route.name === 'projectDetail') view = await renderProjectDetail({ lang, slug: route.slug });
-    else if (route.name === 'privacy') view = renderPrivacy({ lang });
-    else view = renderNotFound({ lang, path: route.path });
+    else if (route.name === 'privacy') view = await renderPrivacy({ lang });
+    else view = await renderNotFound({ lang, path: route.path });
 
     outlet.appendChild(view);
   }catch(err){

@@ -6,6 +6,46 @@
     "linkedin": "https://linkedin.com/in/mkobler",
     "cvPdf": "/assets/cv/moritz-kobler-de.pdf"
   },
+  "copy": {
+    "about.pageTitle": "Über mich",
+    "about.prioritiesLabel": "MEINE PRIORITÄTEN",
+    "about.aboutMeLabel": "ÜBER MICH",
+    "about.chipLinkedIn": "LinkedIn",
+    "about.chipDownloadCv": "CV herunterladen",
+    "about.sectionWorkExperience": "Berufserfahrung",
+    "about.sectionEducationVolunteering": "Ausbildung & Engagement",
+    "about.sectionReferences": "Empfehlungen",
+    "about.sectionSkillsTools": "Skills & Tools",
+    "about.emptySkills": "Noch keine Skills gepflegt.",
+    "about.sectionContact": "Kontakt",
+
+    "projects.pageTitle": "Projekte",
+    "projects.heroTitle": "Projekte",
+    "projects.heroSubtitle": "Apps und Experimente – sauber dokumentiert.",
+    "projects.notFoundTitle": "Nicht gefunden",
+    "projects.notFoundBody": "Dieses Projekt existiert (noch) nicht.",
+    "projects.notFoundBackLink": "Zurück zu Projekten",
+    "projects.detailTypeFallback": "Projekt",
+    "projects.sectionScreenshots": "Screenshots",
+    "projects.emptyScreenshots": "Noch keine Screenshots verfügbar.",
+    "projects.screenshotAlt": "{name} Screenshot {index}",
+    "projects.appFallbackName": "App",
+    "projects.sectionAppStores": "App Stores",
+    "projects.openOnIos": "Auf iOS öffnen",
+    "projects.openOnAndroid": "Auf Android öffnen",
+    "projects.emptyStoreLinks": "Noch keine Store-Links.",
+    "projects.sectionSupport": "Support",
+    "projects.emptySupportEmail": "Keine Support-E-Mail angegeben.",
+    "projects.sectionPrivacy": "Datenschutz",
+
+    "privacy.pageTitle": "Datenschutz",
+    "privacy.heroTitle": "Datenschutz",
+    "privacy.heroBody": "Datenschutzhinweise werden projektbezogen auf den jeweiligen Projektseiten gepflegt.",
+
+    "notFound.heroTitle": "404 — Seite nicht gefunden",
+    "notFound.body": "Kein Inhalt für: {path}",
+    "notFound.backHome": "Zur Startseite"
+  },
   "summary": "Als Product Manager ist es mein übergeordnetes Ziel, den Produkterfolg sicherzustellen, indem ich funktionsübergreifende Teams dabei unterstütze, erfolgreich zu sein. Mit rund 8 Jahren Erfahrung in der Entwicklung komplexer B2B-SaaS-Lösungen sowie KI-gestützter B2C-Features fokussiere ich mich darauf, unmittelbare Nutzerbedürfnisse zu verstehen und zu adressieren, während ich gleichzeitig konsequent an der Produktvision arbeite, um strategische Ziele zu realisieren.",
   "experience": [
     {

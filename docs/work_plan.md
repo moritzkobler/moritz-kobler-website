@@ -84,6 +84,7 @@ PRD source: :contentReference[oaicite:0]{index=0}
 ## 3) Data layer (JSON-driven content)
 - DONE: Create `/site/data/about.en.json` and `/site/data/about.de.json` with PRD schema:
   - `meta`, `summary`, `experience[]`, `education[]`, `volunteering[]`, `references[]`, `skills[]`, `hobbies[]`
+- Implemented: Centralized translatable UI copy in `about.{lang}.json` under a flat `copy` key/value map (used across views).
 - DONE: Create `/site/data/projects.json` with PRD schema:
   - `projects[]` with fields: `slug`, `type`, `name`, `status`, `shortDescription`, `longDescription`, `appStoreLinks`, `supportEmail`, `privacy`, `screenshots`
 - DONE: Implement a small JS loader:
