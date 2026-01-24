@@ -26,6 +26,9 @@
   /* Global horizontal gutters: mobile-first */
   --gutter: var(--space-3);
 
+  /* Viewport width excluding scrollbar (prevents container/gallery mismatch) */
+  --viewport-w: calc(100vw - (100vw - 100%));
+
   --font-sans: "Google Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   --font-serif: "Abhaya Libre", "DM Serif Text", ui-serif, Georgia, "Times New Roman", Times, serif;
   --font-body: var(--font-serif);
@@ -104,6 +107,10 @@ body {
 
 ul, ol, p {
   margin: 0;
+}
+
+.overview {
+  font-family: var(--font-sans);
 }
 
 .section-title,
@@ -204,7 +211,7 @@ a {
 }
 
 .container {
-  width: min(var(--max), calc(100% - 2*var(--gutter)));
+  width: min(var(--max), calc(var(--viewport-w) - 2*var(--gutter)));
   margin: 0 auto;
 }
 
@@ -498,30 +505,38 @@ section {
   /* Keep the first card aligned to the main `.container` left edge.
      On narrow viewports use a small inset; on wide viewports compute the
      container offset and add the standard horizontal padding. */
-  --gallery-inset: max(var(--gutter), calc((100vw - var(--max)) / 2));
+  --gallery-inset: max(var(--gutter), calc((var(--viewport-w) - var(--max)) / 2));
   padding-left: var(--gallery-inset);
   padding-right: var(--gallery-inset);
   scroll-padding-inline: var(--gallery-inset);
 
+  /* Allow the LAST card to scroll all the way to the left inset again */
+  --gallery-trailing: max(0px, calc(var(--viewport-w) - var(--gallery-inset) - var(--card-basis)));
+
   /* Hide scrollbar UI (keep scroll behavior) */
   scrollbar-width: none;
+}
+
+.gallery::after {
+  content: "";
+  flex: 0 0 var(--gallery-trailing);
 }
 
 @supports not (width: 100dvw) {
   .gallery {
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    --card-basis: min(360px, calc(100vw - 2*var(--gutter)));
+    --card-basis: min(360px, calc(var(--viewport-w) - 2*var(--gutter)));
   }
 }
 
 .gallery--lg {
-  --card-basis: min(620px, calc(100dvw - 2*var(--gutter)));
+  --card-basis: min(620px, calc(var(--viewport-w) - 2*var(--gutter)));
 }
 
 @supports not (width: 100dvw) {
   .gallery--lg {
-    --card-basis: min(620px, calc(100vw - 2*var(--gutter)));
+    --card-basis: min(620px, calc(var(--viewport-w) - 2*var(--gutter)));
   }
 }
 
@@ -702,7 +717,6 @@ section {
 .card-head__top {
   display: flex;
   gap: var(--space-3);
-  align-items: flex-start;
 }
 
 .card-head__org {

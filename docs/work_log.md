@@ -21,6 +21,16 @@
 - Follow-ups: Sanity-check last-card scroll behavior after gutter change.
 - Commit: bd87f74
 
+### 2026-01-24 — Gallery: match gutters + restore end alignment
+- Summary:
+  - Fixed container/gallery gutter mismatch by using a scrollbar-safe viewport width for inset math.
+  - Restored the trailing spacer so the last card can scroll fully to the left inset again.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: COMMIT: pending
+
 ### 2026-01-21 — Work experience duration in date meta
 - Summary:
   - Added a compact duration (e.g. `2y1m`) before the Work Experience date range.
