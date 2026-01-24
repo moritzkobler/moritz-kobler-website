@@ -1002,19 +1002,16 @@ section {
 }
 
 :root {
-  --shot-max-h: 400px;
+  --shot-max-h: 280px;
 }
 
 .gallery--shots {
-  /* `auto` breaks the base `--gallery-trailing` calc; we set trailing via JS for variable-width image cards. */
-  --card-basis: 0px;
-  scroll-padding-inline: 0;
+  /* Use fixed card width like About galleries so scroll math works reliably */
+  --card-basis: min(320px, calc(var(--viewport-w) - 2*var(--gutter)));
 }
 
 .gallery-card--shot {
-  flex: 0 0 auto;
-  width: fit-content;
-  max-width: calc(var(--viewport-w) - 2*var(--gutter));
+  flex: 0 0 var(--card-basis);
   padding: 0;
   overflow: hidden;
   cursor: pointer;
@@ -1049,23 +1046,12 @@ section {
   box-shadow: 0 0 0 1px rgba(34, 211, 238, .12), 0 10px 24px rgba(0, 0, 0, .35);
 }
 
-/* Dots: center within the content column for the shots carousel */
-.carousel--shots .carousel-dots {
-  width: min(var(--max), calc(var(--viewport-w) - 2*var(--gutter)));
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  left: calc(-1 * var(--gallery-inset) + var(--gutter));
-}
+/* Dots: use default centered behavior from base .carousel-dots */
 
 .shot--carousel {
   display: block;
+  width: 100%;
   height: auto;
-  width: auto;
-  max-height: var(--shot-max-h);
-  max-width: 100%;
   border: none;
   border-radius: 0;
   background: transparent;
@@ -1088,7 +1074,7 @@ section {
 @media (min-width: 760px) {
   :root {
     --gutter: var(--space-4);
-    --shot-max-h: 500px;
+    --shot-max-h: 440px;
   }
 
   main {
