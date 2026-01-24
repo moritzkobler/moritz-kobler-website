@@ -717,6 +717,7 @@ section {
 .card-head__top {
   display: flex;
   gap: var(--space-3);
+  align-items: flex-start;
 }
 
 .card-head__org {
