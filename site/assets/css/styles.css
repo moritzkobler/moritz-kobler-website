@@ -1002,12 +1002,13 @@ section {
 }
 
 :root {
-  --shot-max-h: 280px;
+  --shot-max-h: 400px;
 }
 
 .gallery--shots {
   /* `auto` breaks the base `--gallery-trailing` calc; we set trailing via JS for variable-width image cards. */
   --card-basis: 0px;
+  scroll-padding-inline: 0;
 }
 
 .gallery-card--shot {
@@ -1031,7 +1032,7 @@ section {
 }
 
 .gallery-card--shot .card-nav__btn {
-  /* Same base shape as About, but higher contrast over images */
+  /* Higher contrast over images but same base styling */
   border-color: rgba(233, 240, 255, .22);
   background: rgba(11, 15, 20, .55);
   color: rgba(233, 240, 255, .92);
@@ -1040,16 +1041,23 @@ section {
 }
 
 .gallery-card--shot .card-nav__btn:hover {
-  background: rgba(11, 15, 20, .72);
+  /* Match About hover: lift, cyan accent border, glow */
+  transform: translateY(-1px);
+  color: var(--text);
+  border-color: rgba(34, 211, 238, .28);
+  background: rgba(34, 211, 238, .12);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, .12), 0 10px 24px rgba(0, 0, 0, .35);
 }
 
 /* Dots: center within the content column for the shots carousel */
 .carousel--shots .carousel-dots {
-  width: 100%;
+  width: min(var(--max), calc(var(--viewport-w) - 2*var(--gutter)));
   padding-left: 0;
   padding-right: 0;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  left: calc(-1 * var(--gallery-inset) + var(--gutter));
 }
 
 .shot--carousel {
@@ -1080,7 +1088,7 @@ section {
 @media (min-width: 760px) {
   :root {
     --gutter: var(--space-4);
-    --shot-max-h: 440px;
+    --shot-max-h: 500px;
   }
 
   main {

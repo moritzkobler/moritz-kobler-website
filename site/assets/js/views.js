@@ -205,7 +205,10 @@ function scrollCardIntoView(card){
   const gallery = card.parentElement;
   if (!gallery) return;
   if (gallery.classList.contains('gallery--shots')){
-    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    // For shots: scroll so card's left edge aligns with gallery's left padding
+    const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+    const left = card.offsetLeft - pad;
+    gallery.scrollTo({ left, behavior: 'smooth' });
     try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
     return;
   }
@@ -260,10 +263,7 @@ function attachCarousel(carouselRoot){
   const scrollToIndex = (idx) => {
     const card = cards[idx];
     if (!card) return;
-    if (gallery.classList.contains('gallery--shots')){
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      return;
-    }
+    // Use same scroll logic for all galleries (align card to left padding)
     const left = card.offsetLeft - getPad();
     gallery.scrollTo({ left, behavior: 'smooth' });
   };
