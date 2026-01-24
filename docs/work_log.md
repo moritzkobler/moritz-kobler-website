@@ -9,6 +9,17 @@
 - Follow-ups: Consider moving the remaining hardcoded error fallback in `app.js` ("Error") into `copy` as well.
 - Commit: ab9fc80
 
+### 2026-01-24 — i18n: split projects/privacy copy files
+- Summary:
+  - Moved `projects.*` UI copy out of `about.{lang}.json` into `projects.{lang}.json`.
+  - Moved `privacy.*` UI copy out of `about.{lang}.json` into `privacy.{lang}.json`.
+  - Updated renderers to load copy from the dedicated files while keeping 404 copy in `about.{lang}.json`.
+- Scope: work_plan section 3 (Data & language handling), section 5 (Projects)
+- Files: site/assets/js/views.js, site/data/projects.en.json, site/data/projects.de.json, site/data/privacy.en.json, site/data/privacy.de.json, site/data/about.en.json, site/data/about.de.json
+- Tests: N/A (static site)
+- Follow-ups: Decide whether 404 + global error UI copy should live in a `site.{lang}.json` in the future.
+- Commit: c136e70
+
 ### 2026-01-24 — About: intro side panel priorities
 - Summary:
   - Replaced the right-side intro panel content with “My Priorities” (bullets) and “About Me” (paragraph) sourced from `about.{lang}.json`.
