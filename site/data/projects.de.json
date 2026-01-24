@@ -6,6 +6,7 @@
     "notFoundTitle": "Nicht gefunden",
     "notFoundBody": "Dieses Projekt existiert (noch) nicht.",
     "notFoundBackLink": "Zurück zu Projekten",
+    "backToProjects": "Zurück zu Projekten",
     "detailTypeFallback": "Projekt",
     "sectionScreenshots": "Screenshots",
     "emptyScreenshots": "Noch keine Screenshots verfügbar.",
@@ -21,12 +22,34 @@
   },
   "projects": [
     {
-      "slug": "chronomo",
+      "slug": "chronimo",
       "type": "app",
-      "name": "Chronomo",
+      "name": "Chronimo",
       "status": "Kommt 2026",
       "shortDescription": "Kurzer Pitch (Platzhalter).",
       "longDescription": "Ausführliche Beschreibung (Platzhalter).",
+      "appStoreLinks": {
+        "ios": null,
+        "android": null
+      },
+      "supportEmail": "support@domain.com",
+      "privacy": "Datenschutzerklärung (Platzhalter).",
+      "screenshots": [
+        "/assets/img/projects/screenshots/chronimo-1.png",
+        "/assets/img/projects/screenshots/chronimo-2.png",
+        "/assets/img/projects/screenshots/chronimo-3.png",
+        "/assets/img/projects/screenshots/chronimo-4.png",
+        "/assets/img/projects/screenshots/chronimo-5.png",
+        "/assets/img/projects/screenshots/chronimo-6.png"
+      ]
+    },
+    {
+      "slug": "planimo",
+      "type": "app",
+      "name": "Planimo",
+      "status": "In Entwicklung",
+      "shortDescription": "Eine App für Lebensplanung – Ziele, Routinen und Klarheit.",
+      "longDescription": "Planimo hilft dir, langfristige Ziele in realistische Pläne zu übersetzen – mit Routinen, Meilensteinen und sanften Erinnerungen.",
       "appStoreLinks": {
         "ios": null,
         "android": null

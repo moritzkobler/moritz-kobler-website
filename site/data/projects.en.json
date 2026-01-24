@@ -6,6 +6,7 @@
     "notFoundTitle": "Not found",
     "notFoundBody": "This project does not exist (yet).",
     "notFoundBackLink": "Back to Projects",
+    "backToProjects": "Back to Projects",
     "detailTypeFallback": "project",
     "sectionScreenshots": "Screenshots",
     "emptyScreenshots": "No screenshots yet.",
@@ -21,12 +22,34 @@
   },
   "projects": [
     {
-      "slug": "chronomo",
+      "slug": "chronimo",
       "type": "app",
-      "name": "Chronomo",
+      "name": "Chronimo",
       "status": "Coming 2026",
       "shortDescription": "Short pitch placeholder.",
       "longDescription": "Full description placeholder.",
+      "appStoreLinks": {
+        "ios": null,
+        "android": null
+      },
+      "supportEmail": "support@domain.com",
+      "privacy": "Privacy statement placeholder.",
+      "screenshots": [
+        "/assets/img/projects/screenshots/chronimo-1.png",
+        "/assets/img/projects/screenshots/chronimo-2.png",
+        "/assets/img/projects/screenshots/chronimo-3.png",
+        "/assets/img/projects/screenshots/chronimo-4.png",
+        "/assets/img/projects/screenshots/chronimo-5.png",
+        "/assets/img/projects/screenshots/chronimo-6.png"
+      ]
+    },
+    {
+      "slug": "planimo",
+      "type": "app",
+      "name": "Planimo",
+      "status": "In development",
+      "shortDescription": "A life planning app for goals, routines, and clarity.",
+      "longDescription": "Planimo helps you turn long-term goals into realistic plans — with routines, checkpoints, and gentle reminders.",
       "appStoreLinks": {
         "ios": null,
         "android": null

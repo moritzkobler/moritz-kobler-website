@@ -576,26 +576,32 @@ export async function renderProjects({ lang }){
   setTitle(t('pageTitle'));
   const projects = Array.isArray(data?.projects) ? data.projects : [];
 
-  const hero = el('section', { class: 'card hero' }, [
+  const header = el('header', { class: 'page-head' }, [
     el('h1', { class: 'h1', text: t('heroTitle') }),
     el('p', { class: 'p', text: t('heroSubtitle') })
   ]);
 
   const list = el('section', { class: 'grid-cards' }, projects.map((p) => {
     const href = `/projects/apps/${encodeURIComponent(p.slug)}`;
+    const type = String(p.type ?? '').trim();
     return el('a', { class: 'card card-link project-card', href, 'data-link': 'true' }, [
-      el('div', { class: 'project-card__top' }, [
-        el('img', { class: 'project-icon', src: '/assets/img/about/logo.png', alt: '' }),
-        el('div', {}, [
-          el('div', { class: 'muted', text: p.status ?? '' }),
-          el('h2', { class: 'h2', text: p.name ?? '' })
+      el('div', { class: 'card-row card-head project-card__head' }, [
+        renderLogo(iconDataUrl(p.slug ?? '', p.name ?? ''), p.name ?? '', 'logo--project'),
+        el('div', { class: 'card-row__body card-head__body' }, [
+          el('div', { class: 'card-head__top' }, [
+            el('div', { class: 'muted card-head__label card-head__label--compact', text: type ? type.toUpperCase() : '' }),
+            el('div', { class: 'muted card-head__meta', text: p.status ?? '' })
+          ]),
+          el('div', { class: 'card-head__main' }, [
+            el('h2', { class: 'h2 card-head__title', text: p.name ?? '' }),
+            p.shortDescription ? el('div', { class: 'muted card-head__sub', text: p.shortDescription }) : null
+          ].filter(Boolean))
         ])
-      ]),
-      el('p', { class: 'p', text: p.shortDescription ?? '' })
+      ])
     ]);
   }));
 
-  return el('div', { class: 'container' }, [hero, list]);
+  return el('div', { class: 'container' }, [header, list]);
 }
 
 export async function renderProjectDetail({ lang, slug }){
@@ -621,18 +627,26 @@ export async function renderProjectDetail({ lang, slug }){
   const ios = project?.appStoreLinks?.ios;
   const android = project?.appStoreLinks?.android;
 
+  const typeLabel = String(project.type ?? t('detailTypeFallback')).trim();
+
   return el('div', { class: 'container' }, [
+    el('a', { class: 'back-link', href: '/projects', 'data-link': 'true' }, [
+      renderChevronIcon('left'),
+      el('span', { text: t('backToProjects') })
+    ]),
     el('section', { class: 'card hero' }, [
-      el('div', { class: 'muted', text: project.status ?? '' }),
+      el('div', { class: 'project-meta' }, [
+        el('span', { class: 'meta-tag', text: typeLabel ? typeLabel.toUpperCase() : '' }),
+        project.status ? el('span', { class: 'muted project-meta__status', text: project.status }) : null
+      ].filter(Boolean)),
       el('div', { class: 'project-hero' }, [
-        el('img', { class: 'project-icon project-icon--lg', src: '/assets/img/about/logo.png', alt: '' }),
+        renderLogo(iconDataUrl(project.slug ?? '', project.name ?? ''), project.name ?? '', 'logo--project-lg'),
         el('div', {}, [
           el('h1', { class: 'h1', text: project.name ?? '' }),
           el('p', { class: 'p', text: project.longDescription ?? '' })
         ])
       ]),
       el('div', { class: 'chips' }, [
-        el('span', { class: 'chip chip--muted', text: project.type ?? t('detailTypeFallback') }),
         ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: 'iOS' }) : null,
         android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: 'Android' }) : null
       ].filter(Boolean))

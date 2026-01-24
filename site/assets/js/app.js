@@ -9,7 +9,9 @@ function setCurrentNav(pathname){
   document.querySelectorAll('.nav-link').forEach((a) => {
     const href = a.getAttribute('href');
     if (!href) return;
-    const isCurrent = (href === '/about-me' && (path === '/' || path === '/about-me')) || href === path;
+    const isAbout = href === '/about-me' && (path === '/' || path === '/about-me');
+    const isProjects = href === '/projects' && (path === '/projects' || path.startsWith('/projects/'));
+    const isCurrent = isAbout || isProjects || href === path;
     a.setAttribute('aria-current', isCurrent ? 'page' : 'false');
   });
 }
