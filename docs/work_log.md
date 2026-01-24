@@ -1,3 +1,14 @@
+### 2026-01-24 — i18n: per-bundle keys + localized projects
+- Summary:
+  - Removed dotted namespaces from `copy` keys; bundles now use flat keys (file name provides the namespace).
+  - Moved Projects content from `projects.json` into `projects.{lang}.json` so project data is translatable.
+  - Added a global `site.{lang}.json` bundle for shared UI strings (404 + error fallback) and centralized loading in `i18n.js`.
+- Scope: work_plan section 3 (Data & language handling), sections 5/6 (Projects views)
+- Files: site/assets/js/i18n.js, site/assets/js/views.js, site/assets/js/app.js, site/data/site.en.json, site/data/site.de.json, site/data/projects.en.json, site/data/projects.de.json
+- Tests: N/A (static site)
+- Follow-ups: Revisit copy key naming consistency as Projects/Detail pages get implemented.
+- Commit: c7e2012
+
 ### 2026-01-24 — i18n: centralize UI copy in JSON
 - Summary:
   - Added a flat `copy` key/value map to `about.en.json` + `about.de.json` to act as a single translation source for UI strings.
