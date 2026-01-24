@@ -676,6 +676,8 @@ section {
   justify-content: center;
   align-items: center;
   padding: 0 var(--gutter);
+  width: min(var(--max), calc(var(--viewport-w) - 2*var(--gutter)));
+  margin: 0 auto;
 }
 
 .carousel-dot {
@@ -1008,6 +1010,9 @@ section {
 }
 
 .gallery-card--shot {
+  flex: 0 0 auto;
+  width: fit-content;
+  max-width: calc(var(--viewport-w) - 2*var(--gutter));
   padding: 0;
   overflow: hidden;
   cursor: pointer;
@@ -1018,7 +1023,7 @@ section {
   height: auto;
   width: auto;
   max-height: var(--shot-max-h);
-  max-width: calc(var(--viewport-w) - 2*var(--gutter));
+  max-width: 100%;
   border: none;
   border-radius: 0;
   background: transparent;
