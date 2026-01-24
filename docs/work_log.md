@@ -31,6 +31,15 @@
 - Follow-ups: None.
 - Commit: a2cc7d5
 
+### 2026-01-24 — CSS: card header alignment fix
+- Summary:
+  - Fixed an invalid `align-items: space-between` value in the card header layout.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/css/styles.css
+- Tests: N/A (static site)
+- Follow-ups: None.
+- Commit: 751d2b0
+
 ### 2026-01-21 — Work experience duration in date meta
 - Summary:
   - Added a compact duration (e.g. `2y1m`) before the Work Experience date range.
