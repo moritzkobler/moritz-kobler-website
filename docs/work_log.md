@@ -40,6 +40,16 @@
 - Follow-ups: If `width: fit-content` behaves oddly on any browser, switch to an explicit width calculation.
 - Commit: bc304c8
 
+### 2026-01-24 — Projects: screenshot nav overlay + trailing
+- Summary:
+  - Moved the per-card carousel chevrons to overlay the screenshot (no separate footer area) and inset them from the card edges.
+  - Restored “last item can align to the left inset” behavior for variable-width screenshot cards by computing `--gallery-trailing` dynamically (scoped to screenshot galleries only).
+- Scope: work_plan section 6 (Project detail)
+- Files: site/assets/js/views.js, site/assets/css/styles.css
+- Tests: Manual (static server)
+- Follow-ups: If needed, make nav visible on touch without hover.
+- Commit: 873c0be
+
 ### 2026-01-24 — i18n: per-bundle keys + localized projects
 - Summary:
   - Removed dotted namespaces from `copy` keys; bundles now use flat keys (file name provides the namespace).
