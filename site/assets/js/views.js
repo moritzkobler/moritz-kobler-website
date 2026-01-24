@@ -349,11 +349,7 @@ export async function renderAbout({ lang }){
   const introSide = el('div', { class: 'card panel' }, [
     el('div', { class: 'panel__inner' }, [
       renderKeyValue(lang === 'de' ? 'Rolle' : 'Role', meta.title),
-      renderKeyValue(lang === 'de' ? 'Ort' : 'Location', meta.location),
-      el('div', { class: 'panel__actions' }, [
-        meta.linkedin ? el('a', { class: 'btn', href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: 'LinkedIn' }) : null,
-        meta.cvPdf ? el('a', { class: 'btn btn--ghost', href: meta.cvPdf, download: '', text: lang === 'de' ? 'CV (PDF)' : 'CV (PDF)' }) : null
-      ].filter(Boolean))
+      renderKeyValue(lang === 'de' ? 'Ort' : 'Location', meta.location)
     ])
   ]);
 
@@ -362,7 +358,7 @@ export async function renderAbout({ lang }){
     el('p', { class: 'muted', text: `${meta.title ?? ''}${meta.location ? ` · ${meta.location}` : ''}`.trim() }),
     el('p', { class: 'p', text: about?.summary ?? '' }),
     el('div', { class: 'chips' }, [
-      meta.linkedin ? el('a', { class: 'chip', href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'LinkedIn öffnen' : 'Open LinkedIn' }) : null,
+      meta.linkedin ? el('a', { class: 'chip', href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'LinkedIn' : 'LinkedIn' }) : null,
       meta.cvPdf ? el('a', { class: 'chip', href: meta.cvPdf, download: '', text: lang === 'de' ? 'CV herunterladen' : 'Download CV' }) : null
     ].filter(Boolean))
   ]);

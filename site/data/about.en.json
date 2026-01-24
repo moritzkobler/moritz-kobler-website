@@ -19,14 +19,14 @@
       "startDate": "2022-10",
       "endDate": "present",
       "text": [
-        "Driving AI-powered matching and recommendations, with a focus on applying LLMs and ranking models to improve user intent understanding and job–candidate fit.",
-        "Leading cross-brand initiatives across multiple APAC markets to unify platforms and accelerate experimentation."
+        "At the two-sided employment marketplace SEEK, I collaborate closely with ML engineers and data scientists to prioritize hypotheses and run rigorous experiments to produce the best job recommendations for our users. I partner with front-end teams and senior leadership to frame and drive strategic initiatives. Key achievements:"
       ],
       "highlights": [
-        "Exploring the use of LLMs, embeddings, cross-encoders and sequence modeling technology in recommendations and working with front-end teams to extract user intent using GenAI to improve matching.",
+        "Exploring the use of LLMs, embeddings, cross-encoders and sequence modelling technology in recommendations and working with the front-end on how best to extract user intent using GenAI to improve matching.",
         "Leading a major organization-wide initiative to unify technology and online platforms across 8 markets and 3 brands in APAC.",
-        "Driving cross-brand experiments across six recommendation products, resulting in significant year-over-year uplift in job–candidate matches."
+        "Driving cross-brand experiments across six recommendation products, resulting in significant year-over-year uplift in job-candidate matches."
       ],
+      "highlightType": "ordered",
       "logo": "/assets/img/companies/seek.jpg"
     },
     {
@@ -41,16 +41,15 @@
       "startDate": "2018-03",
       "endDate": "2022-06",
       "text": [
-        "Owned outcomes across discovery, delivery, and go-to-market for B2B SaaS products, working closely with engineering, design, and stakeholders across time zones.",
-        "Helped evolve product practices and decision-making as the org scaled from project-based delivery to a product-centric model."
+        "During my 4+ years at ITONICS, a B2B software platform for innovation management, I led the development of a new product line with agile teams in Germany and Nepal, seeing the entire product life cycle first-hand: discovery and prototyping to launch, iteration and support.",
+        "I owned the product roadmap & backlogs, and actively contributed to product vision, strategy & pricing, working with stakeholders across the business to ensure alignment across the organization. Main achievements:"
       ],
       "highlights": [
-        "Led the development of a new product line with agile teams in Germany and Nepal, spanning discovery, prototyping, launch, iteration, and support.",
-        "Owned the product roadmap and backlogs; contributed to product vision, strategy, and pricing in close collaboration with cross-functional stakeholders.",
-        "Successfully launched the company’s new product line and initiated its big data product offering.",
-        "Established initiatives for data-driven decision-making in product management.",
-        "Drove the shift from a project-based to a product-centric organization, shaping product processes and the growing product team."
+        "Successfully going to market with the new product line and kicking off & launching the company’s big data product offering",
+        "Establishing initiatives for data-driven decision-making in product.",
+        "Shifting from a project-based to a product-centric organization, shaping product processes & the growing product team."
       ],
+      "highlightType": "ordered",
       "logo": "/assets/img/companies/itonics.jpg"
     },
     {
@@ -64,13 +63,7 @@
       "startDate": "2014-08",
       "endDate": "2017-03",
       "text": [
-        "Joined early and contributed across marketing, support, and product, gradually shifting into product management and BI responsibilities as the company grew.",
-        "Worked hands-on on web and content work, then moved deeper into product and data-informed decision support."
-      ],
-      "highlights": [
-        "One of the first employees, supporting the business across the company website, blog articles and newsletters, graphic design, and customer support.",
-        "Gradually transitioned into product and business intelligence responsibilities.",
-        "Designed a concept for functionality to optimize pricing based on historical booking data."
+        "As one of the first employees at bookingkit, I started out helping wherever necessary – working on the company website, writing blog articles & newsletters, doing graphic design work & offering support for customers. But I quickly moved towards a product and business intelligence role, and was able to create a concept around functionality to optimize prices based on past booking data."
       ],
       "logo": "/assets/img/companies/bookingkit.jpg",
       "notes": "[Unverified] Start and end months inferred from CV wording: “between Aug ’14 and Mar ’17.”"
@@ -81,28 +74,26 @@
       "id": "tu-berlin-msc-industrial-engineering-software-technology",
       "institution": "Technische Universität Berlin",
       "link": "https://www.linkedin.com/company/1188458/",
-      "degree": "Master of Science (M.Sc.), Industrial Engineering — Software Technology",
-      "focus": "Software Technology",
+      "degree": "M.Sc. in Industrial Engineering",
+      "focus": "Focus: Computer Science",
       "startDate": "2014",
       "endDate": "2018",
       "details": [
         "Grade: 1.2 (scale: 1.0 best to 4.0 worst).",
-        "Thesis on data-driven environmental scanning and foresight.",
-        "Skills: Java · Frontend Development · Python"
+        "Thesis on data-driven environmental scanning and foresight."
       ],
       "logo": "/assets/img/education/tu-berlin.jpg"
     },
     {
       "id": "lund-university-master-computer-science",
-      "institution": "The Faculty of Engineering at Lund University",
+      "institution": "Lund University",
       "link": "https://www.linkedin.com/company/15105405/",
-      "degree": "Master, Computer Science",
-      "focus": "Computer Science",
+      "degree": "Foreign Studies with the Erasmus+ Program",
+      "focus": "Focus: Computer Science",
       "startDate": "2015",
       "endDate": "2016",
       "details": [
-        "Activities and societies: Sydskånska Nationen.",
-        "Skills: Java · Frontend Development"
+        "Activities and societies: Sydskånska Nationen."
       ],
       "logo": "/assets/img/education/lund-university.jpg"
     },
@@ -110,13 +101,13 @@
       "id": "tu-berlin-bsc-industrial-engineering-transport",
       "institution": "Technische Universität Berlin",
       "link": "https://www.linkedin.com/company/1188458/",
-      "degree": "Bachelor of Science (B.Sc.), Industrial Engineering — Transport",
+      "degree": "B.Sc. in Industrial Engineering",
       "focus": "Transport",
       "startDate": "2011",
       "endDate": "2014",
       "details": [
         "Grade: 1.9 (scale: 1.0 best to 4.0 worst).",
-        "Skills: Computer-Aided Design (CAD) · Frontend Development · Python"
+        "Thesis on technology readiness and space tourism."
       ],
       "logo": "/assets/img/education/tu-berlin.jpg"
     }
