@@ -40,7 +40,7 @@
         "Driving cross-brand experiments across six recommendation products, resulting in significant year-over-year uplift in job-candidate matches."
       ],
       "highlightType": "ordered",
-      "logo": "/assets/img/companies/seek.jpg"
+      "logo": "/assets/img/about/companies/seek.jpg"
     },
     {
       "id": "itonics-product-management",
@@ -63,7 +63,7 @@
         "Shifting from a project-based to a product-centric organization, shaping product processes & the growing product team."
       ],
       "highlightType": "ordered",
-      "logo": "/assets/img/companies/itonics.jpg"
+      "logo": "/assets/img/about/companies/itonics.jpg"
     },
     {
       "id": "bookingkit-working-student-intern",
@@ -78,7 +78,7 @@
       "text": [
         "As one of the first employees at bookingkit, I started out helping wherever necessary – working on the company website, writing blog articles & newsletters, doing graphic design work & offering support for customers. But I quickly moved towards a product and business intelligence role, and was able to create a concept around functionality to optimize prices based on past booking data."
       ],
-      "logo": "/assets/img/companies/bookingkit.jpg",
+      "logo": "/assets/img/about/companies/bookingkit.jpg",
       "notes": "[Unverified] Start and end months inferred from CV wording: “between Aug ’14 and Mar ’17.”"
     }
   ],
@@ -95,7 +95,7 @@
         "Grade: 1.2 (scale: 1.0 best to 4.0 worst).",
         "Thesis on data-driven environmental scanning and foresight."
       ],
-      "logo": "/assets/img/education/tu-berlin.jpg"
+      "logo": "/assets/img/about/education/tu-berlin.jpg"
     },
     {
       "id": "lund-university-master-computer-science",
@@ -108,7 +108,7 @@
       "details": [
         "Activities and societies: Sydskånska Nationen."
       ],
-      "logo": "/assets/img/education/lund-university.jpg"
+      "logo": "/assets/img/about/education/lund-university.jpg"
     },
     {
       "id": "tu-berlin-bsc-industrial-engineering-transport",
@@ -122,7 +122,7 @@
         "Grade: 1.9 (scale: 1.0 best to 4.0 worst).",
         "Thesis on technology readiness and space tourism."
       ],
-      "logo": "/assets/img/education/tu-berlin.jpg"
+      "logo": "/assets/img/about/education/tu-berlin.jpg"
     }
   ],
   "volunteering": [
@@ -138,7 +138,7 @@
         "Organisation, marketing and implementation of events",
         "Team leadership"
       ],
-      "image": "/assets/img/volunteering/sydskanska.jpg",
+      "image": "/assets/img/about/volunteering/sydskanska.jpg",
       "url": "https://www.linkedin.com/company/9385592/"
     }
   ],
@@ -148,7 +148,7 @@
       "name": "Milen Zaykov",
       "link": "https://www.linkedin.com/in/milen-zaykov-95698912a",
       "profileUrl": "https://www.linkedin.com/in/milen-zaykov-95698912a",
-      "image": "/assets/img/references/milen.jpg",
+      "image": "/assets/img/about/references/milen.jpg",
       "title": "Product Manager at Softgarden",
       "date": "2022-10-05",
       "relation": "reported directly to Moritz",
@@ -159,7 +159,7 @@
       "name": "Tikendra Chand",
       "link": "https://www.linkedin.com/in/tikendrachand",
       "profileUrl": "https://www.linkedin.com/in/tikendrachand",
-      "image": "/assets/img/references/tikendra.jpg",
+      "image": "/assets/img/about/references/tikendra.jpg",
       "title": "Senior Software Engineer at AT&T",
       "date": "2022-09-03",
       "relation": "worked with Moritz on the same team",
@@ -170,7 +170,7 @@
       "name": "Dennis Brandt",
       "link": "https://www.linkedin.com/in/dennis-brandt-4778bb1a",
       "profileUrl": "https://www.linkedin.com/in/dennis-brandt-4778bb1a",
-      "image": "/assets/img/references/dennis.jpg",
+      "image": "/assets/img/about/references/dennis.jpg",
       "title": "Lead Software Engineer at ITONICS | Shaping Innovation",
       "date": "2022-09-01",
       "relation": "worked with Moritz on the same team",
@@ -181,7 +181,7 @@
       "name": "Michael Durst",
       "link": "https://www.linkedin.com/in/michaeldurst",
       "profileUrl": "https://www.linkedin.com/in/michaeldurst",
-      "image": "/assets/img/references/michael.jpg",
+      "image": "/assets/img/about/references/michael.jpg",
       "title": "Founder @ ITONICS, The #1 Innovation OS",
       "date": "2022-08-31",
       "relation": "managed Moritz directly",
@@ -192,7 +192,7 @@
       "name": "Kiran Shakya",
       "link": "https://www.linkedin.com/in/kiranshakya",
       "profileUrl": "https://www.linkedin.com/in/kiranshakya",
-      "image": "/assets/img/references/kiran.jpg",
+      "image": "/assets/img/about/references/kiran.jpg",
       "title": "Lead Software Engineer",
       "date": "2022-08-30",
       "relation": "worked with Moritz on the same team",
@@ -203,7 +203,7 @@
       "name": "Salome Leshkasheli",
       "link": "https://www.linkedin.com/in/salome-leshkasheli",
       "profileUrl": "https://www.linkedin.com/in/salome-leshkasheli",
-      "image": "/assets/img/references/salome.jpg",
+      "image": "/assets/img/about/references/salome.jpg",
       "title": "Team Lead Frontend Engineer",
       "date": "2022-08-29",
       "relation": "was senior to Salome but didn't manage Salome directly",
@@ -214,22 +214,22 @@
     {
       "group": "Day-to-day tools",
       "items": [
-        { "name": "Tableau & Amplitude", "icon": "/assets/img/tools/analytics-bi.png", "notes": "Analytics, Business Intelligence, Reporting" },
-        { "name": "Atlassian Suite", "icon": "/assets/img/tools/atlassian.png", "notes": "Task Management, Documentation" },
-        { "name": "MS Office Suite", "icon": "/assets/img/tools/ms-office.png", "notes": "Happy to use Google Workspace, too!" },
-        { "name": "Miro", "icon": "/assets/img/tools/miro.png", "notes": "Ideation, Brainstorming, Collaboration" },
-        { "name": "Databricks", "icon": "/assets/img/tools/databricks.png", "notes": "Ad-hoc Data Analysis" },
-        { "name": "ChatGPT", "icon": "/assets/img/tools/chatgpt.png", "notes": "Efficiency, Writing, Idea Refinement" }
+        { "name": "Tableau & Amplitude", "icon": "/assets/img/about/tools/analytics-bi.png", "notes": "Analytics, Business Intelligence, Reporting" },
+        { "name": "Atlassian Suite", "icon": "/assets/img/about/tools/atlassian.png", "notes": "Task Management, Documentation" },
+        { "name": "MS Office Suite", "icon": "/assets/img/about/tools/ms-office.png", "notes": "Happy to use Google Workspace, too!" },
+        { "name": "Miro", "icon": "/assets/img/about/tools/miro.png", "notes": "Ideation, Brainstorming, Collaboration" },
+        { "name": "Databricks", "icon": "/assets/img/about/tools/databricks.png", "notes": "Ad-hoc Data Analysis" },
+        { "name": "ChatGPT", "icon": "/assets/img/about/tools/chatgpt.png", "notes": "Efficiency, Writing, Idea Refinement" }
       ]
     },
     {
       "group": "Tech I'm familiar with",
       "items": [
-        { "name": "Angular", "icon": "/assets/img/tools/angular.png" },
-        { "name": "Node.js", "icon": "/assets/img/tools/node.png" },
-        { "name": "GraphQL", "icon": "/assets/img/tools/graphql.png" },
-        { "name": "Python & Scala", "icon": "/assets/img/tools/python-scala.png" },
-        { "name": "Replit & Cursor", "icon": "/assets/img/tools/replit-cursor.png" }
+        { "name": "Angular", "icon": "/assets/img/about/tools/angular.png" },
+        { "name": "Node.js", "icon": "/assets/img/about/tools/node.png" },
+        { "name": "GraphQL", "icon": "/assets/img/about/tools/graphql.png" },
+        { "name": "Python & Scala", "icon": "/assets/img/about/tools/python-scala.png" },
+        { "name": "Replit & Cursor", "icon": "/assets/img/about/tools/replit-cursor.png" }
       ],
       "details": [
         "Hands-on with web technologies (Angular, Node.js, GraphQL) and Python or Scala for scripting, data work & analysis.",

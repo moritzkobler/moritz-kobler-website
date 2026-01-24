@@ -259,7 +259,7 @@ URL structure must allow future non-app project types.
       "endDate": "2016-06",
       "cause": "Science and Technology",
       "highlights": ["Organised events"],
-      "image": "/assets/img/volunteering/sydskanska.jpg",
+      "image": "/assets/img/about/volunteering/sydskanska.jpg",
       "url": "https://www.linkedin.com/company/9385592/"
     }
   ],
@@ -268,7 +268,7 @@ URL structure must allow future non-app project types.
       "id": "reference-example",
       "name": "Jane Doe",
       "profileUrl": "https://www.linkedin.com/in/jane-doe",
-      "image": "/assets/img/references/jane.jpg",
+      "image": "/assets/img/about/references/jane.jpg",
       "title": "Engineering Manager",
       "date": "2022-10-05",
       "relation": "worked with Moritz on the same team",

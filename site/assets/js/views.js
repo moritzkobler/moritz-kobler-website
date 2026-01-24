@@ -159,7 +159,7 @@ function applyGlowSeed(card, seedText){
 }
 
 function renderLogo(src, alt, extraClass = ''){
-  const fallback = '/assets/img/logo.png';
+  const fallback = '/assets/img/about/logo.png';
   const img = el('img', { class: `logo ${extraClass}`.trim(), src: src || fallback, alt: src ? `${alt || ''} logo`.trim() : '' });
   img.addEventListener('error', () => {
     if (img.getAttribute('src') !== fallback) img.setAttribute('src', fallback);
@@ -585,7 +585,7 @@ export async function renderProjects({ lang }){
     const href = `/projects/apps/${encodeURIComponent(p.slug)}`;
     return el('a', { class: 'card card-link project-card', href, 'data-link': 'true' }, [
       el('div', { class: 'project-card__top' }, [
-        el('img', { class: 'project-icon', src: '/assets/img/logo.png', alt: '' }),
+        el('img', { class: 'project-icon', src: '/assets/img/about/logo.png', alt: '' }),
         el('div', {}, [
           el('div', { class: 'muted', text: p.status ?? '' }),
           el('h2', { class: 'h2', text: p.name ?? '' })
@@ -625,7 +625,7 @@ export async function renderProjectDetail({ lang, slug }){
     el('section', { class: 'card hero' }, [
       el('div', { class: 'muted', text: project.status ?? '' }),
       el('div', { class: 'project-hero' }, [
-        el('img', { class: 'project-icon project-icon--lg', src: '/assets/img/logo.png', alt: '' }),
+        el('img', { class: 'project-icon project-icon--lg', src: '/assets/img/about/logo.png', alt: '' }),
         el('div', {}, [
           el('h1', { class: 'h1', text: project.name ?? '' }),
           el('p', { class: 'p', text: project.longDescription ?? '' })

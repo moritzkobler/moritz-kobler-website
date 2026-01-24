@@ -19,7 +19,7 @@ PRD source: :contentReference[oaicite:0]{index=0}
     - `/site/assets/`
       - `/site/assets/css/`
       - `/site/assets/js/`
-      - `/site/assets/img/`
+      - `/site/assets/img/about/`
       - `/site/assets/logos/`
       - `/site/assets/cv/`
       - `/site/assets/screenshots/`

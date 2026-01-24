@@ -86,7 +86,7 @@
 ### 2026-01-24 — About: remove CV section + tool icons
 - Summary:
   - Removed the bottom CV section from `/about-me` (download remains in the intro).
-  - Switched several skill/tool icons to local images under `/assets/img/tools/` where available.
+  - Switched several skill/tool icons to local images under `/assets/img/about/tools/` where available.
 - Scope: work_plan section 4 (About page UX and galleries)
 - Files: site/assets/js/views.js, site/data/about.en.json
 - Tests: N/A (static site)
@@ -130,7 +130,7 @@
 - Summary:
   - Merged Education and Volunteering into a single combined carousel (schema remains separate).
   - Added `link` properties for card-backed About items and rendered names as link-outs with a diagonal arrow.
-  - Switched Work Experience logos to local assets under `/assets/img/companies/`.
+  - Switched Work Experience logos to local assets under `/assets/img/about/companies/`.
 - Scope: work_plan section 4 (About page UX and galleries)
 - Files: site/assets/js/views.js, site/assets/css/styles.css, site/data/about.en.json, site/data/about.de.json
 - Tests: N/A (static site)
@@ -231,7 +231,7 @@
 
 ### 2026-01-13 — Logo fallback + assets checklist
 - Summary:
-  - Switched UI to use `site/assets/img/logo.png` as the default logo/icon everywhere.
+  - Switched UI to use `site/assets/img/about/logo.png` as the default logo/icon everywhere.
   - Added `/docs/assets_needed.md` table listing required assets and locations.
   - Wired DE CV to `moritz-kobler-de.pdf` and made screenshots optional until provided.
 - Scope: work_plan sections 4–6 (partial) and 11 (process)
