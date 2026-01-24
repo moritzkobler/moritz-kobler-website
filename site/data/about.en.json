@@ -201,17 +201,17 @@
     {
       "group": "Analytics, Business Intelligence, Reporting",
       "items": [
-        { "name": "Tableau", "icon": "/assets/icons/tableau.svg" },
-        { "name": "Amplitude", "icon": "/assets/icons/amplitude.svg" }
+        { "name": "Tableau", "icon": "/assets/img/tools/Logo=Tableau,%20Size=Large.png" },
+        { "name": "Amplitude", "icon": "/assets/img/tools/Logo=Amplitude,%20Size=Large.png" }
       ]
     },
     {
       "group": "Day-to-day tools",
       "items": [
-        { "name": "Atlassian Suite", "icon": "/assets/icons/atlassian.svg", "notes": "Task Management, Documentation" },
+        { "name": "Atlassian Suite", "icon": "/assets/img/tools/Logo=Atlassian,%20Size=Large.png", "notes": "Task Management, Documentation" },
         { "name": "Microsoft Office Suite", "icon": "/assets/icons/microsoft-office.svg", "notes": "Happy to use Google Workspace, too!" },
-        { "name": "Miro", "icon": "/assets/icons/miro.svg", "notes": "Ideation, Brainstorming, Collaboration" },
-        { "name": "Databricks", "icon": "/assets/icons/databricks.svg", "notes": "Ad-hoc Data Analysis" },
+        { "name": "Miro", "icon": "/assets/img/tools/Logo=Miro,%20Size=Large.png", "notes": "Ideation, Brainstorming, Collaboration" },
+        { "name": "Databricks", "icon": "/assets/img/tools/Logo=Databricks,%20Size=Large.png", "notes": "Ad-hoc Data Analysis" },
         { "name": "ChatGPT", "icon": "/assets/icons/chatgpt.svg", "notes": "Efficiency, Writing, Idea Refinement" }
       ]
     },

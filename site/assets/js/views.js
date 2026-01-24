@@ -550,22 +550,7 @@ export async function renderAbout({ lang }){
     ])
   ]);
 
-  const cvHref = meta.cvPdf;
-  const cvSection = el('section', {}, [
-    el('div', { class: 'section-title', text: lang === 'de' ? 'Lebenslauf' : 'CV' }),
-    el('div', { class: 'card panel' }, [
-      el('div', { class: 'panel__inner' }, [
-        el('p', { class: 'p', text: lang === 'de' ? 'PDF herunterladen:' : 'Download PDF:' }),
-        el('p', { class: 'muted' }, [
-          cvHref
-            ? el('a', { href: cvHref, download: '', text: lang === 'de' ? 'CV herunterladen' : 'Download CV' })
-            : document.createTextNode(lang === 'de' ? 'Noch nicht verfügbar.' : 'Not available yet.')
-        ])
-      ])
-    ])
-  ]);
-
-  return el('div', { class: 'container' }, [introGrid, expSection, eduVolSection, referencesSection, skillsSection, hobbiesSection, contactSection, cvSection].filter(Boolean));
+  return el('div', { class: 'container' }, [introGrid, expSection, eduVolSection, referencesSection, skillsSection, hobbiesSection, contactSection].filter(Boolean));
 }
 
 export async function renderProjects({ lang }){
