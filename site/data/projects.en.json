@@ -1,0 +1,22 @@
+{
+  "copy": {
+    "projects.pageTitle": "Projects",
+    "projects.heroTitle": "Projects",
+    "projects.heroSubtitle": "Apps and experiments — cleanly documented.",
+    "projects.notFoundTitle": "Not found",
+    "projects.notFoundBody": "This project does not exist (yet).",
+    "projects.notFoundBackLink": "Back to Projects",
+    "projects.detailTypeFallback": "project",
+    "projects.sectionScreenshots": "Screenshots",
+    "projects.emptyScreenshots": "No screenshots yet.",
+    "projects.screenshotAlt": "{name} screenshot {index}",
+    "projects.appFallbackName": "App",
+    "projects.sectionAppStores": "App Stores",
+    "projects.openOnIos": "Open on iOS",
+    "projects.openOnAndroid": "Open on Android",
+    "projects.emptyStoreLinks": "No store links yet.",
+    "projects.sectionSupport": "Support",
+    "projects.emptySupportEmail": "No support email provided.",
+    "projects.sectionPrivacy": "Privacy"
+  }
+}

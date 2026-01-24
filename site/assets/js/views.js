@@ -80,9 +80,9 @@ function formatCopy(template, vars){
   });
 }
 
-async function loadSiteCopy(lang){
-  const primary = await loadJson(`/data/about.${lang}.json`);
-  const fallback = lang === 'en' ? null : await loadJson('/data/about.en.json');
+async function loadCopyBundle(lang, baseName){
+  const primary = await loadJson(`/data/${baseName}.${lang}.json`);
+  const fallback = lang === 'en' ? null : await loadJson(`/data/${baseName}.en.json`);
   const merged = mergePreferPrimary(primary, fallback);
   const copy = (merged && typeof merged.copy === 'object' && merged.copy) ? merged.copy : {};
   const t = (key) => pickCopy(copy, key);
@@ -615,7 +615,7 @@ export async function renderAbout({ lang }){
 }
 
 export async function renderProjects({ lang }){
-  const { t } = await loadSiteCopy(lang);
+  const { t } = await loadCopyBundle(lang, 'projects');
   setTitle(t('projects.pageTitle'));
   const data = await loadJson('/data/projects.json');
   const projects = Array.isArray(data?.projects) ? data.projects : [];
@@ -644,7 +644,7 @@ export async function renderProjects({ lang }){
 
 export async function renderProjectDetail({ lang, slug }){
   setTitle(slug);
-  const { t, tf } = await loadSiteCopy(lang);
+  const { t, tf } = await loadCopyBundle(lang, 'projects');
   const data = await loadJson('/data/projects.json');
   const projects = Array.isArray(data?.projects) ? data.projects : [];
   const project = projects.find((p) => p.slug === slug);
@@ -723,7 +723,7 @@ export async function renderProjectDetail({ lang, slug }){
 }
 
 export async function renderPrivacy({ lang }){
-  const { t } = await loadSiteCopy(lang);
+  const { t } = await loadCopyBundle(lang, 'privacy');
   setTitle(t('privacy.pageTitle'));
   return el('div', { class: 'container' }, [
     el('section', { class: 'card hero' }, [
@@ -734,7 +734,7 @@ export async function renderPrivacy({ lang }){
 }
 
 export async function renderNotFound({ lang, path }){
-  const { t, tf } = await loadSiteCopy(lang);
+  const { t, tf } = await loadCopyBundle(lang, 'about');
   setTitle('404');
   return el('div', { class: 'container' }, [
     el('section', { class: 'card hero' }, [
