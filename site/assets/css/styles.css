@@ -491,6 +491,9 @@ section {
   display: grid;
   gap: var(--space-2);
   overflow: visible;
+  /* Contain width to parent so dots center correctly even when gallery overflows */
+  width: 100%;
+  max-width: 100%;
 }
 
 .gallery {
