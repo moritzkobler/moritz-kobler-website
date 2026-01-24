@@ -1,3 +1,14 @@
+### 2026-01-24 — i18n: centralize UI copy in JSON
+- Summary:
+  - Added a flat `copy` key/value map to `about.en.json` + `about.de.json` to act as a single translation source for UI strings.
+  - Updated renderers (About/Projects/Project detail/Privacy/404) to read labels, headings, and empty-states from `copy`, including `{placeholder}` formatting.
+  - Made `renderPrivacy` and `renderNotFound` async so they can load `copy` consistently.
+- Scope: work_plan section 3 (Data & language handling), section 4/5 (views)
+- Files: site/assets/js/views.js, site/assets/js/app.js, site/data/about.en.json, site/data/about.de.json, docs/work_plan.md
+- Tests: N/A (static site)
+- Follow-ups: Consider moving the remaining hardcoded error fallback in `app.js` ("Error") into `copy` as well.
+- Commit: ab9fc80
+
 ### 2026-01-24 — About: intro side panel priorities
 - Summary:
   - Replaced the right-side intro panel content with “My Priorities” (bullets) and “About Me” (paragraph) sourced from `about.{lang}.json`.
