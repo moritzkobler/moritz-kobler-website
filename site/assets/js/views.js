@@ -204,6 +204,11 @@ function renderLinkOut(text, href, extraClass = ''){
 function scrollCardIntoView(card){
   const gallery = card.parentElement;
   if (!gallery) return;
+  if (gallery.classList.contains('gallery--shots')){
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    try{ card.focus({ preventScroll: true }); } catch(err){ card.focus(); }
+    return;
+  }
   const pad = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
   const left = card.offsetLeft - pad;
   gallery.scrollTo({ left, behavior: 'smooth' });
@@ -255,6 +260,10 @@ function attachCarousel(carouselRoot){
   const scrollToIndex = (idx) => {
     const card = cards[idx];
     if (!card) return;
+    if (gallery.classList.contains('gallery--shots')){
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      return;
+    }
     const left = card.offsetLeft - getPad();
     gallery.scrollTo({ left, behavior: 'smooth' });
   };
@@ -696,7 +705,7 @@ export async function renderProjectDetail({ lang, slug }){
               })
             ])
           ));
-          const carousel = el('div', { class: 'carousel' }, [gallery]);
+          const carousel = el('div', { class: 'carousel carousel--shots' }, [gallery]);
           attachCarousel(carousel);
           return carousel;
         })()

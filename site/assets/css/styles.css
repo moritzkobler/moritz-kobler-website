@@ -1027,6 +1027,29 @@ section {
   bottom: var(--space-4);
   margin-top: 0;
   padding-top: 0;
+  z-index: 3;
+}
+
+.gallery-card--shot .card-nav__btn {
+  /* Same base shape as About, but higher contrast over images */
+  border-color: rgba(233, 240, 255, .22);
+  background: rgba(11, 15, 20, .55);
+  color: rgba(233, 240, 255, .92);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+  backdrop-filter: blur(6px);
+}
+
+.gallery-card--shot .card-nav__btn:hover {
+  background: rgba(11, 15, 20, .72);
+}
+
+/* Dots: center within the content column for the shots carousel */
+.carousel--shots .carousel-dots {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .shot--carousel {
