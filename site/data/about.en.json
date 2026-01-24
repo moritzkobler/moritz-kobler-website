@@ -199,15 +199,10 @@
   ],
   "skills": [
     {
-      "group": "Analytics, Business Intelligence, Reporting",
-      "items": [
-        { "name": "Tableau", "icon": "/assets/img/tools/Logo=Tableau,%20Size=Large.png" },
-        { "name": "Amplitude", "icon": "/assets/img/tools/Logo=Amplitude,%20Size=Large.png" }
-      ]
-    },
-    {
       "group": "Day-to-day tools",
       "items": [
+        { "name": "Tableau", "icon": "/assets/img/tools/Logo=Tableau,%20Size=Large.png" },
+        { "name": "Amplitude", "icon": "/assets/img/tools/Logo=Amplitude,%20Size=Large.png" },
         { "name": "Atlassian Suite", "icon": "/assets/img/tools/Logo=Atlassian,%20Size=Large.png", "notes": "Task Management, Documentation" },
         { "name": "Microsoft Office Suite", "icon": "/assets/icons/microsoft-office.svg", "notes": "Happy to use Google Workspace, too!" },
         { "name": "Miro", "icon": "/assets/img/tools/Logo=Miro,%20Size=Large.png", "notes": "Ideation, Brainstorming, Collaboration" },
@@ -247,7 +242,7 @@
     "Encouraging simplicity",
     "Learning & improving continuously"
   ],
-  "aboutMe": "",
+  "aboutMe": "34 years old. Raised in Germany, India, Israel & Egypt. Happily living in Fitzroy (the closest to Berlin we could find in Melbourne) with my husband James. Fantasy nerd: Movies, TV, books... you name it. Pianist. Spacing fanatic.",
   "contact": {
     "phone": "+61 409 216 393",
     "email": "moritz.kobler@gmail.com",

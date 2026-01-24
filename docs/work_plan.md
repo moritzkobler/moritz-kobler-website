@@ -108,7 +108,7 @@ PRD source: :contentReference[oaicite:0]{index=0}
 - DONE: Create About page route and HTML skeleton.
   - DONE: Render header/intro from JSON:
   - Name, title, location, LinkedIn link, summary
-  - Implemented: Replaced the intro side panel with JSON-driven “My Priorities” and “About Me” sections.
+  - Implemented: Right-side intro panel shows “My Priorities”; “About Me” renders in the main hero card.
   - DONE: Implement Work Experience horizontal gallery:
   - Card per role entry
   - Company logo (official logo path from JSON; placeholder acceptable)

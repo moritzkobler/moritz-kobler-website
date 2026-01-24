@@ -358,15 +358,6 @@ export async function renderAbout({ lang }){
               el('ul', { class: 'list' }, priorities.map((item) => el('li', { text: String(item) })))
             ])
           ])
-        : null,
-
-      aboutMe
-        ? el('div', { class: 'kv' }, [
-            el('div', { class: 'kv__label', text: lang === 'de' ? 'ÜBER MICH' : 'ABOUT ME' }),
-            el('div', { class: 'kv__value' }, [
-              el('p', { class: 'p', text: aboutMe })
-            ])
-          ])
         : null
     ].filter(Boolean))
   ]);
@@ -375,11 +366,17 @@ export async function renderAbout({ lang }){
     el('h1', { class: 'h1', text: meta.name ?? 'Moritz Kobler' }),
     el('p', { class: 'muted', text: `${meta.title ?? ''}${meta.location ? ` · ${meta.location}` : ''}`.trim() }),
     el('p', { class: 'p', text: about?.summary ?? '' }),
+    aboutMe
+      ? el('div', { class: 'hero-about' }, [
+          el('div', { class: 'kv__label', text: lang === 'de' ? 'ÜBER MICH' : 'ABOUT ME' }),
+          el('p', { class: 'p', text: aboutMe })
+        ])
+      : null,
     el('div', { class: 'chips' }, [
       meta.linkedin ? el('a', { class: 'chip', href: meta.linkedin, target: '_blank', rel: 'noreferrer', text: lang === 'de' ? 'LinkedIn' : 'LinkedIn' }) : null,
       meta.cvPdf ? el('a', { class: 'chip', href: meta.cvPdf, download: '', text: lang === 'de' ? 'CV herunterladen' : 'Download CV' }) : null
     ].filter(Boolean))
-  ]);
+  ].filter(Boolean));
 
   const introGrid = el('div', { class: 'grid' }, [
     el('div', {}, [hero]),
@@ -412,11 +409,15 @@ export async function renderAbout({ lang }){
       el('div', { class: 'card-row card-head' }, [
         renderLogo(r.logo, r.company, 'logo--exp'),
         el('div', { class: 'card-row__body card-head__body' }, [
-          el('div', { class: 'muted card-head__label' }, [renderLinkOut(r.company ?? '', r.link, 'muted')]),
-          el('h2', { class: 'h2 card-head__title', text: latestRole }),
-          previousRoles.length ? el('div', { class: 'muted card-head__sub', text: previousRoles.join(' · ') }) : null,
-        ]),
-        dateMeta
+          el('div', { class: 'card-head__top' }, [
+            el('div', { class: 'muted card-head__label card-head__org' }, [renderLinkOut(r.company ?? '', r.link, 'muted')]),
+            dateMeta
+          ]),
+          el('div', { class: 'card-head__main' }, [
+            el('h2', { class: 'h2 card-head__title', text: latestRole }),
+            previousRoles.length ? el('div', { class: 'muted card-head__sub', text: previousRoles.join(' · ') }) : null
+          ].filter(Boolean))
+        ])
       ]),
       ...paragraphs.map((t) => el('p', { class: 'exp-text', text: t })),
       el(listTag, { class: 'exp-highlights' }, (r.highlights ?? []).map((h) => el('li', { text: h })))
@@ -445,11 +446,15 @@ export async function renderAbout({ lang }){
         el('div', { class: 'card-row card-head' }, [
           renderLogo(r.logo, r.institution),
           el('div', { class: 'card-row__body card-head__body' }, [
-            el('div', { class: 'muted card-head__label' }, [renderLinkOut(r.institution ?? '', r.link, 'muted')]),
-            el('h2', { class: 'h2 card-head__title', text: r.degree ?? '' }),
-            r.focus ? el('div', { class: 'muted card-head__sub', text: r.focus }) : null
-          ].filter(Boolean)),
-          el('div', { class: 'muted card-head__meta', text: dates })
+            el('div', { class: 'card-head__top' }, [
+              el('div', { class: 'muted card-head__label card-head__org' }, [renderLinkOut(r.institution ?? '', r.link, 'muted')]),
+              el('div', { class: 'muted card-head__meta', text: dates })
+            ]),
+            el('div', { class: 'card-head__main' }, [
+              el('h2', { class: 'h2 card-head__title', text: r.degree ?? '' }),
+              r.focus ? el('div', { class: 'muted card-head__sub', text: r.focus }) : null
+            ].filter(Boolean))
+          ])
         ]),
         el('ul', {}, (r.details ?? []).map((d) => el('li', { text: d })))
       ]);
@@ -464,11 +469,15 @@ export async function renderAbout({ lang }){
       el('div', { class: 'card-row card-head' }, [
         renderLogo(v.image, v.organization),
         el('div', { class: 'card-row__body card-head__body' }, [
-          el('div', { class: 'muted card-head__label' }, [renderLinkOut(v.organization ?? '', link, 'muted')]),
-          el('h2', { class: 'h2 card-head__title', text: v.role ?? '' }),
-          v.cause ? el('div', { class: 'muted card-head__sub', text: v.cause }) : null
-        ].filter(Boolean)),
-        el('div', { class: 'muted card-head__meta', text: dates })
+          el('div', { class: 'card-head__top' }, [
+            el('div', { class: 'muted card-head__label card-head__org' }, [renderLinkOut(v.organization ?? '', link, 'muted')]),
+            el('div', { class: 'muted card-head__meta', text: dates })
+          ]),
+          el('div', { class: 'card-head__main' }, [
+            el('h2', { class: 'h2 card-head__title', text: v.role ?? '' }),
+            v.cause ? el('div', { class: 'muted card-head__sub', text: v.cause }) : null
+          ].filter(Boolean))
+        ])
       ]),
       el('ul', {}, (v.highlights ?? []).map((h) => el('li', { text: h })))
     ]);
@@ -500,11 +509,15 @@ export async function renderAbout({ lang }){
       el('div', { class: 'card-row card-head' }, [
         r.image ? el('img', { class: 'ref-photo', src: r.image, alt: r.name ?? '' }) : renderLogo(null, r.name),
         el('div', { class: 'card-row__body card-head__body' }, [
-          el('div', { class: 'muted card-head__label', text: r.title ?? '' }),
-          el('h2', { class: 'h2 card-head__title' }, [renderLinkOut(r.name ?? '', link, '')]),
-          r.relation ? el('div', { class: 'muted card-head__sub', text: r.relation }) : null
-        ].filter(Boolean)),
-        el('div', { class: 'muted card-head__meta', text: dateLabel })
+          el('div', { class: 'card-head__top' }, [
+            el('div', { class: 'muted card-head__label card-head__org', text: r.title ?? '' }),
+            el('div', { class: 'muted card-head__meta', text: dateLabel })
+          ]),
+          el('div', { class: 'card-head__main' }, [
+            el('h2', { class: 'h2 card-head__title' }, [renderLinkOut(r.name ?? '', link, '')]),
+            r.relation ? el('div', { class: 'muted card-head__sub', text: r.relation }) : null
+          ].filter(Boolean))
+        ])
       ]),
       el('p', { class: 'muted', text: r.text ?? '' }),
     ].filter(Boolean));
@@ -529,32 +542,35 @@ export async function renderAbout({ lang }){
               el('div', { class: 'panel__inner' }, [
                 el('div', { class: 'muted', text: g.group ?? '' }),
                 el('div', { class: 'icon-grid' }, items.map((s) => {
+                  const isObj = typeof s === 'object' && s;
                   const name = typeof s === 'string' ? s : (s?.name ?? '');
-                  const src = typeof s === 'object' ? s?.icon : null;
+                  const src = isObj ? s?.icon : null;
+                  const notes = isObj && typeof s?.notes === 'string' ? s.notes.trim() : '';
+
                   return el('div', { class: 'icon-item' }, [
                     renderLogo(src || iconDataUrl(name, name), name),
-                    el('div', { class: 'icon-label', text: name })
+                    el('div', { class: 'icon-text' }, [
+                      el('div', { class: 'icon-label', text: name }),
+                      notes ? el('div', { class: 'icon-notes', text: notes }) : null
+                    ].filter(Boolean))
                   ]);
                 }))
               ])
             ]);
           }))
         : el('div', { class: 'icon-grid' }, skills.map((s) => {
+            const isObj = typeof s === 'object' && s;
             const name = typeof s === 'string' ? s : (s?.name ?? '');
-            const src = typeof s === 'object' ? s?.icon : null;
+            const src = isObj ? s?.icon : null;
+            const notes = isObj && typeof s?.notes === 'string' ? s.notes.trim() : '';
             return el('div', { class: 'icon-item' }, [
               renderLogo(src || iconDataUrl(name, name), name),
-              el('div', { class: 'icon-label', text: name })
+              el('div', { class: 'icon-text' }, [
+                el('div', { class: 'icon-label', text: name }),
+                notes ? el('div', { class: 'icon-notes', text: notes }) : null
+              ].filter(Boolean))
             ]);
           }))
-  ]);
-
-  const hobbies = Array.isArray(about?.hobbies) ? about.hobbies : [];
-  const hobbiesSection = el('section', {}, [
-    el('div', { class: 'section-title', text: lang === 'de' ? 'Hobbys' : 'Hobbies' }),
-    hobbies.length === 0
-      ? el('p', { class: 'muted', text: lang === 'de' ? 'Noch keine Hobbys gepflegt.' : 'No hobbies listed yet.' })
-      : el('ul', { class: 'list' }, hobbies.map((h) => el('li', { text: h })))
   ]);
 
   const contact = about?.contact ?? {};
@@ -568,7 +584,7 @@ export async function renderAbout({ lang }){
     ])
   ]);
 
-  return el('div', { class: 'container' }, [introGrid, expSection, eduVolSection, referencesSection, skillsSection, hobbiesSection, contactSection].filter(Boolean));
+  return el('div', { class: 'container' }, [introGrid, expSection, eduVolSection, referencesSection, skillsSection, contactSection].filter(Boolean));
 }
 
 export async function renderProjects({ lang }){

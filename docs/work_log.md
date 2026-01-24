@@ -8,6 +8,19 @@
 - Follow-ups: Fill in `aboutMe` text in `about.en.json` (currently blank).
 - Commit: 4588486
 
+### 2026-01-24 — About: hero About Me + layout refinements
+- Summary:
+  - Moved “About Me” into the main hero card (under summary, above link buttons) and left “My Priorities” in the side panel.
+  - Removed the Hobbies section from the About page.
+  - Made container and gallery gutters consistent (mobile: `--space-3`, desktop: `--space-4`).
+  - Adjusted card headers so org/title shares the top row with dates; role/sub-lines render full width below.
+  - Merged analytics tools into “Day-to-day tools” and rendered skill notes under names in a serif font.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/assets/css/styles.css, site/data/about.en.json, docs/work_plan.md
+- Tests: N/A (static site)
+- Follow-ups: Sanity-check last-card scroll behavior after gutter change.
+- Commit: COMMIT: pending
+
 ### 2026-01-21 — Work experience duration in date meta
 - Summary:
   - Added a compact duration (e.g. `2y1m`) before the Work Experience date range.
