@@ -364,7 +364,7 @@ export async function renderAbout({ lang }){
 
   const hero = el('section', { class: 'card hero' }, [
     el('h1', { class: 'h1', text: meta.name ?? 'Moritz Kobler' }),
-    el('p', { class: 'muted', text: `${meta.title ?? ''}${meta.location ? ` · ${meta.location}` : ''}`.trim() }),
+    el('p', { class: 'overview', text: `${meta.title ?? ''}${meta.location ? ` · ${meta.location}` : ''}`.trim() }),
     el('p', { class: 'p', text: about?.summary ?? '' }),
     aboutMe
       ? el('div', { class: 'hero-about' }, [
@@ -548,7 +548,7 @@ export async function renderAbout({ lang }){
                   const notes = isObj && typeof s?.notes === 'string' ? s.notes.trim() : '';
 
                   return el('div', { class: 'icon-item' }, [
-                    renderLogo(src || iconDataUrl(name, name), name),
+                    renderLogo(src || iconDataUrl(name, name), name, 'logo--skill'),
                     el('div', { class: 'icon-text' }, [
                       el('div', { class: 'icon-label', text: name }),
                       notes ? el('div', { class: 'icon-notes', text: notes }) : null

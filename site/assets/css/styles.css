@@ -16,6 +16,7 @@
   --radius-sm: 10px;
   --shadow: 0 10px 30px rgba(0, 0, 0, .35);
 
+  --space-0: 3px;
   --space-1: 6px;
   --space-2: 10px;
   --space-3: 14px;
@@ -47,6 +48,7 @@
 
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --logo-size: 66px;
+  --icon-size: 32px;
 
   --max: 1080px;
 }
@@ -95,9 +97,13 @@ body {
 .kv__label,
 .nav-link,
 .btn,
-.chip,
-.lang-switch {
+.chip {
   font-family: var(--font-sans);
+}
+
+
+.lang-switch {
+  font-family: var(--font-sans) !important;
 }
 
 .h1,
@@ -105,7 +111,9 @@ body {
   font-weight: var(--w-header);
 }
 
-ul, ol, p {
+ul,
+ol,
+p {
   margin: 0;
 }
 
@@ -327,8 +335,8 @@ a {
 }
 
 main {
-  padding: var(--space-6) 0;
   flex: 1 0 auto;
+  padding-bottom: var(--space-6);
 }
 
 .card {
@@ -339,7 +347,7 @@ main {
 }
 
 .hero {
-  padding: var(--space-6);
+  padding: var(--space-4);
   position: relative;
   overflow: hidden;
 }
@@ -438,7 +446,6 @@ main {
 .kv {
   display: grid;
   gap: 4px;
-  padding: 10px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -500,7 +507,7 @@ section {
   margin-bottom: calc(-1 * var(--glow-room));
   scroll-snap-type: x mandatory;
   width: 100dvw;
-  margin-left: calc(50% - 50dvw);
+  margin-left: calc(-1 * var(--gallery-inset));
   --card-basis: min(360px, calc(100dvw - 2*var(--gutter)));
   /* Keep the first card aligned to the main `.container` left edge.
      On narrow viewports use a small inset; on wide viewports compute the
@@ -526,17 +533,17 @@ section {
   .gallery {
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    --card-basis: min(360px, calc(var(--viewport-w) - 2*var(--gutter)));
+    --card-basis: min(360px, calc(var(--viewport-w) - var(--gutter)));
   }
 }
 
 .gallery--lg {
-  --card-basis: min(620px, calc(var(--viewport-w) - 2*var(--gutter)));
+  --card-basis: min(620px, calc(var(--viewport-w) - var(--gutter)));
 }
 
 @supports not (width: 100dvw) {
   .gallery--lg {
-    --card-basis: min(620px, calc(var(--viewport-w) - 2*var(--gutter)));
+    --card-basis: min(620px, calc(var(--viewport-w) - var(--gutter)));
   }
 }
 
@@ -711,13 +718,14 @@ section {
 }
 
 .card-head__body {
-  padding-right: var(--space-2);
+  width: 100%;
 }
 
 .card-head__top {
   display: flex;
   gap: var(--space-3);
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-head__org {
@@ -734,6 +742,7 @@ section {
   text-transform: uppercase;
   letter-spacing: .12em;
   margin-bottom: 2px;
+  min-width: 120px;
 }
 
 .card-head__title {
@@ -750,7 +759,9 @@ section {
 .card-head__meta {
   margin-left: auto;
   text-align: right;
-  white-space: nowrap;
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
   font-family: var(--font-header);
   letter-spacing: .10em;
   font-size: 12px;
@@ -811,7 +822,7 @@ section {
 
 .icon-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: var(--space-3);
   margin-top: var(--space-3);
 }
@@ -823,7 +834,8 @@ section {
 }
 
 .icon-text {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 2px;
 }
 
@@ -840,6 +852,18 @@ section {
   line-height: 1.35;
   font-family: var(--font-body);
   letter-spacing: 0;
+}
+
+.logo.logo--skill {
+  height: var(--icon-size);
+  width: var(--icon-size);
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.1);
+  padding: var(--space-0);
+  object-fit: contain;
+  object-position: center;
+  flex: 0 0 auto;
 }
 
 .list {
@@ -925,6 +949,14 @@ section {
 @media (min-width: 760px) {
   :root {
     --gutter: var(--space-4);
+  }
+
+  main {
+    padding: var(--space-5) 0;
+  }
+
+  .hero {
+    padding: var(--space-6);
   }
 
   .h1 {

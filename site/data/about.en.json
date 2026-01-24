@@ -201,25 +201,22 @@
     {
       "group": "Day-to-day tools",
       "items": [
-        { "name": "Tableau", "icon": "/assets/img/tools/Logo=Tableau,%20Size=Large.png" },
-        { "name": "Amplitude", "icon": "/assets/img/tools/Logo=Amplitude,%20Size=Large.png" },
-        { "name": "Atlassian Suite", "icon": "/assets/img/tools/Logo=Atlassian,%20Size=Large.png", "notes": "Task Management, Documentation" },
-        { "name": "Microsoft Office Suite", "icon": "/assets/icons/microsoft-office.svg", "notes": "Happy to use Google Workspace, too!" },
-        { "name": "Miro", "icon": "/assets/img/tools/Logo=Miro,%20Size=Large.png", "notes": "Ideation, Brainstorming, Collaboration" },
-        { "name": "Databricks", "icon": "/assets/img/tools/Logo=Databricks,%20Size=Large.png", "notes": "Ad-hoc Data Analysis" },
-        { "name": "ChatGPT", "icon": "/assets/icons/chatgpt.svg", "notes": "Efficiency, Writing, Idea Refinement" }
+        { "name": "Tableau & Amplitude", "icon": "/assets/img/tools/analytics-bi.png", "notes": "Analytics, Business Intelligence, Reporting" },
+        { "name": "Atlassian Suite", "icon": "/assets/img/tools/atlassian.png", "notes": "Task Management, Documentation" },
+        { "name": "MS Office Suite", "icon": "/assets/img/tools/ms-office.png", "notes": "Happy to use Google Workspace, too!" },
+        { "name": "Miro", "icon": "/assets/img/tools/miro.png", "notes": "Ideation, Brainstorming, Collaboration" },
+        { "name": "Databricks", "icon": "/assets/img/tools/databricks.png", "notes": "Ad-hoc Data Analysis" },
+        { "name": "ChatGPT", "icon": "/assets/img/tools/chatgpt.png", "notes": "Efficiency, Writing, Idea Refinement" }
       ]
     },
     {
       "group": "Tech I'm familiar with",
       "items": [
-        { "name": "Angular", "icon": "/assets/icons/angular.svg" },
-        { "name": "Node.js", "icon": "/assets/icons/nodejs.svg" },
-        { "name": "GraphQL", "icon": "/assets/icons/graphql.svg" },
-        { "name": "Python", "icon": "/assets/icons/python.svg" },
-        { "name": "Scala", "icon": "/assets/icons/scala.svg" },
-        { "name": "Replit", "icon": "/assets/icons/replit.svg" },
-        { "name": "Cursor", "icon": "/assets/icons/cursor.svg", "notes": "AI tooling" }
+        { "name": "Angular", "icon": "/assets/img/tools/angular.png" },
+        { "name": "Node.js", "icon": "/assets/img/tools/node.png" },
+        { "name": "GraphQL", "icon": "/assets/img/tools/graphql.png" },
+        { "name": "Python & Scala", "icon": "/assets/img/tools/python-scala.png" },
+        { "name": "Replit & Cursor", "icon": "/assets/img/tools/replit-cursor.png" }
       ],
       "details": [
         "Hands-on with web technologies (Angular, Node.js, GraphQL) and Python or Scala for scripting, data work & analysis.",
