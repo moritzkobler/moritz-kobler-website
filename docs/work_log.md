@@ -30,6 +30,16 @@
 - Follow-ups: If any screenshots are extremely wide, consider lowering `max-width` on mobile.
 - Commit: 4fab400
 
+### 2026-01-24 — Projects: screenshot sizing + centered dots
+- Summary:
+  - Fixed screenshot cards to shrink-wrap the rendered image size (after max-height/max-width constraints) to remove excess empty space.
+  - Centered carousel position dots within the main container width.
+- Scope: work_plan section 6 (Project detail)
+- Files: site/assets/css/styles.css
+- Tests: Manual (static server)
+- Follow-ups: If `width: fit-content` behaves oddly on any browser, switch to an explicit width calculation.
+- Commit: bc304c8
+
 ### 2026-01-24 — i18n: per-bundle keys + localized projects
 - Summary:
   - Removed dotted namespaces from `copy` keys; bundles now use flat keys (file name provides the namespace).
