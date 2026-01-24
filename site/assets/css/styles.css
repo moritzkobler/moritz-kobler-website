@@ -1004,19 +1004,24 @@ section {
 }
 
 .gallery--shots {
-  --card-basis: min(620px, calc(var(--viewport-w) - var(--gutter)));
+  --card-basis: auto;
 }
 
 .gallery-card--shot {
-  padding: var(--space-3);
+  padding: 0;
+  overflow: hidden;
   cursor: pointer;
 }
 
 .shot--carousel {
-  max-height: var(--shot-max-h);
-  object-fit: contain;
-  object-position: center;
   display: block;
+  height: auto;
+  width: auto;
+  max-height: var(--shot-max-h);
+  max-width: calc(var(--viewport-w) - 2*var(--gutter));
+  border: none;
+  border-radius: 0;
+  background: transparent;
 }
 
 
