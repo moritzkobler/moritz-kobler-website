@@ -8,6 +8,16 @@
 - Follow-ups: Confirm desired rounding (month-precision) for duration.
 - Commit: da01675
 
+### 2026-01-24 — About: remove CV section + tool icons
+- Summary:
+  - Removed the bottom CV section from `/about-me` (download remains in the intro).
+  - Switched several skill/tool icons to local images under `/assets/img/tools/` where available.
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/data/about.en.json
+- Tests: N/A (static site)
+- Follow-ups: Add more tool icons by wiring additional skills to matching images.
+- Commit: c4d14b4
+
 ### 2026-01-21 — Experience cards: paragraphs, ordered highlights, typography
 - Summary:
   - Extended Experience entries to support `text[]` paragraphs rendered above highlights.
