@@ -50,6 +50,17 @@
 - Follow-ups: If needed, make nav visible on touch without hover.
 - Commit: 873c0be
 
+### 2026-01-24 — Projects: screenshot chevrons + alignment
+- Summary:
+  - Made screenshot carousel chevrons readable over images (higher-contrast background) while keeping the About carousel styling unchanged.
+  - Switched screenshot scrolling to `scrollIntoView({ inline: 'start' })` so each card aligns flush with the content inset.
+  - Hard-centered the dots for the screenshot carousel only.
+- Scope: work_plan section 6 (Project detail)
+- Files: site/assets/js/views.js, site/assets/css/styles.css
+- Tests: Manual (static server)
+- Follow-ups: Consider showing chevrons on active card without hover for touch devices.
+- Commit: 3720389
+
 ### 2026-01-24 — i18n: per-bundle keys + localized projects
 - Summary:
   - Removed dotted namespaces from `copy` keys; bundles now use flat keys (file name provides the namespace).
