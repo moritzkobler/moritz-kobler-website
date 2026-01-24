@@ -6,7 +6,7 @@
 - Files: site/assets/js/views.js, site/data/about.en.json, docs/work_plan.md
 - Tests: N/A (static site)
 - Follow-ups: Fill in `aboutMe` text in `about.en.json` (currently blank).
-- Commit: COMMIT: pending
+- Commit: 4588486
 
 ### 2026-01-21 — Work experience duration in date meta
 - Summary:
