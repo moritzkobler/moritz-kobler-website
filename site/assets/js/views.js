@@ -623,11 +623,36 @@ export async function renderProjectDetail({ lang, slug }){
   }
 
   const supportEmail = project.supportEmail;
-  const screenshots = Array.isArray(project.screenshots) ? project.screenshots : [];
+  const screenshots = Array.isArray(project.screenshots)
+    ? project.screenshots.filter((s) => typeof s === 'string' && s.trim().length > 0)
+    : [];
   const ios = project?.appStoreLinks?.ios;
   const android = project?.appStoreLinks?.android;
 
   const typeLabel = String(project.type ?? t('detailTypeFallback')).trim();
+
+  const screenshotsSection = el('section', {}, [
+    el('div', { class: 'section-title', text: t('sectionScreenshots') }),
+    screenshots.length === 0
+      ? el('p', { class: 'muted', text: t('emptyScreenshots') })
+      : (() => {
+          const gallery = el('div', { class: 'gallery gallery--lg gallery--shots' }, screenshots.map((src, idx) =>
+            el('article', { class: 'gallery-card gallery-card--shot', tabindex: '-1', onclick: onGalleryCardClick }, [
+              el('img', {
+                class: 'shot shot--carousel',
+                src,
+                alt: tf('screenshotAlt', {
+                  name: project.name ?? t('appFallbackName'),
+                  index: idx + 1
+                })
+              })
+            ])
+          ));
+          const carousel = el('div', { class: 'carousel' }, [gallery]);
+          attachCarousel(carousel);
+          return carousel;
+        })()
+  ]);
 
   return el('div', { class: 'container' }, [
     el('a', { class: 'back-link', href: '/projects', 'data-link': 'true' }, [
@@ -652,21 +677,7 @@ export async function renderProjectDetail({ lang, slug }){
       ].filter(Boolean))
     ]),
 
-    el('section', {}, [
-      el('div', { class: 'section-title', text: t('sectionScreenshots') }),
-      screenshots.length === 0
-        ? el('p', { class: 'muted', text: t('emptyScreenshots') })
-        : el('div', { class: 'shot-grid' }, screenshots.map((s, idx) =>
-            el('img', {
-              class: 'shot',
-              src: s,
-              alt: tf('screenshotAlt', {
-                name: project.name ?? t('appFallbackName'),
-                index: idx + 1
-              })
-            })
-          ))
-    ]),
+    screenshotsSection,
 
     el('section', {}, [
       el('div', { class: 'section-title', text: t('sectionAppStores') }),
