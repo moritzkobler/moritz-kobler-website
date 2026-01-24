@@ -20,6 +20,16 @@
 - Follow-ups: Tune `--shot-max-h` after visual review on real devices.
 - Commit: 93391be
 
+### 2026-01-24 — Projects: screenshot cards hug content
+- Summary:
+  - Updated the screenshot carousel so each card hugs the image (no internal padding; width driven by image aspect ratio up to `--shot-max-h`).
+  - Kept hover/active effects on the `.gallery-card` itself (image border/radius removed; card clips via `overflow: hidden`).
+- Scope: work_plan section 6 (Project detail)
+- Files: site/assets/css/styles.css
+- Tests: Manual (static server)
+- Follow-ups: If any screenshots are extremely wide, consider lowering `max-width` on mobile.
+- Commit: 4fab400
+
 ### 2026-01-24 — i18n: per-bundle keys + localized projects
 - Summary:
   - Removed dotted namespaces from `copy` keys; bundles now use flat keys (file name provides the namespace).
