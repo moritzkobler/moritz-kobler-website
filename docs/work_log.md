@@ -1,3 +1,13 @@
+### 2026-01-24 — About: intro side panel priorities
+- Summary:
+  - Replaced the right-side intro panel content with “My Priorities” (bullets) and “About Me” (paragraph) sourced from `about.{lang}.json`.
+  - Kept existing panel/heading styling by reusing the current `kv` layout (no CSS changes).
+- Scope: work_plan section 4 (About page UX and galleries)
+- Files: site/assets/js/views.js, site/data/about.en.json, docs/work_plan.md
+- Tests: N/A (static site)
+- Follow-ups: Fill in `aboutMe` text in `about.en.json` (currently blank).
+- Commit: COMMIT: pending
+
 ### 2026-01-21 — Work experience duration in date meta
 - Summary:
   - Added a compact duration (e.g. `2y1m`) before the Work Experience date range.

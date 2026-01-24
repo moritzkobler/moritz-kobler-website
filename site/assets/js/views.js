@@ -346,11 +346,29 @@ export async function renderAbout({ lang }){
 
   const meta = about?.meta ?? {};
 
+  const priorities = Array.isArray(about?.priorities) ? about.priorities.filter(Boolean) : [];
+  const aboutMe = typeof about?.aboutMe === 'string' ? about.aboutMe.trim() : '';
+
   const introSide = el('div', { class: 'card panel' }, [
     el('div', { class: 'panel__inner' }, [
-      renderKeyValue(lang === 'de' ? 'Rolle' : 'Role', meta.title),
-      renderKeyValue(lang === 'de' ? 'Ort' : 'Location', meta.location)
-    ])
+      priorities.length
+        ? el('div', { class: 'kv' }, [
+            el('div', { class: 'kv__label', text: lang === 'de' ? 'MEINE PRIORITÄTEN' : 'MY PRIORITIES' }),
+            el('div', { class: 'kv__value' }, [
+              el('ul', { class: 'list' }, priorities.map((item) => el('li', { text: String(item) })))
+            ])
+          ])
+        : null,
+
+      aboutMe
+        ? el('div', { class: 'kv' }, [
+            el('div', { class: 'kv__label', text: lang === 'de' ? 'ÜBER MICH' : 'ABOUT ME' }),
+            el('div', { class: 'kv__value' }, [
+              el('p', { class: 'p', text: aboutMe })
+            ])
+          ])
+        : null
+    ].filter(Boolean))
   ]);
 
   const hero = el('section', { class: 'card hero' }, [
