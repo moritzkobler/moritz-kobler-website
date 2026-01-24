@@ -675,9 +675,8 @@ section {
   gap: 10px;
   justify-content: center;
   align-items: center;
-  padding: 0 var(--gutter);
-  width: min(var(--max), calc(var(--viewport-w) - 2*var(--gutter)));
-  margin: 0 auto;
+  width: 100%;
+  padding: 0;
 }
 
 .carousel-dot {
