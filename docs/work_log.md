@@ -19,7 +19,7 @@
 - Files: site/assets/js/views.js, site/assets/css/styles.css, site/data/about.en.json, docs/work_plan.md
 - Tests: N/A (static site)
 - Follow-ups: Sanity-check last-card scroll behavior after gutter change.
-- Commit: COMMIT: pending
+- Commit: bd87f74
 
 ### 2026-01-21 — Work experience duration in date meta
 - Summary:
