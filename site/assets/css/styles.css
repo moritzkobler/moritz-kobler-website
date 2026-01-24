@@ -1006,7 +1006,8 @@ section {
 }
 
 .gallery--shots {
-  --card-basis: auto;
+  /* `auto` breaks the base `--gallery-trailing` calc; we set trailing via JS for variable-width image cards. */
+  --card-basis: 0px;
 }
 
 .gallery-card--shot {
@@ -1016,6 +1017,16 @@ section {
   padding: 0;
   overflow: hidden;
   cursor: pointer;
+}
+
+/* For image-only cards, keep the same nav UX but overlay it on the image. */
+.gallery-card--shot .card-nav {
+  position: absolute;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: var(--space-4);
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .shot--carousel {

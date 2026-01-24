@@ -227,6 +227,10 @@ function attachCarousel(carouselRoot){
   const cards = Array.from(gallery.children).filter((n) => n?.classList?.contains('gallery-card'));
   if (cards.length === 0) return;
 
+  if (gallery.classList.contains('gallery--shots')){
+    attachVariableTrailingForShots(gallery);
+  }
+
   if (cards.length === 1){
     cards[0].classList.add('is-active');
     return;
@@ -320,6 +324,50 @@ function attachCarousel(carouselRoot){
   gallery.addEventListener('scroll', scheduleUpdate, { passive: true });
   window.addEventListener('resize', scheduleUpdate);
   requestAnimationFrame(update);
+}
+
+const _shotsTrailingBound = new WeakSet();
+function attachVariableTrailingForShots(gallery){
+  if (_shotsTrailingBound.has(gallery)) return;
+  _shotsTrailingBound.add(gallery);
+
+  let raf = 0;
+  const schedule = () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      update();
+    });
+  };
+
+  const update = () => {
+    const cards = Array.from(gallery.children).filter((n) => n?.classList?.contains('gallery-card'));
+    if (cards.length === 0) return;
+    const last = cards[cards.length - 1];
+    if (!(last instanceof HTMLElement)) return;
+
+    const inset = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+    const viewportW = document.documentElement.clientWidth || window.innerWidth;
+    const lastW = last.getBoundingClientRect().width;
+    const trailing = Math.max(0, viewportW - inset - lastW);
+
+    gallery.style.setProperty('--gallery-trailing', `${Math.round(trailing)}px`);
+  };
+
+  // Recompute when images load (sizes become known).
+  gallery.querySelectorAll('img').forEach((img) => {
+    img.addEventListener('load', schedule, { once: true });
+  });
+
+  window.addEventListener('resize', schedule);
+  try{
+    const ro = new ResizeObserver(schedule);
+    ro.observe(gallery);
+  }catch(e){
+    // Ignore if ResizeObserver is unavailable.
+  }
+
+  schedule();
 }
 
 export async function renderAbout({ lang }){
