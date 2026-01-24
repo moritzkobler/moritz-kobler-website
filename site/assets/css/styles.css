@@ -678,7 +678,7 @@ section {
   gap: 10px;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: min(var(--max), calc(var(--viewport-w) - 2*var(--gutter)));
   padding: 0;
 }
 
