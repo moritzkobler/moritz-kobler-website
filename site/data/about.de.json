@@ -2,46 +2,246 @@
   "meta": {
     "name": "Moritz Kobler",
     "title": "Senior AI Product Manager",
-    "location": "Melbourne, Australien",
+    "location": "Fitzroy, Melbourne, Australien",
     "linkedin": "https://linkedin.com/in/mkobler",
     "cvPdf": "/assets/cv/moritz-kobler-de.pdf"
   },
-  "summary": "Platzhalter-Zusammenfassung (DE).",
+  "summary": "Als Product Manager ist es mein übergeordnetes Ziel, den Produkterfolg sicherzustellen, indem ich funktionsübergreifende Teams dabei unterstütze, erfolgreich zu sein. Mit rund 8 Jahren Erfahrung in der Entwicklung komplexer B2B-SaaS-Lösungen sowie KI-gestützter B2C-Features fokussiere ich mich darauf, unmittelbare Nutzerbedürfnisse zu verstehen und zu adressieren, während ich gleichzeitig konsequent an der Produktvision arbeite, um strategische Ziele zu realisieren.",
   "experience": [
     {
-      "id": "seek-senior-ai-pm",
+      "id": "seek-ai-product-manager",
       "company": "SEEK",
       "link": "https://www.seek.com.au/",
-      "role": "Senior AI Product Manager",
+      "roles": [
+        "AI Product Manager",
+        "Senior AI Product Manager"
+      ],
       "startDate": "2022-10",
       "endDate": "present",
-      "text": ["Platzhalter-Absatz (DE)."],
-      "highlights": ["Platzhalter-Erfolg"],
+      "text": [
+        "Beim zweiseitigen Arbeitsmarktplatz SEEK arbeite ich eng mit ML-Ingenieur:innen und Data Scientists zusammen, um Hypothesen zu priorisieren und belastbare Experimente durchzuführen, die zu besseren Jobempfehlungen für unsere Nutzer:innen führen. Zudem kooperiere ich mit Frontend-Teams und dem Senior Management, um strategische Initiativen zu rahmen und voranzutreiben. Zentrale Erfolge:"
+      ],
+      "highlights": [
+        "Erkundung und Einsatz von LLMs, Embeddings, Cross-Encodern und Sequenzmodellierung in Empfehlungssystemen sowie Zusammenarbeit mit dem Frontend zur optimalen Erfassung von Nutzerintentionen mittels GenAI zur Verbesserung des Matchings.",
+        "Leitung einer großen, organisationsweiten Initiative zur Vereinheitlichung von Technologie und Online-Plattformen über 8 Märkte und 3 Marken im APAC-Raum hinweg.",
+        "Durchführung markenübergreifender Experimente über sechs Empfehlungsprodukte hinweg mit signifikanten Year-over-Year-Steigerungen bei Job-Kandidat:innen-Matches."
+      ],
+      "highlightType": "ordered",
       "logo": "/assets/img/companies/seek.jpg"
+    },
+    {
+      "id": "itonics-product-management",
+      "company": "ITONICS GMBH",
+      "link": "https://www.itonics-innovation.com/",
+      "roles": [
+        "Junior Product Manager",
+        "Product Manager",
+        "Senior Product Manager"
+      ],
+      "startDate": "2018-03",
+      "endDate": "2022-06",
+      "text": [
+        "Während meiner über vierjährigen Tätigkeit bei ITONICS, einer B2B-Softwareplattform für Innovationsmanagement, leitete ich mit agilen Teams in Deutschland und Nepal die Entwicklung einer neuen Produktlinie und begleitete den gesamten Produktlebenszyklus aus erster Hand: von Discovery und Prototyping über Launch, Iteration bis hin zum Support.",
+        "Ich verantwortete Roadmap und Backlogs und wirkte aktiv an Produktvision, -strategie und -preisgestaltung mit. Dabei arbeitete ich eng mit Stakeholdern aus dem gesamten Unternehmen zusammen, um eine organisationsweite Ausrichtung sicherzustellen. Zentrale Erfolge:"
+      ],
+      "highlights": [
+        "Erfolgreicher Markteintritt der neuen Produktlinie sowie Initiierung und Launch des Big-Data-Produktangebots des Unternehmens.",
+        "Etablierung von Initiativen für datengetriebene Entscheidungsfindung im Produktmanagement.",
+        "Übergang von einer projekt- zu einer produktzentrierten Organisation durch Gestaltung von Produktprozessen und Aufbau des wachsenden Produktteams."
+      ],
+      "highlightType": "ordered",
+      "logo": "/assets/img/companies/itonics.jpg"
+    },
+    {
+      "id": "bookingkit-working-student-intern",
+      "company": "BOOKINGKIT GMBH",
+      "link": "https://www.bookingkit.de/",
+      "roles": [
+        "Werkstudent Produktmanagement, BI & Marketing",
+        "Praktikant Produktmanagement, BI & Marketing"
+      ],
+      "startDate": "2014-08",
+      "endDate": "2017-03",
+      "text": [
+        "Als einer der ersten Mitarbeitenden bei bookingkit unterstützte ich zunächst dort, wo Hilfe benötigt wurde – von der Arbeit an der Unternehmenswebsite über das Schreiben von Blogartikeln und Newslettern bis hin zu Grafikdesign und Kundensupport. Schon bald verlagerte sich mein Fokus jedoch in Richtung Produkt- und Business-Intelligence-Themen, wo ich ein Konzept zur funktionsseitigen Preisoptimierung auf Basis historischer Buchungsdaten entwickelte."
+      ],
+      "logo": "/assets/img/companies/bookingkit.jpg"
     }
   ],
   "education": [
     {
-      "id": "msc-tu-berlin",
-      "institution": "Technische Universität Berlin & Lund University",
+      "id": "tu-berlin-msc-industrial-engineering-software-technology",
+      "institution": "Technische Universität Berlin",
       "link": "https://www.linkedin.com/company/1188458/",
       "degree": "M.Sc. Wirtschaftsingenieurwesen",
-      "focus": "Informatik",
-      "startDate": "2014-09",
-      "endDate": "2018-02",
-      "details": ["Platzhalter-These"],
-      "logo": "/assets/logos/tu-berlin.svg"
+      "focus": "Schwerpunkt: Informatik",
+      "startDate": "2014",
+      "endDate": "2018",
+      "details": [
+        "Abschlussnote: 1,2 (Skala: 1,0 = sehr gut bis 4,0 = ausreichend).",
+        "Masterarbeit zu datengetriebenem Environmental Scanning und Foresight."
+      ],
+      "logo": "/assets/img/education/tu-berlin.jpg"
+    },
+    {
+      "id": "lund-university-master-computer-science",
+      "institution": "Lund University",
+      "link": "https://www.linkedin.com/company/15105405/",
+      "degree": "Auslandsstudium im Rahmen des Erasmus+-Programms",
+      "focus": "Schwerpunkt: Informatik",
+      "startDate": "2015",
+      "endDate": "2016",
+      "details": [
+        "Aktivitäten und Mitgliedschaften: Sydskånska Nationen."
+      ],
+      "logo": "/assets/img/education/lund-university.jpg"
+    },
+    {
+      "id": "tu-berlin-bsc-industrial-engineering-transport",
+      "institution": "Technische Universität Berlin",
+      "link": "https://www.linkedin.com/company/1188458/",
+      "degree": "B.Sc. Wirtschaftsingenieurwesen",
+      "focus": "Verkehr",
+      "startDate": "2011",
+      "endDate": "2014",
+      "details": [
+        "Abschlussnote: 1,9 (Skala: 1,0 = sehr gut bis 4,0 = ausreichend).",
+        "Bachelorarbeit zu Technology Readiness und Weltraumtourismus."
+      ],
+      "logo": "/assets/img/education/tu-berlin.jpg"
+    }
+  ],
+  "volunteering": [
+    {
+      "id": "sydskanska-nationen-eventmanagement",
+      "organization": "Sydskånska Nationen",
+      "link": "https://www.linkedin.com/company/9385592/",
+      "role": "Eventmanagement",
+      "startDate": "2016-01",
+      "endDate": "2016-06",
+      "cause": "Wissenschaft und Technologie",
+      "highlights": [
+        "Organisation, Marketing und Durchführung von Veranstaltungen",
+        "Teamleitung"
+      ],
+      "image": "/assets/img/volunteering/sydskanska.jpg",
+      "url": "https://www.linkedin.com/company/9385592/"
+    }
+  ],
+  "references": [
+    {
+      "id": "milen-zaykov",
+      "name": "Milen Zaykov",
+      "link": "https://www.linkedin.com/in/milen-zaykov-95698912a",
+      "profileUrl": "https://www.linkedin.com/in/milen-zaykov-95698912a",
+      "image": "/assets/img/references/milen.jpg",
+      "title": "Product Manager bei Softgarden",
+      "date": "2022-10-05",
+      "relation": "berichtete direkt an Moritz",
+      "text": "Ich hatte das Glück, Moritz sowohl als Mentor als auch als direkten Vorgesetzten zu haben. Er ist eine außergewöhnlich kompetente und unterstützende Persönlichkeit, insbesondere in den Bereichen People Management und datengetriebene Entscheidungsfindung. Er steuerte nicht nur die Produktvision souverän in die richtige Richtung, indem er sicherstellte, dass wir die richtigen Initiativen priorisierten, sondern befähigte kontinuierlich alle Product-Team-Mitglieder, die er betreute. Es war eine großartige Erfahrung, von ihm zu lernen und mit ihm zu arbeiten."
+    },
+    {
+      "id": "tikendra-chand",
+      "name": "Tikendra Chand",
+      "link": "https://www.linkedin.com/in/tikendrachand",
+      "profileUrl": "https://www.linkedin.com/in/tikendrachand",
+      "image": "/assets/img/references/tikendra.jpg",
+      "title": "Senior Software Engineer bei AT&T",
+      "date": "2022-09-03",
+      "relation": "arbeitete mit Moritz im selben Team",
+      "text": "Moritz ist der beste Product Manager, mit dem ich je gearbeitet habe. Wir hatten eine großartige Zusammenarbeit an einem Big-Data-Produkt bei ITONICS. Gemeinsam entwickelten wir eine umfangreiche Datensammlung („Signals“) und darauf aufbauend verschiedene Apps wie „Insights“, „Trends“ usw. für die Innovationsmanagement-Suite von ITONICS. Moritz führte dieses Produkt von Grund auf erfolgreich zum Markteintritt. Er hatte stets Antworten auf alle produktbezogenen Fragen, war immer mit klaren Spezifikationen vorbereitet und technisch auf dem neuesten Stand, insbesondere in den Bereichen Big Data, KI und Machine Learning. Zudem betreute er parallel weitere Kernprodukte mit anderen Teams und überzeugte auch dort auf ganzer Linie. Moritz ist ein äußerst fleißiger, selbstmotivierter und ergebnisorientierter Product Manager mit starken Produktideen. Uneingeschränkt empfehlenswert!"
+    },
+    {
+      "id": "dennis-brandt",
+      "name": "Dennis Brandt",
+      "link": "https://www.linkedin.com/in/dennis-brandt-4778bb1a",
+      "profileUrl": "https://www.linkedin.com/in/dennis-brandt-4778bb1a",
+      "image": "/assets/img/references/dennis.jpg",
+      "title": "Lead Software Engineer bei ITONICS | Shaping Innovation",
+      "date": "2022-09-01",
+      "relation": "arbeitete mit Moritz im selben Team",
+      "text": "Die Zusammenarbeit mit Moritz über mehrere Jahre hinweg war eine absolute Freude! Neben seinem großartigen Charakter ist er ein äußerst kompetenter Mensch. Er hat sich zu 100 % in unsere Cloud-App-Suite vertieft und den Scrum-Teams geholfen, sich in Planungen und Produktspezifikationen zurechtzufinden. Die Zusammenarbeit zwischen Produkt und Engineering war stets positiv und sorgte dafür, dass Backlog-Items richtig priorisiert wurden. Besonders hervorzuheben ist Moritz’ technisches Verständnis – seine Kenntnisse rund um Code waren enorm hilfreich bei der Kommunikation von Produktanforderungen. Nebenbei: Seine etwas eigenwillige Obsession mit Flexbox war ein Lichtblick in der dunklen Welt des responsiven CSS! Ich wünsche Moritz alles Gute für seine Zukunft – seine künftigen Kolleg:innen kann man nur beneiden."
+    },
+    {
+      "id": "michael-durst",
+      "name": "Michael Durst",
+      "link": "https://www.linkedin.com/in/michaeldurst",
+      "profileUrl": "https://www.linkedin.com/in/michaeldurst",
+      "image": "/assets/img/references/michael.jpg",
+      "title": "Founder @ ITONICS, The #1 Innovation OS",
+      "date": "2022-08-31",
+      "relation": "führte Moritz direkt",
+      "text": "Moritz steht für Umsetzung: tiefes Verständnis der übergeordneten Unternehmensstrategie ebenso wie der Details darunter. Strukturierte Produktplanung, Aufgaben-Delegation, agiles Programm- und Projektmanagement, Team-Zusammenarbeit, Kommunikation mit dem Management sowie ein ausgeprägtes Talent für UX/UI. Mo vereint eine sehr „deutsche“ Präzision, exzellentes Zeitmanagement und Termintreue mit Motivation, Teamgeist, Humor und Leichtigkeit. Auch in intensiven Phasen hielt er das Team fokussiert, motiviert und produktiv. Wir vermissen seine Energie und sein Lächeln. Jedes Unternehmen kann sich glücklich schätzen, Mo im Team zu haben – ich empfehle ihn uneingeschränkt."
+    },
+    {
+      "id": "kiran-shakya",
+      "name": "Kiran Shakya",
+      "link": "https://www.linkedin.com/in/kiranshakya",
+      "profileUrl": "https://www.linkedin.com/in/kiranshakya",
+      "image": "/assets/img/references/kiran.jpg",
+      "title": "Lead Software Engineer",
+      "date": "2022-08-30",
+      "relation": "arbeitete mit Moritz im selben Team",
+      "text": "Bei Moritz als Verantwortlichem für die Produktspezifikation hatte ich keinerlei Sorgen. Er ist stets präzise und dokumentiert außergewöhnlich gut. Als Product Owner der Cloud-Version unserer Software arbeitete ich über mehr als zwei Jahre sehr eng mit ihm zusammen. Seine Fähigkeit, Ideen konstruktiv zu präsentieren und effektiv mit dem Team zu kollaborieren, war stets beeindruckend. Auch in anspruchsvollen Meetings überzeugte er am Ende immer. Wir sind sehr dankbar für die gemeinsame Zeit – Moritz wäre für jedes Unternehmen ein echter Gewinn."
+    },
+    {
+      "id": "salome-leshkasheli",
+      "name": "Salome Leshkasheli",
+      "link": "https://www.linkedin.com/in/salome-leshkasheli",
+      "profileUrl": "https://www.linkedin.com/in/salome-leshkasheli",
+      "image": "/assets/img/references/salome.jpg",
+      "title": "Team Lead Frontend Engineer",
+      "date": "2022-08-29",
+      "relation": "war Moritz fachlich unterstellt, wurde jedoch nicht direkt von ihm geführt",
+      "text": "Ich hatte das Vergnügen, zwei Jahre mit Moritz im Produktteam zu arbeiten, und war stets beeindruckt von seiner Fähigkeit, mehrere Themen sehr effizient zu jonglieren. Er ist ein brillanter und talentierter Product Manager, der genau weiß, wie man das Beste aus einem Produkt herausholt. Ich empfehle Moritz uneingeschränkt, wenn es darum geht, Dinge zuverlässig umzusetzen."
     }
   ],
   "skills": [
     {
-      "group": "Produkt",
-      "items": ["Produktstrategie", "Discovery", "Experimente"]
+      "group": "Tools im Alltag",
+      "items": [
+        { "name": "Tableau & Amplitude", "icon": "/assets/img/tools/analytics-bi.png", "notes": "Analytics, Business Intelligence, Reporting" },
+        { "name": "Atlassian Suite", "icon": "/assets/img/tools/atlassian.png", "notes": "Aufgabenmanagement, Dokumentation" },
+        { "name": "MS Office Suite", "icon": "/assets/img/tools/ms-office.png", "notes": "Gerne auch Google Workspace" },
+        { "name": "Miro", "icon": "/assets/img/tools/miro.png", "notes": "Ideation, Brainstorming, Kollaboration" },
+        { "name": "Databricks", "icon": "/assets/img/tools/databricks.png", "notes": "Ad-hoc-Datenanalyse" },
+        { "name": "ChatGPT", "icon": "/assets/img/tools/chatgpt.png", "notes": "Effizienz, Schreiben, Ideenverfeinerung" }
+      ]
     },
     {
-      "group": "KI",
-      "items": ["LLMs", "Evaluation", "Prompting"]
+      "group": "Technologien, mit denen ich vertraut bin",
+      "items": [
+        { "name": "Angular", "icon": "/assets/img/tools/angular.png" },
+        { "name": "Node.js", "icon": "/assets/img/tools/node.png" },
+        { "name": "GraphQL", "icon": "/assets/img/tools/graphql.png" },
+        { "name": "Python & Scala", "icon": "/assets/img/tools/python-scala.png" },
+        { "name": "Replit & Cursor", "icon": "/assets/img/tools/replit-cursor.png" }
+      ],
+      "details": [
+        "Hands-on-Erfahrung mit Web-Technologien (Angular, Node.js, GraphQL) sowie Python oder Scala für Scripting, Datenarbeit und Analysen.",
+        "Sicher im Umgang mit KI-Tools wie Replit, Cursor und lokalen Modellen für Bildgenerierung.",
+        "Grundkenntnisse in Cloud-Infrastruktur und Microservices."
+      ]
     }
   ],
-  "hobbies": ["Laufen", "Fotografie"]
+  "hobbies": [
+    "Fantasy-Nerd (Filme, Serien, Bücher)",
+    "Pianist",
+    "Spacing-Fanatiker"
+  ],
+  "priorities": [
+    "Dem Team ermöglichen, sein Bestes zu leisten",
+    "Offene und klare Kommunikation",
+    "Vergangene Entscheidungen reflektieren und Wiederholungen vermeiden",
+    "Das wirklich Wichtige priorisieren und umsetzen",
+    "Gründlichkeit und Konsistenz anstreben",
+    "Einfachheit fördern",
+    "Kontinuierlich lernen und besser werden"
+  ],
+  "aboutMe": "34 Jahre alt. Aufgewachsen in Deutschland, Indien, Israel und Ägypten. Lebe glücklich in Fitzroy (dem Berlin-ähnlichsten Ort, den wir in Melbourne finden konnten) mit meinem Mann James. Fantasy-Nerd: Filme, Serien, Bücher – you name it. Pianist. Spacing-Fanatiker.",
+  "contact": {
+    "phone": "+61 409 216 393",
+    "email": "moritz.kobler@gmail.com",
+    "linkedinText": "linkedin.com/in/mkobler"
+  }
 }
