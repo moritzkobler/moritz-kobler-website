@@ -1,3 +1,15 @@
+### 2026-01-24 — Projects: overview/detail UX + Planimo
+- Summary:
+  - Removed the top hero card on `/projects` and aligned project cards with the About card header layout (logo sizing, spacing, typography).
+  - Kept the “Projects” nav item active on project detail pages and added a minimal “Back to Projects” link above the detail hero.
+  - Moved the project `type` into a small all-caps meta tag in front of status on the detail hero.
+  - Added a second app project “Planimo” in EN/DE.
+- Scope: work_plan sections 5/6 (Projects listing + detail)
+- Files: site/assets/js/views.js, site/assets/js/app.js, site/assets/css/styles.css, site/data/projects.en.json, site/data/projects.de.json
+- Tests: Manual (static server)
+- Follow-ups: Replace placeholder support/privacy copy per app when ready.
+- Commit: 6c45617
+
 ### 2026-01-24 — i18n: per-bundle keys + localized projects
 - Summary:
   - Removed dotted namespaces from `copy` keys; bundles now use flat keys (file name provides the namespace).
