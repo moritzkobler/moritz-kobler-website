@@ -48,6 +48,7 @@
             "slug": "planimo",
             "type": "app",
             "name": "Planimo",
+            "clickable": false,
             "status": "In development",
             "shortDescription": "A life planning app for goals, routines, and clarity.",
             "longDescription": "Planimo helps you turn long-term goals into realistic plans — with routines, checkpoints, and gentle reminders.",

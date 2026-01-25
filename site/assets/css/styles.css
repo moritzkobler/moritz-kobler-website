@@ -904,6 +904,17 @@ section {
   padding: var(--space-4);
 }
 
+.project-card--inactive {
+  border-color: rgba(233, 240, 255, .08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .008));
+  cursor: default;
+}
+
+.project-card--inactive .logo--project {
+  opacity: .9;
+  filter: saturate(.9);
+}
+
 .project-card__head {
   margin-bottom: 0;
   min-height: auto;

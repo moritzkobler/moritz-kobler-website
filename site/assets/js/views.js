@@ -585,10 +585,12 @@ export async function renderProjects({ lang }){
   const list = el('section', { class: 'grid-cards' }, projects.map((p) => {
     const href = `/projects/apps/${encodeURIComponent(p.slug)}`;
     const type = String(p.type ?? '').trim();
+    const isClickable = p?.clickable !== false;
     const iconSrc = typeof p?.icon === 'string' && p.icon.trim().length > 0
       ? p.icon.trim()
       : iconDataUrl(p.slug ?? '', p.name ?? '');
-    return el('a', { class: 'card card-link project-card', href, 'data-link': 'true' }, [
+
+    const cardBody = [
       el('div', { class: 'card-row card-head project-card__head' }, [
         renderLogo(iconSrc, p.name ?? '', 'logo--project'),
         el('div', { class: 'card-row__body card-head__body' }, [
@@ -602,7 +604,13 @@ export async function renderProjects({ lang }){
           ].filter(Boolean))
         ])
       ])
-    ]);
+    ];
+
+    if (!isClickable){
+      return el('article', { class: 'card project-card project-card--inactive', 'aria-disabled': 'true' }, cardBody);
+    }
+
+    return el('a', { class: 'card card-link project-card', href, 'data-link': 'true' }, cardBody);
   }));
 
   return el('div', { class: 'container' }, [header, list]);
