@@ -1,3 +1,14 @@
+### 2026-01-25 — Projects: titles, icons, and favicons
+- Summary:
+  - Set project detail document title from the project name (instead of the slug).
+  - Added optional per-project `icon` path support (used on listing + detail), with fallback to the generated placeholder.
+  - Added recommended favicon links (SVG primary, PNG fallbacks, Apple touch icon) and copied assets to the site root.
+- Scope: work_plan section 6 (Project detail), section 2 (Base HTML)
+- Files: site/assets/js/views.js, site/data/projects.en.json, site/data/projects.de.json, site/index.html, site/404.html, site/favicon.svg, site/favicon-32x32.png, site/favicon-16x16.png, site/apple-touch-icon.png
+- Tests: Manual (local static server)
+- Follow-ups: Optional cleanup: rename source `apple-touch-icon.png.png` in `site/assets/img/shared/`.
+- Commit: 47e78cc
+
 ### 2026-01-24 — Projects: overview/detail UX + Planimo
 - Summary:
   - Removed the top hero card on `/projects` and aligned project cards with the About card header layout (logo sizing, spacing, typography).

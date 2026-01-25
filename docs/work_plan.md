@@ -166,6 +166,8 @@ PRD source: :contentReference[oaicite:0]{index=0}
 - TODO: Ensure URL structure supports future non-app project types:
   - Use `type` in data model and keep routing extensible.
 
+Implemented: Project detail document title uses app name (not slug), and projects support an optional `icon` asset path with fallback placeholder.
+
 ---
 
 ## 7) Language toggle UX + persistence
