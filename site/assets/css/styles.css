@@ -499,7 +499,7 @@ section {
 .gallery {
   display: flex;
   overflow-x: auto;
-  gap: calc(var(--space-4) + 2px);
+  gap: calc(var(--space-4));
   /* Cross-axis clipping is common when one axis is scrollable.
     Keep layout spacing tight, but reserve independent internal paint room
     for glows via padding + negative margin that cancels in flow. */
@@ -509,16 +509,16 @@ section {
   margin-top: calc(-1 * var(--space-2) - 2 * var(--glow-room));
   margin-bottom: calc(-1 * var(--glow-room));
   scroll-snap-type: x mandatory;
-  width: 100dvw;
-  margin-left: calc(-1 * var(--gallery-inset));
   --card-basis: min(360px, calc(100dvw - 2*var(--gutter)));
   /* Keep the first card aligned to the main `.container` left edge.
      On narrow viewports use a small inset; on wide viewports compute the
      container offset and add the standard horizontal padding. */
   --gallery-inset: max(var(--gutter), calc((var(--viewport-w) - var(--max)) / 2));
+  --gallery-inset-scroll: max(var(--gutter), calc((var(--viewport-w) - var(--max) - var(--gutter)) / 2));
   padding-left: var(--gallery-inset);
+  scroll-padding-inline: calc(var(--gallery-inset-scroll));
   padding-right: var(--gallery-inset);
-  scroll-padding-inline: var(--gallery-inset);
+  margin-left: calc(-1 * var(--gallery-inset));
 
   /* Allow the LAST card to scroll all the way to the left inset again */
   --gallery-trailing: max(0px, calc(var(--viewport-w) - var(--gallery-inset) - var(--card-basis)));
@@ -557,6 +557,7 @@ section {
 .gallery-card {
   flex: 0 0 var(--card-basis);
   scroll-snap-align: start;
+  
   padding: var(--space-4);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1105,6 +1106,11 @@ section {
 
   .shot-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery {
+    /* For some reason, I need to add 3px to the width for it to go fully to the edge...*/
+    width: calc(100dvw + 3px);
   }
 }
 
