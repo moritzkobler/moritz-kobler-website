@@ -9,6 +9,16 @@
 - Follow-ups: Optional cleanup: rename source `apple-touch-icon.png.png` in `site/assets/img/shared/`.
 - Commit: 47e78cc
 
+### 2026-01-25 — Projects: non-clickable overview cards
+- Summary:
+  - Added per-project `clickable` config (default true) to control whether the Projects overview card navigates to the detail page.
+  - Rendered non-clickable cards as non-links (no hover affordance) with a subtle inactive look.
+- Scope: work_plan section 5 (Projects listing)
+- Files: site/assets/js/views.js, site/data/projects.en.json, site/data/projects.de.json, site/assets/css/styles.css
+- Tests: Manual (local static server)
+- Follow-ups: If needed, add a localized “Coming soon” badge/copy for non-clickable items.
+- Commit: c8b6648
+
 ### 2026-01-24 — Projects: overview/detail UX + Planimo
 - Summary:
   - Removed the top hero card on `/projects` and aligned project cards with the About card header layout (logo sizing, spacing, typography).

@@ -152,6 +152,8 @@ PRD source: :contentReference[oaicite:0]{index=0}
   - Entire card clickable (but preserve semantic links)
   - Focusable with keyboard
 
+Implemented: Project cards support a per-project `clickable` flag (default true) to disable navigation and render a subtly inactive, non-hoverable card.
+
 ---
 
 ## 6) Page implementation: Project detail (`/projects/apps/{slug}`)
