@@ -585,9 +585,12 @@ export async function renderProjects({ lang }){
   const list = el('section', { class: 'grid-cards' }, projects.map((p) => {
     const href = `/projects/apps/${encodeURIComponent(p.slug)}`;
     const type = String(p.type ?? '').trim();
+    const iconSrc = typeof p?.icon === 'string' && p.icon.trim().length > 0
+      ? p.icon.trim()
+      : iconDataUrl(p.slug ?? '', p.name ?? '');
     return el('a', { class: 'card card-link project-card', href, 'data-link': 'true' }, [
       el('div', { class: 'card-row card-head project-card__head' }, [
-        renderLogo(iconDataUrl(p.slug ?? '', p.name ?? ''), p.name ?? '', 'logo--project'),
+        renderLogo(iconSrc, p.name ?? '', 'logo--project'),
         el('div', { class: 'card-row__body card-head__body' }, [
           el('div', { class: 'card-head__top' }, [
             el('div', { class: 'muted card-head__label card-head__label--compact', text: type ? type.toUpperCase() : '' }),
@@ -606,12 +609,12 @@ export async function renderProjects({ lang }){
 }
 
 export async function renderProjectDetail({ lang, slug }){
-  setTitle(slug);
   const { data, t, tf } = await loadBundle(lang, 'projects');
   const projects = Array.isArray(data?.projects) ? data.projects : [];
   const project = projects.find((p) => p.slug === slug);
 
   if (!project){
+    setTitle(t('notFoundTitle'));
     return el('div', { class: 'container' }, [
       el('section', { class: 'card hero' }, [
         el('h1', { class: 'h1', text: t('notFoundTitle') }),
@@ -623,7 +626,12 @@ export async function renderProjectDetail({ lang, slug }){
     ]);
   }
 
+  setTitle(project.name ?? slug);
+
   const supportEmail = project.supportEmail;
+  const iconSrc = typeof project?.icon === 'string' && project.icon.trim().length > 0
+    ? project.icon.trim()
+    : iconDataUrl(project.slug ?? '', project.name ?? '');
   const screenshots = Array.isArray(project.screenshots)
     ? project.screenshots.filter((s) => typeof s === 'string' && s.trim().length > 0)
     : [];
@@ -666,7 +674,7 @@ export async function renderProjectDetail({ lang, slug }){
         project.status ? el('span', { class: 'muted project-meta__status', text: project.status }) : null
       ].filter(Boolean)),
       el('div', { class: 'project-hero' }, [
-        renderLogo(iconDataUrl(project.slug ?? '', project.name ?? ''), project.name ?? '', 'logo--project-lg'),
+        renderLogo(iconSrc, project.name ?? '', 'logo--project-lg'),
         el('div', {}, [
           el('h1', { class: 'h1', text: project.name ?? '' }),
           el('p', { class: 'p', text: project.longDescription ?? '' })

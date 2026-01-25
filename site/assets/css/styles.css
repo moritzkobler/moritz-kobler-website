@@ -388,7 +388,6 @@ main {
 .p {
   margin: 0;
   color: var(--muted);
-  max-width: 70ch;
 }
 
 .stack {
@@ -772,6 +771,7 @@ section {
   font-size: 12px;
   font-weight: var(--w-kicker);
   align-self: flex-start;
+  text-transform: capitalize;
 }
 
 .card-head__duration {
@@ -916,7 +916,6 @@ section {
 .logo--project-lg {
   width: 64px;
   height: 64px;
-  border-radius: 22px;
 }
 
 .project-meta {
