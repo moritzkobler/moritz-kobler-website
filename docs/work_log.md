@@ -9,6 +9,16 @@
 - Follow-ups: Optional cleanup: rename source `apple-touch-icon.png.png` in `site/assets/img/shared/`.
 - Commit: 47e78cc
 
+### 2026-01-25 — Deployment: deploy branch automation
+- Summary:
+  - Added a GitHub Actions workflow to publish `/site` to the `deploy` branch (flattened web root).
+  - Documented Hostinger Git deployment setup to deploy the `deploy` branch to `public_html/`.
+- Scope: work_plan section 12 (Deployment readiness)
+- Files: .github/workflows/deploy-hostinger.yml, README.md
+- Tests: N/A
+- Follow-ups: Verify Hostinger Git deploy supports selecting the `deploy` branch.
+- Commit: cf98af8
+
 ### 2026-01-25 — Projects: non-clickable overview cards
 - Summary:
   - Added per-project `clickable` config (default true) to control whether the Projects overview card navigates to the detail page.

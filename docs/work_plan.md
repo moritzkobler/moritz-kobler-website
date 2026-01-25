@@ -255,6 +255,8 @@ Implemented note: Asset files are intentionally not generated in-repo; see `/doc
   - Open project pages
   - Verify consent banner gating analytics
 
+Implemented: Added GitHub Actions workflow to publish `/site` to a `deploy` branch and documented Hostinger Git deployment setup in `README.md`.
+
 ---
 
 ## Definition of Done
