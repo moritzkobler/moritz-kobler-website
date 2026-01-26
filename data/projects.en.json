@@ -1,0 +1,67 @@
+{
+    "copy": {
+        "pageTitle": "Projects",
+        "heroTitle": "Projects",
+        "heroSubtitle": "I enjoy building apps that already exist in some form, but with the freedom to shape them exactly the way I want—and to extend them beyond their original constraints. GenAI makes this especially interesting: it enables more adaptive, personalized interfaces and behaviors, closer to what you might think of as early GenUI. These projects are a mix of explorations and longer-term builds, focused on practical use, thoughtful design, and learning by doing rather than chasing novelty.",
+        "notFoundTitle": "Not found",
+        "notFoundBody": "This project does not exist (yet).",
+        "notFoundBackLink": "Back to Projects",
+        "backToProjects": "Back to Projects",
+        "detailTypeFallback": "project",
+        "sectionScreenshots": "Screenshots",
+        "emptyScreenshots": "No screenshots yet.",
+        "screenshotAlt": "{name} screenshot {index}",
+        "appFallbackName": "App",
+        "sectionAppStores": "App Stores",
+        "openOnIos": "Open on iOS",
+        "openOnAndroid": "Open on Android",
+        "emptyStoreLinks": "No store links yet.",
+        "sectionSupport": "Support",
+        "emptySupportEmail": "No support email provided.",
+        "sectionPrivacy": "Privacy"
+    },
+    "projects": [
+        {
+            "slug": "chronimo",
+            "type": "app",
+            "name": "Chronimo",
+            "icon": "/assets/img/projects/icons/chronimo-icon-01.png",
+            "status": "Available on iOS",
+            "shortDescription": "A lightweight, local-first time tracker for projects, tasks, and sessions—built for fast start/stop, clear totals, and minimal friction.",
+            "longDescription": "Chronimo is a focused time-tracking app designed for creative and knowledge work. Track time across Projects, break work down into Tasks, and log Sessions with one-tap start/stop. The Home screen combines a work-hours status donut (worked vs planned time) with quick access to your most recent or pinned tasks and a categorized projects list. Each project rolls up totals across its tasks, and each task provides an editable session log so you can correct mistimed or forgotten tracking.\n\nChronimo is local-first with no dedicated backend: data lives on-device and is intended to sync via iCloud across your Apple devices. It stays usable offline, supports a floating active-session card for rapid control, and aims to support lock screen start/stop controls in native builds. Settings include work-hours scheduling (driving the donut), time display formatting, project categories management, and export options (CSV + database export in native builds).",
+            "appStoreLinks": {
+                "ios": null,
+                "android": null
+            },
+            "supportEmail": "gordianknotapps@gmail.com",
+            "privacy": "Chronimo is designed to be local-first: your projects, tasks, and sessions are stored on your device. Cross-device sync is intended to use iCloud (no separate Chronimo account).\n\nTo understand basic product usage and improve the app, Chronimo uses TelemetryDeck for privacy-friendly analytics. TelemetryDeck is used only for aggregated, feature-based usage events (e.g., which screens or actions are used) and is not used for advertising, personalization, or user profiling. We do not send names, email addresses, precise location, contacts, advertising identifiers, or any other directly identifying information to TelemetryDeck. Events are collected anonymously and are not linked to your identity.\n\nApp Store privacy disclosures include the practices of third-party partners you integrate (such as TelemetryDeck).",
+            "screenshots": [
+                "/assets/img/projects/screenshots/chronimo-01.PNG",
+                "/assets/img/projects/screenshots/chronimo-02.PNG",
+                "/assets/img/projects/screenshots/chronimo-03.PNG",
+                "/assets/img/projects/screenshots/chronimo-04.PNG",
+                "/assets/img/projects/screenshots/chronimo-05.PNG",
+                "/assets/img/projects/screenshots/chronimo-06.PNG",
+                "/assets/img/projects/screenshots/chronimo-07.PNG",
+                "/assets/img/projects/screenshots/chronimo-08.PNG",
+                "/assets/img/projects/screenshots/chronimo-09.PNG"
+            ]
+        },
+        {
+            "slug": "planimo",
+            "type": "app",
+            "name": "Planimo",
+            "clickable": false,
+            "status": "In development",
+            "shortDescription": "A life planning app for goals, routines, and clarity.",
+            "longDescription": "Planimo helps you turn long-term goals into realistic plans — with routines, checkpoints, and gentle reminders.",
+            "appStoreLinks": {
+                "ios": null,
+                "android": null
+            },
+            "supportEmail": "gordianknotapps@gmail.com",
+            "privacy": "Privacy statement placeholder.",
+            "screenshots": []
+        }
+    ]
+}

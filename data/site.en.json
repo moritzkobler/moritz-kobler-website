@@ -1,0 +1,8 @@
+{
+  "copy": {
+    "notFoundHeroTitle": "404 — Page not found",
+    "notFoundBody": "No content for: {path}",
+    "notFoundBackHome": "Go to start",
+    "errorTitle": "Error"
+  }
+}
