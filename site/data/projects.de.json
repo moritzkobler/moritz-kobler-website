@@ -33,7 +33,7 @@
                 "ios": null,
                 "android": null
             },
-            "supportEmail": "support@domain.com",
+            "supportEmail": "gordianknotapps@gmail.com",
             "privacy": "Chronimo ist lokal-first konzipiert: Projekte, Tasks und Sessions werden auf deinem Gerät gespeichert. Die geräteübergreifende Synchronisation erfolgt vorgesehen über iCloud (ohne separates Chronimo-Konto).\n\nUm grundlegende Nutzungsmuster zu verstehen und die App zu verbessern, verwendet Chronimo TelemetryDeck für datenschutzfreundliche Analysen. TelemetryDeck wird ausschließlich für aggregierte, funktionsbasierte Nutzungsereignisse eingesetzt (z. B. welche Screens oder Aktionen verwendet werden) und nicht für Werbung, Personalisierung oder Nutzerprofiling. Es werden keine Namen, E-Mail-Adressen, präzisen Standortdaten, Kontakte, Werbe-IDs oder andere direkt identifizierende Informationen an TelemetryDeck übertragen. Die erfassten Events sind anonym und nicht mit deiner Identität verknüpft.\n\nDie Datenschutzangaben im App Store berücksichtigen die Praktiken integrierter Drittanbieter (wie TelemetryDeck).",
             "screenshots": [
                 "/assets/img/projects/screenshots/chronimo-01.PNG",
@@ -59,7 +59,7 @@
                 "ios": null,
                 "android": null
             },
-            "supportEmail": "support@domain.com",
+            "supportEmail": "gordianknotapps@gmail.com",
             "privacy": "Platzhalter für Datenschutzerklärung.",
             "screenshots": []
         }
