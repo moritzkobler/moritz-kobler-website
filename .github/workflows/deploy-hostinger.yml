@@ -25,5 +25,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: deploy
           publish_dir: ./site
-          force_orphan: true
-          commit_message: "deploy: ${GITHUB_SHA}"
+          force_orphan: false   # or remove this line entirely
+          commit_message: "deploy: ${{ github.sha }}"
