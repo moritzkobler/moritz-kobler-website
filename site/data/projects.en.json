@@ -36,12 +36,15 @@
             "supportEmail": "support@domain.com",
             "privacy": "Chronimo is designed to be local-first: your projects, tasks, and sessions are stored on your device. Cross-device sync is intended to use iCloud (no separate Chronimo account).\n\nTo understand basic product usage and improve the app, Chronimo uses TelemetryDeck for privacy-friendly analytics. TelemetryDeck is used only for aggregated, feature-based usage events (e.g., which screens or actions are used) and is not used for advertising, personalization, or user profiling. We do not send names, email addresses, precise location, contacts, advertising identifiers, or any other directly identifying information to TelemetryDeck. Events are collected anonymously and are not linked to your identity.\n\nApp Store privacy disclosures include the practices of third-party partners you integrate (such as TelemetryDeck).",
             "screenshots": [
-                "/assets/img/projects/screenshots/chronimo-1.png",
-                "/assets/img/projects/screenshots/chronimo-2.png",
-                "/assets/img/projects/screenshots/chronimo-3.png",
-                "/assets/img/projects/screenshots/chronimo-4.png",
-                "/assets/img/projects/screenshots/chronimo-5.png",
-                "/assets/img/projects/screenshots/chronimo-6.png"
+                "/assets/img/projects/screenshots/chronimo-01.PNG",
+                "/assets/img/projects/screenshots/chronimo-02.PNG",
+                "/assets/img/projects/screenshots/chronimo-03.PNG",
+                "/assets/img/projects/screenshots/chronimo-04.PNG",
+                "/assets/img/projects/screenshots/chronimo-05.PNG",
+                "/assets/img/projects/screenshots/chronimo-06.PNG",
+                "/assets/img/projects/screenshots/chronimo-07.PNG",
+                "/assets/img/projects/screenshots/chronimo-08.PNG",
+                "/assets/img/projects/screenshots/chronimo-09.PNG"
             ]
         },
         {
