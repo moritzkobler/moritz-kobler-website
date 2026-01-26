@@ -27,7 +27,7 @@
             "name": "Chronimo",
             "icon": "/assets/img/projects/icons/chronimo-icon-01.png",
             "status": "Available on iOS",
-            "shortDescription": "A lightweight, local-first time tracker for projects, tasks, and sessions—built for fast start/stop, clear totals, and minimal friction.",
+            "shortDescription": "A lightweight, local-first time tracker for projects, tasks, and sessions—built for fast start/stop, clear totals, and minimal friction...",
             "longDescription": "Chronimo is a focused time-tracking app designed for creative and knowledge work. Track time across Projects, break work down into Tasks, and log Sessions with one-tap start/stop. The Home screen combines a work-hours status donut (worked vs planned time) with quick access to your most recent or pinned tasks and a categorized projects list. Each project rolls up totals across its tasks, and each task provides an editable session log so you can correct mistimed or forgotten tracking.\n\nChronimo is local-first with no dedicated backend: data lives on-device and is intended to sync via iCloud across your Apple devices. It stays usable offline, supports a floating active-session card for rapid control, and aims to support lock screen start/stop controls in native builds. Settings include work-hours scheduling (driving the donut), time display formatting, project categories management, and export options (CSV + database export in native builds).",
             "appStoreLinks": {
                 "ios": null,
