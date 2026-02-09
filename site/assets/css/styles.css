@@ -1021,6 +1021,45 @@ section {
   align-items: flex-start;
 }
 
+.project-hero--desktop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.project-hero__row {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.project-hero--mobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.project-hero__head {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.project-hero__titles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.project-hero__name {
+  margin: 0;
+}
+
+.project-hero__desc {
+  margin: 0;
+}
+
 .shot-grid {
   display: grid;
   grid-template-columns: 1fr;

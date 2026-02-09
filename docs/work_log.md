@@ -10,6 +10,17 @@
 - Follow-ups: Replace placeholder copy/tags with real content per project.
 - Commit: COMMIT: <pending>
 
+### 2026-02-09 — Projects: mobile hero layout refinement
+- Summary:
+  - Adjusted project detail hero layout on mobile to keep icon + meta/status + name in one top-aligned row.
+  - Moved the long description to full width below that row (mobile only).
+  - Kept desktop rendering unchanged.
+- Scope: work_plan section 6 (Project detail)
+- Files: site/assets/js/views.js, site/assets/css/styles.css
+- Tests: Manual (local static server)
+- Follow-ups: Verify extreme-long titles/status strings wrap nicely on small screens.
+- Commit: COMMIT: <pending>
+
 ### 2026-02-09 — Projects: screenshot grid/lightbox + generic links
 - Summary:
   - Restructured project screenshots from flat array to `{ carousel, grid }` object to support mixed-size images (phone in carousel, desktop/tablet in masonry grid).
