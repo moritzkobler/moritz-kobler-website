@@ -1,3 +1,29 @@
+### 2026-02-09 — Projects: technical solution section
+- Summary:
+  - Added optional “Technical Solution” section on project detail pages (under hero, above screenshots).
+  - Section supports paragraph copy plus small tag labels.
+  - Added placeholder data for Chronimo and Flightimo in EN/DE bundles.
+  - Updated PRD project detail requirements + data model.
+- Scope: work_plan section 6 (Project detail)
+- Files: site/assets/js/views.js, site/assets/css/styles.css, site/data/projects.en.json, site/data/projects.de.json, docs/prd.md
+- Tests: Manual (local static server)
+- Follow-ups: Replace placeholder copy/tags with real content per project.
+- Commit: COMMIT: <pending>
+
+### 2026-02-09 — Projects: screenshot grid/lightbox + generic links
+- Summary:
+  - Restructured project screenshots from flat array to `{ carousel, grid }` object to support mixed-size images (phone in carousel, desktop/tablet in masonry grid).
+  - Implemented masonry grid component (CSS columns, responsive breakpoints) with lightbox modal (semi-transparent backdrop, rounded corners, prev/next carets, dot indicators, keyboard navigation, backdrop-click-to-close).
+  - Renamed `appStoreLinks` to `links` with new `web` field. Flightimo gets `https://flightimo.moritzkobler.com`. Hero chips and links section updated to show Web link.
+  - Split Flightimo screenshots: iPhone → carousel, desktop/iPad → grid. Chronimo stays all-carousel.
+  - Updated copy keys in EN/DE: `sectionAppStores` → `sectionLinks`, added `openOnWeb`, `emptyStoreLinks` → `emptyLinks`.
+  - Updated PRD sections 6.3 and 7.2 to reflect new data model and screenshot display modes.
+- Scope: work_plan section 6 (Project detail)
+- Files: site/data/projects.en.json, site/data/projects.de.json, site/assets/js/views.js, site/assets/css/styles.css, docs/prd.md
+- Tests: Manual (local static server)
+- Follow-ups: Test lightbox on mobile, verify grid column count at various breakpoints, consider swipe gesture support for lightbox on touch devices.
+- Commit: COMMIT: <pending>
+
 ### 2026-01-25 — Projects: titles, icons, and favicons
 - Summary:
   - Set project detail document title from the project name (instead of the slug).

@@ -191,8 +191,15 @@ Each project page must include:
 * App icon  
 * Status  
 * Long-form description  
-* Screenshots (placeholders allowed pre-release)  
-* App Store links (when applicable)
+* Screenshots in two optional display modes (omit from data if not needed):  
+  * **Carousel:** horizontal scrollable gallery, best for phone screenshots of consistent width  
+  * **Grid:** masonry-style grid (CSS columns) with lightbox viewer, best for desktop/tablet screenshots of varying sizes; clicking opens a full-screen lightbox modal with rounded corners, semi-transparent backdrop, prev/next navigation carets, close button, and dot indicators (styled to match carousel dots). Keyboard navigable (Escape to close, arrow keys to scrub). Backdrop click also closes.  
+* Links (when applicable):  
+  * App Store links (iOS, Android)  
+  * Web app link (opens in new tab)
+* Optional “Technical Solution” section (recommended):  
+  * A paragraph describing architecture/approach  
+  * A set of short technology/tags labels (e.g. React Native, Cloud Run, Postgres)
 
 #### **App Store Compliance**
 
@@ -291,13 +298,21 @@ URL structure must allow future non-app project types.
       "status": "Coming 2026",
       "shortDescription": "Short pitch",
       "longDescription": "Full description",
-      "appStoreLinks": {
+      "links": {
         "ios": null,
-        "android": null
+        "android": null,
+        "web": null
+      },
+      "technicalSolution": {
+        "body": "A short technical description (optional)",
+        "tags": ["React Native", "Postgres"]
       },
       "supportEmail": "support@domain.com",
       "privacy": "Privacy statement",
-      "screenshots": []
+      "screenshots": {
+        "carousel": [],
+        "grid": []
+      }
     }
   ]
 }

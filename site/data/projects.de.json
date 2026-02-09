@@ -9,13 +9,16 @@
         "backToProjects": "Zurück zu den Projekten",
         "detailTypeFallback": "Projekt",
         "sectionScreenshots": "Screenshots",
+        "sectionScreenshotsMore": "Weitere Screenshots",
         "emptyScreenshots": "Noch keine Screenshots.",
         "screenshotAlt": "{name} Screenshot {index}",
         "appFallbackName": "App",
-        "sectionAppStores": "App Stores",
+        "sectionTechnicalSolution": "Technische Lösung",
+        "sectionLinks": "Links",
         "openOnIos": "Auf iOS öffnen",
         "openOnAndroid": "Auf Android öffnen",
-        "emptyStoreLinks": "Noch keine Store-Links.",
+        "openOnWeb": "Web-App öffnen",
+        "emptyLinks": "Noch keine Links.",
         "sectionSupport": "Support",
         "emptySupportEmail": "Keine Support-E-Mail angegeben.",
         "sectionPrivacy": "Datenschutz"
@@ -29,23 +32,35 @@
             "status": "Verfügbar für iOS",
             "shortDescription": "Ein schlanker, lokal-first Zeittracker für Projekte, Tasks und Sessions – entwickelt für schnelles Starten und Stoppen, klare Auswertungen und minimale Reibung.",
             "longDescription": "Chronimo ist eine fokussierte Zeiterfassungs-App für kreative Arbeit und Wissensarbeit. Erfasse Zeit über Projekte hinweg, unterteile Arbeit in Tasks und protokolliere Sessions per One-Tap Start/Stop. Der Home-Screen kombiniert einen Arbeitszeit-Status (geplant vs. erfasst) mit schnellem Zugriff auf zuletzt genutzte oder angeheftete Tasks sowie einer kategorisierten Projektübersicht. Jedes Projekt aggregiert Zeiten über alle Tasks hinweg, und jede Task bietet ein editierbares Session-Log, um vergessene oder falsch erfasste Zeiten zu korrigieren.\n\nChronimo ist lokal-first konzipiert und kommt ohne dediziertes Backend aus: Alle Daten liegen auf dem Gerät und sind für die Synchronisation über iCloud zwischen Apple-Geräten vorgesehen. Die App ist offline nutzbar, unterstützt eine schwebende Active-Session-Karte zur schnellen Steuerung und soll in nativen Builds Start/Stop-Steuerung über den Sperrbildschirm ermöglichen. Zu den Einstellungen gehören Arbeitszeit-Definitionen (für die Anzeige), Zeitformate, Projektkategorien sowie Exportoptionen (CSV- und Datenbank-Export in nativen Builds).",
-            "appStoreLinks": {
+            "links": {
                 "ios": null,
-                "android": null
+                "android": null,
+                "web": null
             },
             "supportEmail": "gordianknotapps@gmail.com",
+            "technicalSolution": {
+                "body": "Platzhalter: Eine lokal-first iOS-App mit einfachem On-Device-Datenmodell und einer UI, die für schnelles Time-Tracking optimiert ist. Beschreibe hier Architektur, Storage, Sync-Ansatz, Analytics und relevante UI-/State-Patterns.",
+                "tags": [
+                    "SwiftUI",
+                    "Local-first",
+                    "iCloud Sync",
+                    "TelemetryDeck"
+                ]
+            },
             "privacy": "Chronimo ist lokal-first konzipiert: Projekte, Tasks und Sessions werden auf deinem Gerät gespeichert. Die geräteübergreifende Synchronisation erfolgt vorgesehen über iCloud (ohne separates Chronimo-Konto).\n\nUm grundlegende Nutzungsmuster zu verstehen und die App zu verbessern, verwendet Chronimo TelemetryDeck für datenschutzfreundliche Analysen. TelemetryDeck wird ausschließlich für aggregierte, funktionsbasierte Nutzungsereignisse eingesetzt (z. B. welche Screens oder Aktionen verwendet werden) und nicht für Werbung, Personalisierung oder Nutzerprofiling. Es werden keine Namen, E-Mail-Adressen, präzisen Standortdaten, Kontakte, Werbe-IDs oder andere direkt identifizierende Informationen an TelemetryDeck übertragen. Die erfassten Events sind anonym und nicht mit deiner Identität verknüpft.\n\nDie Datenschutzangaben im App Store berücksichtigen die Praktiken integrierter Drittanbieter (wie TelemetryDeck).",
-            "screenshots": [
-                "/assets/img/projects/screenshots/chronimo/chronimo-01.PNG",
-                "/assets/img/projects/screenshots/chronimo/chronimo-02.PNG",
-                "/assets/img/projects/screenshots/chronimo/chronimo-03.PNG",
-                "/assets/img/projects/screenshots/chronimo/chronimo-04.PNG",
-                "/assets/img/projects/screenshots/chronimo/chronimo-05.PNG",
-                "/assets/img/projects/screenshots/chronimo/chronimo-06.PNG",
-                "/assets/img/projects/screenshots/chronimo/chronimo-07.PNG",
-                "/assets/img/projects/screenshots/chronimo/chronimo-08.PNG",
-                "/assets/img/projects/screenshots/chronimo/chronimo-09.PNG"
-            ]
+            "screenshots": {
+                "carousel": [
+                    "/assets/img/projects/screenshots/chronimo/chronimo-01.PNG",
+                    "/assets/img/projects/screenshots/chronimo/chronimo-02.PNG",
+                    "/assets/img/projects/screenshots/chronimo/chronimo-03.PNG",
+                    "/assets/img/projects/screenshots/chronimo/chronimo-04.PNG",
+                    "/assets/img/projects/screenshots/chronimo/chronimo-05.PNG",
+                    "/assets/img/projects/screenshots/chronimo/chronimo-06.PNG",
+                    "/assets/img/projects/screenshots/chronimo/chronimo-07.PNG",
+                    "/assets/img/projects/screenshots/chronimo/chronimo-08.PNG",
+                    "/assets/img/projects/screenshots/chronimo/chronimo-09.PNG"
+                ]
+            }
         },
         {
             "slug": "flightimo",
@@ -55,25 +70,40 @@
             "status": "Live (Web)",
             "shortDescription": "Eine Web‑App zum Planen und Vergleichen von Multi‑City‑Flugreisen mit gespeicherten Suchen, detaillierten Itineraries und schnellen Iterationen.",
             "longDescription": "Flightimo ist ein webbasiertes Tool zur Flugplanung mit Fokus auf Multi‑City‑Trips und schnellen Iterationen. Du erstellst Reisen aus mehreren Legs, startest Suchen und vergleichst Optionen mit Itinerary‑Details in einer Oberfläche. Die App unterscheidet Editor‑ und Viewer‑Zugriff: Editor:innen können Suchen ausführen und speichern, Viewer:innen können Ergebnisse ansehen. Daten werden zentral gespeichert, sodass du Arbeit über Sessions und Geräte hinweg fortsetzen kannst.\n\nIm Hintergrund nutzt Flightimo einen Scraping‑Dienst, um Ergebnisse abzurufen, und verwaltet ein strukturiertes Zustandsmodell für Searches, Queries, Options und UI‑State. Die UI ist auf Übersichtlichkeit ausgelegt: leg‑basiertes Trip‑Building, kompakte Zusammenfassungen und ausklappbare Itinerary‑Details für schnelles Scannen.",
-            "appStoreLinks": {
+            "links": {
                 "ios": null,
-                "android": null
+                "android": null,
+                "web": "https://flightimo.moritzkobler.com"
             },
             "supportEmail": null,
+            "technicalSolution": {
+                "body": "Platzhalter: Eine Web-App mit strukturiertem Trip-/Search-State, unterstützt durch eine Datenbank zur Persistierung. Beschreibe hier Frontend-Stack, Backend-Services, Scraping/Search-Pipeline, Auth-Modell und Deployment.",
+                "tags": [
+                    "Web-App",
+                    "Postgres",
+                    "Google Cloud Run",
+                    "Auth",
+                    "Scraping"
+                ]
+            },
             "privacy": "Flightimo speichert App‑Daten (Searches, Queries, Options und UI‑State) serverseitig, um Persistenz über Sessions hinweg zu ermöglichen. Der Editor‑Zugriff ist durch Login‑Credentials geschützt. Es werden keine mobilen Plattform‑IDs erfasst. Falls Analytics oder Logging durch die Hosting‑Umgebung aktiviert sind, sollten diese separat offengelegt werden.",
-            "screenshots": [
-                "/assets/img/projects/screenshots/flightimo/flightimo-desktop-01.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-desktop-02.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-desktop-03.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-desktop-04.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-ipad-01.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-ipad-02.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-ipad-03.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-iphone-01.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-iphone-02.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-iphone-03.png",
-                "/assets/img/projects/screenshots/flightimo/flightimo-iphone-04.png"
-            ]
+            "screenshots": {
+                "carousel": [
+                    "/assets/img/projects/screenshots/flightimo/flightimo-iphone-01.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-iphone-02.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-iphone-03.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-iphone-04.png"
+                ],
+                "grid": [
+                    "/assets/img/projects/screenshots/flightimo/flightimo-desktop-01.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-desktop-02.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-desktop-03.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-desktop-04.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-ipad-01.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-ipad-02.png",
+                    "/assets/img/projects/screenshots/flightimo/flightimo-ipad-03.png"
+                ]
+            }
         },
         {
             "slug": "planimo",
@@ -83,13 +113,14 @@
             "status": "In Entwicklung",
             "shortDescription": "Eine App zur Lebensplanung für Ziele, Routinen und Klarheit.",
             "longDescription": "Planimo hilft dabei, langfristige Ziele in realistische Pläne zu übersetzen – mit Routinen, Zwischenzielen und sanften Erinnerungen.",
-            "appStoreLinks": {
+            "links": {
                 "ios": null,
-                "android": null
+                "android": null,
+                "web": null
             },
             "supportEmail": "gordianknotapps@gmail.com",
             "privacy": "Platzhalter für Datenschutzerklärung.",
-            "screenshots": []
+            "screenshots": {}
         }
     ]
 }
