@@ -39,12 +39,18 @@
             },
             "supportEmail": "gordianknotapps@gmail.com",
             "technicalSolution": {
-                "body": "Placeholder: A local-first iOS app built with a simple on-device data model and a UI optimized for fast time tracking. Describe architecture, storage, sync approach, analytics, and any noteworthy UI/state patterns here.",
+                "body": "Local-first iOS time-tracking app built with React Native (Expo) and TypeScript. Structured data is persisted in an on-device SQLite database (Projects/Tasks/Sessions) with derived totals computed from persisted session duration. Cross-device sync is implemented via iCloud by exporting and merging a sync representation (record-level last-write-wins using updatedAt). Real-time session ticking is handled in-memory to avoid write-amplification while keeping UI responsive. Anonymous analytics uses TelemetryDeck with per-install salted hashing for entity identifiers and no PII. Built with GitHub Copilot.",
                 "tags": [
-                    "SwiftUI",
-                    "Local-first",
+                    "React Native",
+                    "Expo",
+                    "TypeScript",
+                    "SQLite",
+                    "Expo SQLite",
+                    "Expo Router",
                     "iCloud Sync",
-                    "TelemetryDeck"
+                    "TelemetryDeck",
+                    "Local-first",
+                    "GitHub Copilot"
                 ]
             },
             "privacy": "Chronimo is designed to be local-first: your projects, tasks, and sessions are stored on your device. Cross-device sync is intended to use iCloud (no separate Chronimo account).\n\nTo understand basic product usage and improve the app, Chronimo uses TelemetryDeck for privacy-friendly analytics. TelemetryDeck is used only for aggregated, feature-based usage events (e.g., which screens or actions are used) and is not used for advertising, personalization, or user profiling. We do not send names, email addresses, precise location, contacts, advertising identifiers, or any other directly identifying information to TelemetryDeck. Events are collected anonymously and are not linked to your identity.\n\nApp Store privacy disclosures include the practices of third-party partners you integrate (such as TelemetryDeck).",
@@ -77,13 +83,20 @@
             },
             "supportEmail": null,
             "technicalSolution": {
-                "body": "Placeholder: A web app with a structured trip/search state model, backed by a database for persistence. Describe frontend stack, backend services, scraping/search pipeline, auth model, and deployment here.",
+                "body": "Flightimo is a full‑stack web app with a React + Vite + TypeScript frontend and a Node.js + Express backend. Data is stored in Google Cloud SQL and the API is deployed on Google Cloud Run. A key complexity is the scraping pipeline (Puppeteer + headless browser automation) used to fetch flight results reliably, with throttling, retries, and partial‑result handling. The UI uses Mantine with a structured state model and editor/viewer auth. Built with GitHub Copilot.",
                 "tags": [
-                    "Web App",
-                    "Postgres",
+                    "React",
+                    "Vite",
+                    "TypeScript",
+                    "Mantine",
+                    "Node.js",
+                    "Express",
+                    "Puppeteer",
+                    "Web Scraping",
+                    "PostgreSQL",
+                    "Google Cloud SQL",
                     "Google Cloud Run",
-                    "Auth",
-                    "Scraping"
+                    "GitHub Copilot"
                 ]
             },
             "privacy": "Flightimo stores app data (searches, queries, options, and UI state) in a server‑side database to enable persistence across sessions. Editor access is protected by login credentials. No mobile platform identifiers are collected. If analytics or logging are enabled by the hosting environment, they should be disclosed separately.",

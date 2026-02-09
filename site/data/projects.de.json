@@ -39,12 +39,18 @@
             },
             "supportEmail": "gordianknotapps@gmail.com",
             "technicalSolution": {
-                "body": "Platzhalter: Eine lokal-first iOS-App mit einfachem On-Device-Datenmodell und einer UI, die für schnelles Time-Tracking optimiert ist. Beschreibe hier Architektur, Storage, Sync-Ansatz, Analytics und relevante UI-/State-Patterns.",
+                "body": "Local-First-iOS-Time-Tracking-App mit React Native (Expo) und TypeScript. Persistenz über eine lokale SQLite-Datenbank (Projects/Tasks/Sessions); Summen/Reports werden aus der persistierten Session-Dauer abgeleitet. Geräteübergreifender Sync via iCloud durch Export und Merge einer Sync-Repräsentation (Record-Level Last-Write-Wins über updatedAt). Live-Timer/Session-Ticking läuft im Speicher, um Schreiblast zu vermeiden und die UI responsiv zu halten. Vollständig anonyme Analytics mit TelemetryDeck: Entity-IDs werden pro Installation gesalzen gehasht, keine PII. Entwickelt mit GitHub Copilot.",
                 "tags": [
-                    "SwiftUI",
-                    "Local-first",
+                    "React Native",
+                    "Expo",
+                    "TypeScript",
+                    "SQLite",
+                    "Expo SQLite",
+                    "Expo Router",
                     "iCloud Sync",
-                    "TelemetryDeck"
+                    "TelemetryDeck",
+                    "Local-first",
+                    "GitHub Copilot"
                 ]
             },
             "privacy": "Chronimo ist lokal-first konzipiert: Projekte, Tasks und Sessions werden auf deinem Gerät gespeichert. Die geräteübergreifende Synchronisation erfolgt vorgesehen über iCloud (ohne separates Chronimo-Konto).\n\nUm grundlegende Nutzungsmuster zu verstehen und die App zu verbessern, verwendet Chronimo TelemetryDeck für datenschutzfreundliche Analysen. TelemetryDeck wird ausschließlich für aggregierte, funktionsbasierte Nutzungsereignisse eingesetzt (z. B. welche Screens oder Aktionen verwendet werden) und nicht für Werbung, Personalisierung oder Nutzerprofiling. Es werden keine Namen, E-Mail-Adressen, präzisen Standortdaten, Kontakte, Werbe-IDs oder andere direkt identifizierende Informationen an TelemetryDeck übertragen. Die erfassten Events sind anonym und nicht mit deiner Identität verknüpft.\n\nDie Datenschutzangaben im App Store berücksichtigen die Praktiken integrierter Drittanbieter (wie TelemetryDeck).",
@@ -77,13 +83,20 @@
             },
             "supportEmail": null,
             "technicalSolution": {
-                "body": "Platzhalter: Eine Web-App mit strukturiertem Trip-/Search-State, unterstützt durch eine Datenbank zur Persistierung. Beschreibe hier Frontend-Stack, Backend-Services, Scraping/Search-Pipeline, Auth-Modell und Deployment.",
+                "body": "Flightimo ist eine Full‑Stack‑Web‑App mit React + Vite + TypeScript im Frontend und Node.js + Express im Backend. Die Daten liegen in Google Cloud SQL, die API läuft auf Google Cloud Run. Eine besondere Komplexität ist die Scraping‑Pipeline (Puppeteer + Headless‑Browser‑Automation), um Flugdaten zuverlässig zu laden – inkl. Throttling, Retries und Umgang mit unvollständigen Ergebnissen. Die UI nutzt Mantine mit einem strukturierten State‑Modell und Editor/Viewer‑Auth. Erstellt mit GitHub Copilot.",
                 "tags": [
-                    "Web-App",
-                    "Postgres",
+                    "React",
+                    "Vite",
+                    "TypeScript",
+                    "Mantine",
+                    "Node.js",
+                    "Express",
+                    "Puppeteer",
+                    "Web Scraping",
+                    "PostgreSQL",
+                    "Google Cloud SQL",
                     "Google Cloud Run",
-                    "Auth",
-                    "Scraping"
+                    "GitHub Copilot"
                 ]
             },
             "privacy": "Flightimo speichert App‑Daten (Searches, Queries, Options und UI‑State) serverseitig, um Persistenz über Sessions hinweg zu ermöglichen. Der Editor‑Zugriff ist durch Login‑Credentials geschützt. Es werden keine mobilen Plattform‑IDs erfasst. Falls Analytics oder Logging durch die Hosting‑Umgebung aktiviert sind, sollten diese separat offengelegt werden.",
