@@ -323,6 +323,117 @@ function attachCarousel(carouselRoot){
   requestAnimationFrame(update);
 }
 
+function openLightbox(images, startIndex, appName, tfFn){
+  let current = startIndex;
+  const total = images.length;
+
+  const imgNode = el('img', {
+    class: 'lightbox__img',
+    src: images[current],
+    alt: tfFn('screenshotAlt', { name: appName, index: current + 1 })
+  });
+
+  const closeBtn = el('button', { class: 'lightbox__close', type: 'button', 'aria-label': 'Close' }, [
+    svgEl('svg', { viewBox: '0 0 24 24', 'aria-hidden': 'true', focusable: 'false' }, [
+      svgEl('path', {
+        d: 'M18 6L6 18M6 6l12 12',
+        fill: 'none',
+        stroke: 'currentColor',
+        'stroke-width': '2',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      })
+    ])
+  ]);
+
+  const prevBtn = el('button', {
+    class: 'lightbox__nav lightbox__nav--prev',
+    type: 'button',
+    'aria-label': 'Previous screenshot'
+  }, [renderChevronIcon('left')]);
+
+  const nextBtn = el('button', {
+    class: 'lightbox__nav lightbox__nav--next',
+    type: 'button',
+    'aria-label': 'Next screenshot'
+  }, [renderChevronIcon('right')]);
+
+  const dots = el('div', { class: 'lightbox__dots' }, images.map((_, idx) =>
+    el('button', {
+      class: 'carousel-dot',
+      type: 'button',
+      'aria-label': `Go to screenshot ${idx + 1} of ${total}`
+    })
+  ));
+  const dotBtns = Array.from(dots.children);
+
+  const overlay = el('div', { class: 'lightbox' }, [
+    closeBtn,
+    el('div', { class: 'lightbox__content' }, [prevBtn, imgNode, nextBtn]),
+    dots
+  ]);
+
+  function goTo(idx){
+    if (idx < 0 || idx >= total) return;
+    current = idx;
+    imgNode.src = images[current];
+    imgNode.alt = tfFn('screenshotAlt', { name: appName, index: current + 1 });
+    refresh();
+  }
+
+  function refresh(){
+    prevBtn.style.visibility = current <= 0 ? 'hidden' : '';
+    nextBtn.style.visibility = current >= total - 1 ? 'hidden' : '';
+    dotBtns.forEach((d, i) => {
+      d.setAttribute('aria-current', i === current ? 'true' : 'false');
+      d.setAttribute('tabindex', i === current ? '0' : '-1');
+    });
+  }
+
+  function close(){
+    document.removeEventListener('keydown', onKey);
+    document.body.style.overflow = '';
+    overlay.remove();
+  }
+
+  function onKey(e){
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  }
+
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+  dotBtns.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+  document.addEventListener('keydown', onKey);
+  document.body.style.overflow = 'hidden';
+  document.body.appendChild(overlay);
+
+  if (total <= 1){ prevBtn.style.display = 'none'; nextBtn.style.display = 'none'; dots.style.display = 'none'; }
+  refresh();
+}
+
+function renderScreenshotGrid(images, appName, tfFn, indexOffset){
+  return el('div', { class: 'screenshot-grid' }, images.map((src, idx) =>
+    el('div', {
+      class: 'screenshot-grid__item',
+      tabindex: '0',
+      onclick: () => openLightbox(images, idx, appName, tfFn),
+      onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLightbox(images, idx, appName, tfFn); } }
+    }, [
+      el('img', {
+        class: 'screenshot-grid__img',
+        src,
+        alt: tfFn('screenshotAlt', { name: appName, index: indexOffset + idx + 1 }),
+        loading: 'lazy'
+      })
+    ])
+  ));
+}
+
 export async function renderAbout({ lang }){
   const locale = lang === 'de' ? 'de-DE' : 'en-US';
 
@@ -640,36 +751,62 @@ export async function renderProjectDetail({ lang, slug }){
   const iconSrc = typeof project?.icon === 'string' && project.icon.trim().length > 0
     ? project.icon.trim()
     : iconDataUrl(project.slug ?? '', project.name ?? '');
-  const screenshots = Array.isArray(project.screenshots)
-    ? project.screenshots.filter((s) => typeof s === 'string' && s.trim().length > 0)
+  const screenshotData = project.screenshots && typeof project.screenshots === 'object' && !Array.isArray(project.screenshots)
+    ? project.screenshots
+    : {};
+  const carouselShots = Array.isArray(screenshotData.carousel)
+    ? screenshotData.carousel.filter((s) => typeof s === 'string' && s.trim().length > 0)
     : [];
-  const ios = project?.appStoreLinks?.ios;
-  const android = project?.appStoreLinks?.android;
+  const gridShots = Array.isArray(screenshotData.grid)
+    ? screenshotData.grid.filter((s) => typeof s === 'string' && s.trim().length > 0)
+    : [];
+  const hasScreenshots = carouselShots.length > 0 || gridShots.length > 0;
+  const ios = project?.links?.ios;
+  const android = project?.links?.android;
+  const web = project?.links?.web;
+
+  const tech = (project?.technicalSolution && typeof project.technicalSolution === 'object') ? project.technicalSolution : null;
+  const techBody = typeof tech?.body === 'string' ? tech.body.trim() : '';
+  const techTags = Array.isArray(tech?.tags) ? tech.tags.filter((x) => typeof x === 'string' && x.trim().length > 0) : [];
+  const hasTech = Boolean(techBody) || techTags.length > 0;
 
   const typeLabel = String(project.type ?? t('detailTypeFallback')).trim();
 
+  const screenshotParts = [];
+  if (carouselShots.length > 0){
+    const gallery = el('div', { class: 'gallery gallery--lg gallery--shots' }, carouselShots.map((src, idx) =>
+      el('article', { class: 'gallery-card gallery-card--shot', tabindex: '-1', onclick: onGalleryCardClick }, [
+        el('img', {
+          class: 'shot shot--carousel',
+          src,
+          alt: tf('screenshotAlt', { name: project.name ?? t('appFallbackName'), index: idx + 1 })
+        })
+      ])
+    ));
+    const carousel = el('div', { class: 'carousel carousel--shots' }, [gallery]);
+    attachCarousel(carousel);
+    screenshotParts.push(carousel);
+  }
+  if (gridShots.length > 0){
+    screenshotParts.push(el('div', { class: 'screenshots-grid-block' }, [
+      carouselShots.length > 0 ? el('div', { class: 'section-subtitle', text: t('sectionScreenshotsMore') }) : null,
+      renderScreenshotGrid(gridShots, project.name ?? t('appFallbackName'), tf, carouselShots.length)
+    ].filter(Boolean)));
+  }
   const screenshotsSection = el('section', {}, [
     el('div', { class: 'section-title', text: t('sectionScreenshots') }),
-    screenshots.length === 0
-      ? el('p', { class: 'muted', text: t('emptyScreenshots') })
-      : (() => {
-          const gallery = el('div', { class: 'gallery gallery--lg gallery--shots' }, screenshots.map((src, idx) =>
-            el('article', { class: 'gallery-card gallery-card--shot', tabindex: '-1', onclick: onGalleryCardClick }, [
-              el('img', {
-                class: 'shot shot--carousel',
-                src,
-                alt: tf('screenshotAlt', {
-                  name: project.name ?? t('appFallbackName'),
-                  index: idx + 1
-                })
-              })
-            ])
-          ));
-          const carousel = el('div', { class: 'carousel carousel--shots' }, [gallery]);
-          attachCarousel(carousel);
-          return carousel;
-        })()
+    hasScreenshots
+      ? el('div', { class: 'screenshots-wrap' }, screenshotParts)
+      : el('p', { class: 'muted', text: t('emptyScreenshots') })
   ]);
+
+  const technicalSection = hasTech ? el('section', {}, [
+    el('div', { class: 'section-title', text: t('sectionTechnicalSolution') }),
+    techBody ? el('p', { class: 'p', text: techBody }) : null,
+    techTags.length
+      ? el('div', { class: 'tag-row' }, techTags.map((tag) => el('span', { class: 'tag', text: tag })))
+      : null
+  ].filter(Boolean)) : null;
 
   return el('div', { class: 'container' }, [
     el('a', { class: 'back-link', href: '/projects', 'data-link': 'true' }, [
@@ -689,21 +826,25 @@ export async function renderProjectDetail({ lang, slug }){
         ])
       ]),
       el('div', { class: 'chips' }, [
-        ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: 'iOS' }) : null,
-        android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: 'Android' }) : null
+        ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: t('openOnIos') }) : null,
+        android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: t('openOnAndroid') }) : null,
+        web ? el('a', { class: 'chip', href: web, target: '_blank', rel: 'noreferrer', text: t('openOnWeb') }) : null
       ].filter(Boolean))
     ]),
+
+    technicalSection,
 
     screenshotsSection,
 
     el('section', {}, [
-      el('div', { class: 'section-title', text: t('sectionAppStores') }),
-      (ios || android)
+      el('div', { class: 'section-title', text: t('sectionLinks') }),
+      (ios || android || web)
         ? el('div', { class: 'chips' }, [
             ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: t('openOnIos') }) : null,
-            android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: t('openOnAndroid') }) : null
+            android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: t('openOnAndroid') }) : null,
+            web ? el('a', { class: 'chip', href: web, target: '_blank', rel: 'noreferrer', text: t('openOnWeb') }) : null
           ].filter(Boolean))
-        : el('p', { class: 'muted', text: t('emptyStoreLinks') })
+        : el('p', { class: 'muted', text: t('emptyLinks') })
     ]),
 
     el('section', {}, [
