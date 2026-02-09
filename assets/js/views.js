@@ -772,6 +772,16 @@ export async function renderProjectDetail({ lang, slug }){
 
   const typeLabel = String(project.type ?? t('detailTypeFallback')).trim();
 
+  const metaRow = el('div', { class: 'project-meta' }, [
+    el('span', { class: 'meta-tag', text: typeLabel ? typeLabel.toUpperCase() : '' }),
+    project.status ? el('span', { class: 'muted project-meta__status', text: project.status }) : null
+  ].filter(Boolean));
+
+  const isDesktop = (() => {
+    try{ return window.matchMedia('(min-width: 760px)').matches; }
+    catch(e){ return true; }
+  })();
+
   const screenshotParts = [];
   if (carouselShots.length > 0){
     const gallery = el('div', { class: 'gallery gallery--lg gallery--shots' }, carouselShots.map((src, idx) =>
@@ -814,17 +824,27 @@ export async function renderProjectDetail({ lang, slug }){
       el('span', { text: t('backToProjects') })
     ]),
     el('section', { class: 'card hero' }, [
-      el('div', { class: 'project-meta' }, [
-        el('span', { class: 'meta-tag', text: typeLabel ? typeLabel.toUpperCase() : '' }),
-        project.status ? el('span', { class: 'muted project-meta__status', text: project.status }) : null
-      ].filter(Boolean)),
-      el('div', { class: 'project-hero' }, [
-        renderLogo(iconSrc, project.name ?? '', 'logo--project-lg'),
-        el('div', {}, [
-          el('h1', { class: 'h1', text: project.name ?? '' }),
-          el('p', { class: 'p', text: project.longDescription ?? '' })
-        ])
-      ]),
+      isDesktop
+        ? el('div', { class: 'project-hero project-hero--desktop' }, [
+            metaRow,
+            el('div', { class: 'project-hero__row' }, [
+              renderLogo(iconSrc, project.name ?? '', 'logo--project-lg'),
+              el('div', {}, [
+                el('h1', { class: 'h1', text: project.name ?? '' }),
+                el('p', { class: 'p', text: project.longDescription ?? '' })
+              ])
+            ])
+          ])
+        : el('div', { class: 'project-hero project-hero--mobile' }, [
+            el('div', { class: 'project-hero__head' }, [
+              renderLogo(iconSrc, project.name ?? '', 'logo--project-lg'),
+              el('div', { class: 'project-hero__titles' }, [
+                metaRow,
+                el('h1', { class: 'h1 project-hero__name', text: project.name ?? '' })
+              ])
+            ]),
+            el('p', { class: 'p project-hero__desc', text: project.longDescription ?? '' })
+          ]),
       el('div', { class: 'chips' }, [
         ios ? el('a', { class: 'chip', href: ios, target: '_blank', rel: 'noreferrer', text: t('openOnIos') }) : null,
         android ? el('a', { class: 'chip', href: android, target: '_blank', rel: 'noreferrer', text: t('openOnAndroid') }) : null,
